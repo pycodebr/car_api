@@ -7,12 +7,12 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from car_api.database import DATABASE_URL
 from car_api.models import Base
+from car_api.settings import Settings
 
 
 config = context.config
-config.set_main_option('sqlalchemy.url', DATABASE_URL)
+config.set_main_option('sqlalchemy.url', Settings().DATABASE_URL)
 
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
