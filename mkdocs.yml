@@ -1,0 +1,5 @@
+site_name: Car API
+repo_url: https://github.com/pycodebr/car_api
+
+theme:
+  name: readthedocs
