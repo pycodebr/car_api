@@ -7,7 +7,7 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from car_api.models import Base
+from car_api.models import table_registry
 from car_api.settings import Settings
 
 
@@ -17,7 +17,7 @@ config.set_main_option('sqlalchemy.url', Settings().DATABASE_URL)
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-target_metadata = Base.metadata
+target_metadata = table_registry.metadata
 
 
 def run_migrations_offline() -> None:
