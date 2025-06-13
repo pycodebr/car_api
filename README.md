@@ -93,3 +93,11 @@ mkdocs serve -a 127.0.0.1:8001
 ```
 
 2. Abra `http://127.0.0.1:8001` no navegador para visualizar a documentação.
+
+## Testes
+
+Execute a suíte de testes com cobertura usando:
+```bash
+pytest --cov=car_api --cov-report=term --cov-report=html
+```
+O relatório HTML será gerado na pasta `htmlcov`.
