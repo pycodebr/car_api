@@ -170,8 +170,11 @@ car_api/
 Todos os comandos devem ser prefixados com `poetry run` para garantir que sejam executados no ambiente virtual correto:
 
 ```bash
-# Executar a aplicação
+# Executar a aplicação na porta 8000
 poetry run task run
+
+# Executar a documentação na porta 8001
+poetry run task docs
 
 # Executar testes
 poetry run task test
