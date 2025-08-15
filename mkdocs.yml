@@ -1,0 +1,19 @@
+site_name: Car API
+site_description: Uma API REST completa para gerenciamento de carros e usuários
+site_author: PyCodeBR
+site_url: https://pycodebr.github.io/car_api
+
+repo_name: pycodebr/car_api
+repo_url: https://github.com/pycodebr/car_api
+
+theme: readthedocs
+
+plugins:
+  - search
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/pycodebr
+
+copyright: Copyright &copy; 2025 PyCodeBR
