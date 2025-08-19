@@ -79,6 +79,7 @@ Este comando irá:
 Execute as migrações do Alembic para criar as tabelas no banco de dados:
 
 ```bash
+mv .env.example .env
 poetry run alembic upgrade head
 ```
 
