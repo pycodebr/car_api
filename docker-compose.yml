@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  car-api:
+    build: .
+    image: car-api:latest
+    container_name: car-api
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    env_file:
+      - .env
