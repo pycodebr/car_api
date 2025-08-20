@@ -1,12 +1,26 @@
 version: '3.8'
 services:
-  car-api:
+  app:
     build: .
     image: car-api:latest
-    container_name: car-api
     ports:
       - "8000:8000"
     environment:
-      - PYTHONUNBUFFERED=1
+      PYTHONUNBUFFERED: "1"
     env_file:
       - .env
+    depends_on:
+      - db
+  db:
+    image: postgres:17.6-bookworm
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
