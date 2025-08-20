@@ -11,6 +11,15 @@ services:
       - .env
     depends_on:
       - db
+
+  mkdocs:
+    build:
+      context: .
+      dockerfile: Dockerfile.mkdocs
+    image: car-api-mkdocs:latest
+    ports:
+      - "8001:80"
+
   db:
     image: postgres:17.6-bookworm
     environment:

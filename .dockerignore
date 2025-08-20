@@ -179,6 +179,5 @@ pyrightconfig.json
 .claude/
 
 # Not needed on main image?
-docs/
 tests/
 car.db

@@ -1,0 +1,15 @@
+FROM python:3.13.7-alpine3.22 as builder
+
+WORKDIR /docs
+
+RUN pip install mkdocs
+
+COPY . .
+
+RUN mkdocs build
+
+FROM nginx:alpine as production
+
+COPY --from=builder /docs/site /usr/share/nginx/html
+
+CMD ["nginx", "-g", "daemon off;"]
