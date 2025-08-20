@@ -53,6 +53,38 @@ Verifique a instalação:
 poetry --version
 ```
 
+### 3. Instalação do Python
+
+#### No Linux:
+
+O Linux presa muito pela estabilidade, então é possível que mesmo com uma distribuição recente você encontre versões mais antigas rodando no sistema.
+
+> Ex: O Pop OS 22.04 LTS usa a versão **3.10.12** por padrão.
+
+Por isso, o recomendado é instalar utilizando o `poetry`.
+
+```
+poetry python install 3.13
+poetry env use 3.13
+```
+
+Dessa forma, qualquer comando do poetry usará a versão 3.13.
+
+Se quiser alterar a versão do terminal atual, pode rodar o seguinte comando:
+
+```
+$(poetry env activate)
+python3 --version
+```
+
+#### No Windows:
+
+Você pode fazer o download da versão 3.13 ou superior [aqui](https://www.python.org/downloads/windows/).
+
+#### No MacOS:
+
+TBD?
+
 ## Configuração do Projeto
 
 ### 1. Clone o repositório
