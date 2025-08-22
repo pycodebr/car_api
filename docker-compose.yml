@@ -10,15 +10,21 @@ services:
     env_file:
       - .env
     depends_on:
-      - db
+      migrations:
+        condition: service_completed_successfully
+    volumes:
+      - app:/home/carapi
 
-  mkdocs:
-    build:
-      context: .
-      dockerfile: Dockerfile.mkdocs
-    image: car-api-mkdocs:latest
-    ports:
-      - "8001:80"
+  migrations:
+    build: .
+    depends_on:
+      - db
+    env_file:
+      - .env
+    image: car-api:latest
+    command: poetry run alembic upgrade head
+    volumes:
+      - app:/home/carapi
 
   db:
     image: postgres:17.6-bookworm
@@ -31,5 +37,14 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  mkdocs:
+    build:
+      context: .
+      dockerfile: Dockerfile.mkdocs
+    image: car-api-mkdocs:latest
+    ports:
+      - "8001:80"
+
 volumes:
   postgres_data:
+  app:
