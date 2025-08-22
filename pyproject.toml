@@ -2,9 +2,7 @@
 name = "car-api"
 version = "0.1.0"
 description = ""
-authors = [
-    {name = "pycodebr",email = "pycodebr@gmail.com"}
-]
+authors = [{ name = "pycodebr", email = "pycodebr@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.13,<4.0"
 dependencies = [
@@ -26,6 +24,7 @@ build-backend = "poetry.core.masonry.api"
 ruff = "^0.12.7"
 taskipy = "^1.14.1"
 pytest-asyncio = "^1.1.0"
+pytest-cov = "^5.0"
 
 [tool.pytest.ini_options]
 pythonpath = "."
@@ -83,7 +82,7 @@ quote-style = 'single'
 lint = 'ruff check'
 pre_format = 'ruff check --fix'
 format = 'ruff format'
-run = 'fastapi dev car_api/app.py'
+run = 'fastapi dev car_api/app.py --host 0.0.0.0'
 pre_test = 'task lint'
 test = 'pytest -s -x --cov=car_api -vv'
 post_test = 'coverage html'

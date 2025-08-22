@@ -1,0 +1,50 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    image: car-api:latest
+    ports:
+      - "8000:8000"
+    environment:
+      PYTHONUNBUFFERED: "1"
+    env_file:
+      - .env
+    depends_on:
+      migrations:
+        condition: service_completed_successfully
+    volumes:
+      - app:/home/carapi
+
+  migrations:
+    build: .
+    depends_on:
+      - db
+    env_file:
+      - .env
+    image: car-api:latest
+    command: poetry run alembic upgrade head
+    volumes:
+      - app:/home/carapi
+
+  db:
+    image: postgres:17.6-bookworm
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  mkdocs:
+    build:
+      context: .
+      dockerfile: Dockerfile.mkdocs
+    image: car-api-mkdocs:latest
+    ports:
+      - "8001:80"
+
+volumes:
+  postgres_data:
+  app:
