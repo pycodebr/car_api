@@ -1,0 +1,37 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: car-api
+  namespace: app-system
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: car-api.localhost.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: car-api
+            port:
+              number: 8000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: car-api-mkdocs
+  namespace: app-system
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: car-api-mkdocs.localhost.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: car-api-mkdocs
+            port:
+              number: 80

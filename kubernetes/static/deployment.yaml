@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: car-api
+  name: car-api
+  namespace: app-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: car-api
+  template:
+    metadata:
+      labels:
+        app: car-api
+    spec:
+      initContainers:
+      - name: alembic-migrations
+        image: car-api
+        imagePullPolicy: IfNotPresent
+        command:
+          - sh
+          - -c
+          - |
+            until nc -z -v -w30 postgres 5432; do
+              echo "Waiting for database connection..."
+              sleep 5
+            done
+            echo "Database is up!"
+            poetry run alembic upgrade head
+        envFrom:
+        - secretRef:
+            name: car-api
+      containers:
+      - image: car-api
+        imagePullPolicy: IfNotPresent
+        name: car-api
+        envFrom:
+        - secretRef:
+            name: car-api
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: car-api-mkdocs
+  name: car-api-mkdocs
+  namespace: app-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: car-api-mkdocs
+  template:
+    metadata:
+      labels:
+        app: car-api-mkdocs
+    spec:
+      containers:
+      - image: car-api-mkdocs
+        imagePullPolicy: IfNotPresent
+        name: car-api-mkdocs

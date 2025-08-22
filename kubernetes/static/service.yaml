@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: car-api
+  name: car-api
+  namespace: app-system
+spec:
+  ports:
+  - port: 8000
+    targetPort: 8000
+  selector:
+    app: car-api
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: car-api-mkdocs
+  name: car-api-mkdocs
+  namespace: app-system
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: car-api-mkdocs

@@ -12,8 +12,8 @@ services:
     depends_on:
       migrations:
         condition: service_completed_successfully
-    volumes:
-      - app:/home/carapi
+    # volumes:
+    #   - app:/home/carapi
 
   migrations:
     build: .
@@ -23,8 +23,8 @@ services:
       - .env
     image: car-api:latest
     command: poetry run alembic upgrade head
-    volumes:
-      - app:/home/carapi
+    # volumes:
+    #   - app:/home/carapi
 
   db:
     image: postgres:17.6-bookworm
@@ -47,4 +47,4 @@ services:
 
 volumes:
   postgres_data:
-  app:
+  # app:
