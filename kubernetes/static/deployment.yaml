@@ -29,6 +29,11 @@ spec:
             done
             echo "Database is up!"
             poetry run alembic upgrade head
+        env:
+          - name: JWT_ALGORITHM
+            value: HS256
+          - name: JWT_EXPIRATION_MINUTES
+            value: "30"
         envFrom:
         - secretRef:
             name: car-api
@@ -36,6 +41,11 @@ spec:
       - image: car-api
         imagePullPolicy: IfNotPresent
         name: car-api
+        env:
+          - name: JWT_ALGORITHM
+            value: HS256
+          - name: JWT_EXPIRATION_MINUTES
+            value: "30"
         envFrom:
         - secretRef:
             name: car-api
