@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "car-api-mkdocs.fullname" . }}
+  labels:
+    {{- include "car-api-mkdocs.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "car-api-mkdocs.selectorLabels" . | nindent 4 }}
