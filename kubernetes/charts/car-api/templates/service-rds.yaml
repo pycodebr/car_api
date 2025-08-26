@@ -1,0 +1,9 @@
+{{- if regexMatch "^[0-9]" .Values.image.repository -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: db
+spec:
+  type: ExternalName
+  externalName: {{ .Values.rdsEndpoint }}
+{{- end }}

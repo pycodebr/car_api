@@ -9,8 +9,8 @@ module "db" {
   instance_class    = "db.t4g.large"
   allocated_storage = 5
 
-  db_name  = local.project_name
-  username = local.project_name
+  db_name  = replace(local.project_name, "-", "_")
+  username = replace(local.project_name, "-", "_")
   port     = "3306"
 
   family = "postgres17"

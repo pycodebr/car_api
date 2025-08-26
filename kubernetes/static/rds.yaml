@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: db
+  namespace: app-system
+spec:
+  type: ExternalName
+  externalName: car-api-db.cxft3tnagyfp.us-east-1.rds.amazonaws.com
