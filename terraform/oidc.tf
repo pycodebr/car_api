@@ -1,6 +1,6 @@
 module "oidc_gitlab_com" {
   source  = "gitlab.com/gitlab-com/terraform-gitlab-aws-oidc/local"
-  version = "1.2.0" # Note: update this to reflect the current release...
+  version = "~> 1.2.0" # Note: update this to reflect the current release...
 
   oidc_roles = {
     # Allow all branches of gitlab-com/gl-infra/project to obtain ReadOnlyAccess

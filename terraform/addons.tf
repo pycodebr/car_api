@@ -14,7 +14,7 @@ module "eks_blueprints_addons" {
   enable_external_dns                 = true
   enable_external_secrets             = true
   external_dns_route53_zone_arns = [
-    "arn:aws:route53:::hostedzone/Z01369533JWLF8Z0FCZQF"
+    format("arn:aws:route53:::hostedzone/%s", local.route53_zone_id)
   ]
   external_dns = {
     values = [
@@ -25,7 +25,5 @@ module "eks_blueprints_addons" {
     ]
   }
 
-  tags = {
-    Environment = "dev"
-  }
+  tags = local.tags
 }

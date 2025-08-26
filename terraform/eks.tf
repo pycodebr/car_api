@@ -2,7 +2,7 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "~> 20.0"
 
-  cluster_name    = "fastapi"
+  cluster_name    = local.project_name
   cluster_version = "1.33"
 
   bootstrap_self_managed_addons = true
@@ -52,8 +52,5 @@ module "eks" {
     }
   }
 
-  tags = {
-    Environment = "dev"
-    Terraform   = "true"
-  }
+  tags = local.tags
 }

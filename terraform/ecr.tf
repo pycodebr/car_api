@@ -1,7 +1,3 @@
-locals {
-  ecr_repos = ["car-api", "car-api-mkdocs"]
-}
-
 module "ecr" {
   source  = "terraform-aws-modules/ecr/aws"
   version = "~> 2.4.0"
@@ -13,8 +9,5 @@ module "ecr" {
   repository_name         = each.value
   repository_force_delete = true
 
-  tags = {
-    Terraform   = "true"
-    Environment = "dev"
-  }
+  tags = local.tags
 }
