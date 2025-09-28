@@ -1,19 +1,37 @@
 site_name: Car API
 site_description: Uma API REST completa para gerenciamento de carros e usuários
 site_author: PyCodeBR
-site_url: https://pycodebr.github.io/car_api
 
-repo_name: pycodebr/car_api
-repo_url: https://github.com/pycodebr/car_api
 
-theme: readthedocs
+theme: 
+  name: material
+  palette:
+    primary: green
+  font:
+    text: Roboto
+
+nav:
+  - Início: index.md
+  - Visão geral: overview.md
+  - Pré-requisitos: prerequisites.md
+  - Instalação: installation.md
+  - Configuração: configuration.md
+  - Guidelines e padrões: guidelines.md
+  - Estrutura: structure.md
+  - API Endpoints: api-endpoints.md
+  - Modelagem do Sistema: system-modeling.md
+  - Autenticação e Segurança: authentication.md
+  - Desenvolvimento: development.md
+  - Testes: testing.md
+  - Deploy: deployment.md
+  - Contribuição: contributing.md
+  - Release Notes: release-notes.md
 
 plugins:
   - search
 
-extra:
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/pycodebr
-
-copyright: Copyright &copy; 2025 PyCodeBR
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid

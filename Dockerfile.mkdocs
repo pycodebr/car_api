@@ -2,7 +2,7 @@ FROM python:3.13.7-alpine3.22 as builder
 
 WORKDIR /docs
 
-RUN pip install mkdocs
+RUN pip install mkdocs && pip install mkdocs-material && pip install pymdown-extensions
 
 COPY . .
 
