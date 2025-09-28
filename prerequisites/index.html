@@ -1,0 +1,1665 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Uma API REST completa para gerenciamento de carros e usuários">
+      
+      
+        <meta name="author" content="PyCodeBR">
+      
+      
+      
+        <link rel="prev" href="../overview/">
+      
+      
+        <link rel="next" href="../installation/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Pré-requisitos - Car API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pre-requisitos" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Car API" class="md-header__button md-logo" aria-label="Car API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Car API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Pré-requisitos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Car API" class="md-nav__button md-logo" aria-label="Car API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Car API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Início
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Visão geral
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Pré-requisitos
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pré-requisitos
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐍 Python
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🐍 Python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#versao-necessaria" class="md-nav__link">
+    <span class="md-ellipsis">
+      Versão Necessária
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificar-versao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verificar Versão
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalacao-do-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalação do Python
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Instalação do Python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐧 Linux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🍎 macOS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      🪟 Windows
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gerenciador-de-pacotes" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 Gerenciador de Pacotes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📦 Gerenciador de Pacotes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pipx-recomendado" class="md-nav__link">
+    <span class="md-ellipsis">
+      pipx (Recomendado)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="pipx (Recomendado)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalacao-do-pipx" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalação do pipx
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apos-a-instalacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Após a instalação
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#poetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Poetry
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Poetry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalacao-via-pipx" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalação via pipx
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificar-instalacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verificar instalação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracao-recomendada" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuração recomendada
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#banco-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      🗃️ Banco de Dados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🗃️ Banco de Dados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#desenvolvimento-sqlite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Desenvolvimento (SQLite)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#producao-postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Produção (PostgreSQL)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Produção (PostgreSQL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐧 Linux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🍎 macOS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🪟 Windows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-alternativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker (Alternativa)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ferramentas-de-desenvolvimento" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Ferramentas de Desenvolvimento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Ferramentas de Desenvolvimento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#editoride-opcional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Editor/IDE (Opcional)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-opcional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker (Opcional)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variaveis-de-ambiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌐 Variáveis de Ambiente
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌐 Variáveis de Ambiente">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arquivo-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquivo .env
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gerar-chave-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gerar Chave JWT
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verificacao-dos-pre-requisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Verificação dos Pré-requisitos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solucao-de-problemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Solução de Problemas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Solução de Problemas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-nao-encontrado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python não encontrado
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#poetry-nao-funciona" class="md-nav__link">
+    <span class="md-ellipsis">
+      Poetry não funciona
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problemas-de-permissao-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problemas de permissão (Linux)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postgresql-nao-conecta" class="md-nav__link">
+    <span class="md-ellipsis">
+      PostgreSQL não conecta
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Instalação
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuração
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guidelines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Guidelines e padrões
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Estrutura
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-endpoints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Endpoints
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../system-modeling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Modelagem do Sistema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Autenticação e Segurança
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Desenvolvimento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Testes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contribuição
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release Notes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐍 Python
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🐍 Python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#versao-necessaria" class="md-nav__link">
+    <span class="md-ellipsis">
+      Versão Necessária
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificar-versao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verificar Versão
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalacao-do-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalação do Python
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Instalação do Python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐧 Linux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🍎 macOS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      🪟 Windows
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gerenciador-de-pacotes" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 Gerenciador de Pacotes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📦 Gerenciador de Pacotes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pipx-recomendado" class="md-nav__link">
+    <span class="md-ellipsis">
+      pipx (Recomendado)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="pipx (Recomendado)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalacao-do-pipx" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalação do pipx
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apos-a-instalacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Após a instalação
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#poetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Poetry
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Poetry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalacao-via-pipx" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalação via pipx
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verificar-instalacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verificar instalação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracao-recomendada" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuração recomendada
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#banco-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      🗃️ Banco de Dados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🗃️ Banco de Dados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#desenvolvimento-sqlite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Desenvolvimento (SQLite)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#producao-postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Produção (PostgreSQL)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Produção (PostgreSQL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐧 Linux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🍎 macOS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🪟 Windows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-alternativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker (Alternativa)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ferramentas-de-desenvolvimento" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Ferramentas de Desenvolvimento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Ferramentas de Desenvolvimento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#editoride-opcional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Editor/IDE (Opcional)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-opcional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker (Opcional)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variaveis-de-ambiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌐 Variáveis de Ambiente
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌐 Variáveis de Ambiente">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arquivo-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquivo .env
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gerar-chave-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gerar Chave JWT
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verificacao-dos-pre-requisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Verificação dos Pré-requisitos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solucao-de-problemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Solução de Problemas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Solução de Problemas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-nao-encontrado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python não encontrado
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#poetry-nao-funciona" class="md-nav__link">
+    <span class="md-ellipsis">
+      Poetry não funciona
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problemas-de-permissao-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problemas de permissão (Linux)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postgresql-nao-conecta" class="md-nav__link">
+    <span class="md-ellipsis">
+      PostgreSQL não conecta
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="pre-requisitos">Pré-requisitos</h1>
+<h2 id="python">🐍 Python</h2>
+<h3 id="versao-necessaria">Versão Necessária</h3>
+<ul>
+<li><strong>Python 3.13 ou superior</strong></li>
+</ul>
+<p>O projeto utiliza recursos modernos do Python, incluindo:
+- Type hints avançados
+- Pattern matching (match/case)
+- Melhorias de performance
+- Novos recursos de async/await</p>
+<h3 id="verificar-versao">Verificar Versão</h3>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>--version
+<span class="c1"># ou</span>
+python3<span class="w"> </span>--version
+</code></pre></div>
+<h3 id="instalacao-do-python">Instalação do Python</h3>
+<h4 id="linux">🐧 Linux</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Ubuntu/Debian</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3.13<span class="w"> </span>python3.13-venv<span class="w"> </span>python3.13-dev
+
+<span class="c1"># Fedora/CentOS/RHEL</span>
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>python3.13<span class="w"> </span>python3.13-venv<span class="w"> </span>python3.13-devel
+
+<span class="c1"># Arch Linux</span>
+sudo<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>python
+</code></pre></div>
+<h4 id="macos">🍎 macOS</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Usando Homebrew (recomendado)</span>
+brew<span class="w"> </span>install<span class="w"> </span>python@3.13
+
+<span class="c1"># Ou baixar do site oficial</span>
+<span class="c1"># https://www.python.org/downloads/macos/</span>
+</code></pre></div>
+<h4 id="windows">🪟 Windows</h4>
+<ol>
+<li>Baixe do <a href="https://www.python.org/downloads/windows/">site oficial</a></li>
+<li>Execute o instalador</li>
+<li>✅ <strong>IMPORTANTE</strong>: Marque "Add Python to PATH"</li>
+</ol>
+<h2 id="gerenciador-de-pacotes">📦 Gerenciador de Pacotes</h2>
+<h3 id="pipx-recomendado">pipx (Recomendado)</h3>
+<p>O pipx é usado para instalar ferramentas Python em ambientes isolados.</p>
+<h4 id="instalacao-do-pipx">Instalação do pipx</h4>
+<p><strong>Linux:</strong>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>pipx
+pipx<span class="w"> </span>ensurepath
+</code></pre></div></p>
+<p><strong>macOS:</strong>
+<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>pipx
+pipx<span class="w"> </span>ensurepath
+</code></pre></div></p>
+<p><strong>Windows:</strong>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span>pipx
+python<span class="w"> </span>-m<span class="w"> </span>pipx<span class="w"> </span>ensurepath
+</code></pre></div></p>
+<h4 id="apos-a-instalacao">Após a instalação</h4>
+<p>Reinicie o terminal ou execute:
+<div class="highlight"><pre><span></span><code><span class="c1"># Linux</span>
+<span class="nb">source</span><span class="w"> </span>~/.bashrc
+
+<span class="c1"># macOS com zsh</span>
+<span class="nb">source</span><span class="w"> </span>~/.zshrc
+</code></pre></div></p>
+<h3 id="poetry">Poetry</h3>
+<p>O Poetry é usado para gerenciamento de dependências e ambientes virtuais.</p>
+<h4 id="instalacao-via-pipx">Instalação via pipx</h4>
+<div class="highlight"><pre><span></span><code>pipx<span class="w"> </span>install<span class="w"> </span>poetry
+</code></pre></div>
+<h4 id="verificar-instalacao">Verificar instalação</h4>
+<div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>--version
+</code></pre></div>
+<h4 id="configuracao-recomendada">Configuração recomendada</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Criar .venv na pasta do projeto</span>
+poetry<span class="w"> </span>config<span class="w"> </span>virtualenvs.in-project<span class="w"> </span><span class="nb">true</span>
+
+<span class="c1"># Verificar configuração</span>
+poetry<span class="w"> </span>config<span class="w"> </span>--list
+</code></pre></div>
+<h2 id="banco-de-dados">🗃️ Banco de Dados</h2>
+<h3 id="desenvolvimento-sqlite">Desenvolvimento (SQLite)</h3>
+<ul>
+<li><strong>Incluído no Python</strong>: Não requer instalação adicional</li>
+<li><strong>Arquivo local</strong>: <code>car.db</code> criado automaticamente</li>
+</ul>
+<h3 id="producao-postgresql">Produção (PostgreSQL)</h3>
+<h4 id="linux_1">🐧 Linux</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Ubuntu/Debian</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>postgresql<span class="w"> </span>postgresql-contrib
+
+<span class="c1"># Fedora/CentOS/RHEL</span>
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>postgresql<span class="w"> </span>postgresql-server<span class="w"> </span>postgresql-contrib
+
+<span class="c1"># Arch Linux</span>
+sudo<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>postgresql
+</code></pre></div>
+<h4 id="macos_1">🍎 macOS</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Homebrew</span>
+brew<span class="w"> </span>install<span class="w"> </span>postgresql
+
+<span class="c1"># Ou usando Postgres.app</span>
+<span class="c1"># https://postgresapp.com/</span>
+</code></pre></div>
+<h4 id="windows_1">🪟 Windows</h4>
+<ol>
+<li>Baixe do <a href="https://www.postgresql.org/download/windows/">site oficial</a></li>
+<li>Execute o instalador</li>
+<li>Configure usuário e senha</li>
+</ol>
+<h4 id="docker-alternativa">Docker (Alternativa)</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># PostgreSQL via Docker</span>
+docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>postgres-car-api<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>postgres<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">POSTGRES_DB</span><span class="o">=</span>car_api<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">5432</span>:5432<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span>postgres:15
+</code></pre></div>
+<h2 id="ferramentas-de-desenvolvimento">🔧 Ferramentas de Desenvolvimento</h2>
+<h3 id="git">Git</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Linux</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>git<span class="w">  </span><span class="c1"># Ubuntu/Debian</span>
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>git<span class="w">  </span><span class="c1"># Fedora/CentOS/RHEL</span>
+
+<span class="c1"># macOS</span>
+brew<span class="w"> </span>install<span class="w"> </span>git
+
+<span class="c1"># Windows</span>
+<span class="c1"># Baixar de: https://git-scm.com/download/win</span>
+</code></pre></div>
+<h3 id="editoride-opcional">Editor/IDE (Opcional)</h3>
+<p>Editores recomendados:
+- <strong>VS Code</strong> com extensões Python
+- <strong>PyCharm</strong> (Community ou Professional)
+- <strong>Vim/Neovim</strong> com plugins Python
+- <strong>Sublime Text</strong> com Package Control</p>
+<h3 id="docker-opcional">Docker (Opcional)</h3>
+<p>Para desenvolvimento com containers:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Linux</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>docker.io<span class="w"> </span>docker-compose<span class="w">  </span><span class="c1"># Ubuntu/Debian</span>
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>docker<span class="w"> </span>docker-compose<span class="w">     </span><span class="c1"># Fedora/CentOS/RHEL</span>
+
+<span class="c1"># macOS</span>
+brew<span class="w"> </span>install<span class="w"> </span>docker<span class="w"> </span>docker-compose
+
+<span class="c1"># Windows</span>
+<span class="c1"># Baixar Docker Desktop: https://www.docker.com/products/docker-desktop</span>
+</code></pre></div>
+<h2 id="variaveis-de-ambiente">🌐 Variáveis de Ambiente</h2>
+<h3 id="arquivo-env">Arquivo .env</h3>
+<p>O projeto requer um arquivo <code>.env</code> com as seguintes variáveis:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Banco de Dados</span>
+<span class="nv">DATABASE_URL</span><span class="o">=</span><span class="s1">&#39;postgresql+psycopg://user:password@localhost:5432/dbname&#39;</span>
+
+<span class="c1"># JWT (altere para sua chave secreta)</span>
+<span class="nv">JWT_SECRET_KEY</span><span class="o">=</span><span class="s1">&#39;sua-chave-secreta-super-forte&#39;</span>
+<span class="nv">JWT_ALGORITHM</span><span class="o">=</span><span class="s1">&#39;HS256&#39;</span>
+<span class="nv">JWT_EXPIRATION_MINUTES</span><span class="o">=</span><span class="m">30</span>
+</code></pre></div>
+<h3 id="gerar-chave-jwt">Gerar Chave JWT</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Usando Python</span>
+python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import secrets; print(secrets.token_urlsafe(64))&quot;</span>
+
+<span class="c1"># Usando OpenSSL</span>
+openssl<span class="w"> </span>rand<span class="w"> </span>-base64<span class="w"> </span><span class="m">64</span>
+</code></pre></div>
+<h2 id="verificacao-dos-pre-requisitos">✅ Verificação dos Pré-requisitos</h2>
+<p>Execute este script para verificar se tudo está instalado:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;🔍 Verificando pré-requisitos...&quot;</span>
+
+<span class="c1"># Python</span>
+<span class="k">if</span><span class="w"> </span><span class="nb">command</span><span class="w"> </span>-v<span class="w"> </span>python3<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nv">PYTHON_VERSION</span><span class="o">=</span><span class="k">$(</span>python3<span class="w"> </span>--version<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="s1">&#39; &#39;</span><span class="w"> </span>-f2<span class="k">)</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;✅ Python: </span><span class="nv">$PYTHON_VERSION</span><span class="s2">&quot;</span>
+<span class="k">else</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;❌ Python não encontrado&quot;</span>
+<span class="k">fi</span>
+
+<span class="c1"># Poetry</span>
+<span class="k">if</span><span class="w"> </span><span class="nb">command</span><span class="w"> </span>-v<span class="w"> </span>poetry<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nv">POETRY_VERSION</span><span class="o">=</span><span class="k">$(</span>poetry<span class="w"> </span>--version<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="s1">&#39; &#39;</span><span class="w"> </span>-f3<span class="k">)</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;✅ Poetry: </span><span class="nv">$POETRY_VERSION</span><span class="s2">&quot;</span>
+<span class="k">else</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;❌ Poetry não encontrado&quot;</span>
+<span class="k">fi</span>
+
+<span class="c1"># Git</span>
+<span class="k">if</span><span class="w"> </span><span class="nb">command</span><span class="w"> </span>-v<span class="w"> </span>git<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nv">GIT_VERSION</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>--version<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="s1">&#39; &#39;</span><span class="w"> </span>-f3<span class="k">)</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;✅ Git: </span><span class="nv">$GIT_VERSION</span><span class="s2">&quot;</span>
+<span class="k">else</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;❌ Git não encontrado&quot;</span>
+<span class="k">fi</span>
+
+<span class="c1"># PostgreSQL (opcional)</span>
+<span class="k">if</span><span class="w"> </span><span class="nb">command</span><span class="w"> </span>-v<span class="w"> </span>psql<span class="w"> </span><span class="p">&amp;</span>&gt;<span class="w"> </span>/dev/null<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nv">PSQL_VERSION</span><span class="o">=</span><span class="k">$(</span>psql<span class="w"> </span>--version<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="s1">&#39; &#39;</span><span class="w"> </span>-f3<span class="k">)</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;✅ PostgreSQL: </span><span class="nv">$PSQL_VERSION</span><span class="s2">&quot;</span>
+<span class="k">else</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;⚠️  PostgreSQL não encontrado (opcional)&quot;</span>
+<span class="k">fi</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;🎉 Verificação concluída!&quot;</span>
+</code></pre></div>
+<h2 id="solucao-de-problemas">🔧 Solução de Problemas</h2>
+<h3 id="python-nao-encontrado">Python não encontrado</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Verificar se está no PATH</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$PATH</span>
+
+<span class="c1"># Criar alias (temporário)</span>
+<span class="nb">alias</span><span class="w"> </span><span class="nv">python</span><span class="o">=</span>python3
+
+<span class="c1"># Adicionar ao .bashrc/.zshrc (permanente)</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;alias python=python3&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+</code></pre></div>
+<h3 id="poetry-nao-funciona">Poetry não funciona</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Reinstalar via pipx</span>
+pipx<span class="w"> </span>uninstall<span class="w"> </span>poetry
+pipx<span class="w"> </span>install<span class="w"> </span>poetry
+
+<span class="c1"># Verificar PATH</span>
+poetry<span class="w"> </span>config<span class="w"> </span>--list
+</code></pre></div>
+<h3 id="problemas-de-permissao-linux">Problemas de permissão (Linux)</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Adicionar usuário ao grupo docker</span>
+sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>docker<span class="w"> </span><span class="nv">$USER</span>
+
+<span class="c1"># Relogar ou executar</span>
+newgrp<span class="w"> </span>docker
+</code></pre></div>
+<h3 id="postgresql-nao-conecta">PostgreSQL não conecta</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Verificar se está rodando</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>postgresql
+
+<span class="c1"># Iniciar serviço</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>postgresql
+
+<span class="c1"># Criar usuário/banco</span>
+sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>createuser<span class="w"> </span>--interactive
+sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>createdb<span class="w"> </span>car_api
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

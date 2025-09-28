@@ -1,0 +1,2165 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Uma API REST completa para gerenciamento de carros e usuários">
+      
+      
+        <meta name="author" content="PyCodeBR">
+      
+      
+      
+        <link rel="prev" href="../system-modeling/">
+      
+      
+        <link rel="next" href="../development/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Autenticação e Segurança - Car API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#autenticacao-e-seguranca" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Car API" class="md-header__button md-logo" aria-label="Car API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Car API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Autenticação e Segurança
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Car API" class="md-nav__button md-logo" aria-label="Car API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Car API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Início
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Visão geral
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prerequisites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pré-requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Instalação
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuração
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guidelines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Guidelines e padrões
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Estrutura
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-endpoints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Endpoints
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../system-modeling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Modelagem do Sistema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Autenticação e Segurança
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Autenticação e Segurança
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral-da-seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔐 Visão Geral da Segurança
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#autenticacao-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔑 Autenticação JWT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔑 Autenticação JWT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#como-funciona" class="md-nav__link">
+    <span class="md-ellipsis">
+      Como Funciona
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estrutura-do-token-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estrutura do Token JWT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracao-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuração JWT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementacao-da-autenticacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementação da Autenticação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementação da Autenticação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-geracao-de-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Geração de Token
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-validacao-de-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Validação de Token
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#endpoint-de-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      Endpoint de Login
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hash-de-senhas" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔒 Hash de Senhas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔒 Hash de Senhas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pwdlib-com-argon2" class="md-nav__link">
+    <span class="md-ellipsis">
+      PWDLib com Argon2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#por-que-argon2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Por que Argon2?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#autorizacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛡️ Autorização
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛡️ Autorização">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verificacao-de-propriedade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verificação de Propriedade
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decorador-de-autorizacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Decorador de Autorização
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seguranca-de-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔐 Segurança de Endpoints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔐 Segurança de Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#protecao-de-rotas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proteção de Rotas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#middleware-de-seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      Middleware de Segurança
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tratamento-de-erros-de-seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚨 Tratamento de Erros de Segurança
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚨 Tratamento de Erros de Segurança">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#respostas-padronizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Respostas Padronizadas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exception-handlers-customizados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exception Handlers Customizados
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validacao-de-entrada" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Validação de Entrada
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔍 Validação de Entrada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schemas-pydantic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schemas Pydantic
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sanitizacao-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sanitização de Dados
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prevencao-de-vulnerabilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔒 Prevenção de Vulnerabilidades
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔒 Prevenção de Vulnerabilidades">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sql-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQL Injection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nosql-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      NoSQL Injection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csrf-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      CSRF Protection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rate Limiting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracao-de-producao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔐 Configuração de Produção
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔐 Configuração de Produção">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variaveis-de-ambiente-seguras" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variáveis de Ambiente Seguras
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checklist-de-seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checklist de Segurança
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Checklist de Segurança">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#autenticacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Autenticação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autorizacao_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Autorização
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entradasaida" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Entrada/Saída
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comunicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Comunicação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#infraestrutura" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Infraestrutura
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#headers-de-seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers de Segurança
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auditoria-e-monitoramento" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Auditoria e Monitoramento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Auditoria e Monitoramento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logs-de-seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logs de Segurança
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metricas-de-seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métricas de Segurança
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximos-passos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Próximos Passos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Desenvolvimento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Testes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contribuição
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release Notes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral-da-seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔐 Visão Geral da Segurança
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#autenticacao-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔑 Autenticação JWT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔑 Autenticação JWT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#como-funciona" class="md-nav__link">
+    <span class="md-ellipsis">
+      Como Funciona
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estrutura-do-token-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estrutura do Token JWT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracao-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuração JWT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementacao-da-autenticacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementação da Autenticação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementação da Autenticação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-geracao-de-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Geração de Token
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-validacao-de-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Validação de Token
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#endpoint-de-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      Endpoint de Login
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hash-de-senhas" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔒 Hash de Senhas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔒 Hash de Senhas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pwdlib-com-argon2" class="md-nav__link">
+    <span class="md-ellipsis">
+      PWDLib com Argon2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#por-que-argon2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Por que Argon2?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#autorizacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛡️ Autorização
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛡️ Autorização">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verificacao-de-propriedade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verificação de Propriedade
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decorador-de-autorizacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Decorador de Autorização
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seguranca-de-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔐 Segurança de Endpoints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔐 Segurança de Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#protecao-de-rotas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proteção de Rotas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#middleware-de-seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      Middleware de Segurança
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tratamento-de-erros-de-seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚨 Tratamento de Erros de Segurança
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚨 Tratamento de Erros de Segurança">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#respostas-padronizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Respostas Padronizadas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exception-handlers-customizados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exception Handlers Customizados
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validacao-de-entrada" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Validação de Entrada
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔍 Validação de Entrada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schemas-pydantic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schemas Pydantic
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sanitizacao-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sanitização de Dados
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prevencao-de-vulnerabilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔒 Prevenção de Vulnerabilidades
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔒 Prevenção de Vulnerabilidades">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sql-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQL Injection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nosql-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      NoSQL Injection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csrf-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      CSRF Protection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rate Limiting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracao-de-producao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔐 Configuração de Produção
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔐 Configuração de Produção">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variaveis-de-ambiente-seguras" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variáveis de Ambiente Seguras
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checklist-de-seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checklist de Segurança
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Checklist de Segurança">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#autenticacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Autenticação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autorizacao_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Autorização
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entradasaida" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Entrada/Saída
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comunicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Comunicação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#infraestrutura" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Infraestrutura
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#headers-de-seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers de Segurança
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auditoria-e-monitoramento" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Auditoria e Monitoramento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Auditoria e Monitoramento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logs-de-seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logs de Segurança
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metricas-de-seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métricas de Segurança
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximos-passos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Próximos Passos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="autenticacao-e-seguranca">Autenticação e Segurança</h1>
+<h2 id="visao-geral-da-seguranca">🔐 Visão Geral da Segurança</h2>
+<p>A Car API implementa um sistema de segurança robusto baseado em <strong>JWT (JSON Web Tokens)</strong> com hash de senhas usando <strong>Argon2</strong>. O sistema garante autenticação segura, autorização granular e proteção contra as principais vulnerabilidades web.</p>
+<h2 id="autenticacao-jwt">🔑 Autenticação JWT</h2>
+<h3 id="como-funciona">Como Funciona</h3>
+<ol>
+<li><strong>Login</strong>: Cliente envia email/senha</li>
+<li><strong>Validação</strong>: Servidor verifica credenciais</li>
+<li><strong>Token</strong>: Servidor gera JWT assinado</li>
+<li><strong>Uso</strong>: Cliente inclui token nas requisições</li>
+<li><strong>Validação</strong>: Servidor valida token a cada request</li>
+</ol>
+<h3 id="estrutura-do-token-jwt">Estrutura do Token JWT</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;header&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;alg&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HS256&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;typ&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JWT&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;payload&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;sub&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;exp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1640995200</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;iat&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1640908800</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;signature&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HMACSHA256(base64UrlEncode(header) + &#39;.&#39; + base64UrlEncode(payload), secret)&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="configuracao-jwt">Configuração JWT</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># car_api/core/settings.py</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Settings</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span>
+    <span class="n">jwt_secret_key</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># Chave secreta (mín. 64 caracteres)</span>
+    <span class="n">jwt_algorithm</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;HS256&#39;</span>  <span class="c1"># Algoritmo de assinatura</span>
+    <span class="n">jwt_expiration_minutes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30</span>  <span class="c1"># Tempo de expiração</span>
+</code></pre></div>
+<h3 id="implementacao-da-autenticacao">Implementação da Autenticação</h3>
+<h4 id="1-geracao-de-token">1. Geração de Token</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># car_api/core/security.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">jwt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">car_api.core.settings</span><span class="w"> </span><span class="kn">import</span> <span class="n">Settings</span>
+
+<span class="n">settings</span> <span class="o">=</span> <span class="n">Settings</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">create_access_token</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Criar token JWT com dados do usuário.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        data: Dados para incluir no token (geralmente {&#39;sub&#39;: user_id})</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: Token JWT assinado</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">to_encode</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">expire</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">jwt_expiration_minutes</span><span class="p">)</span>
+    <span class="n">to_encode</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;exp&quot;</span><span class="p">:</span> <span class="n">expire</span><span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">jwt</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+        <span class="n">to_encode</span><span class="p">,</span>
+        <span class="n">settings</span><span class="o">.</span><span class="n">jwt_secret_key</span><span class="p">,</span>
+        <span class="n">algorithm</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">jwt_algorithm</span>
+    <span class="p">)</span>
+</code></pre></div>
+<h4 id="2-validacao-de-token">2. Validação de Token</h4>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTTPException</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">Depends</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi.security</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTTPBearer</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">jwt</span>
+
+<span class="n">oauth2_scheme</span> <span class="o">=</span> <span class="n">HTTPBearer</span><span class="p">()</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_current_user</span><span class="p">(</span><span class="n">token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">oauth2_scheme</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">User</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extrair e validar usuário atual do token JWT.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        token: Token JWT do header Authorization</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        User: Usuário autenticado</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        HTTPException: Se token inválido ou usuário não encontrado</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">credentials_exception</span> <span class="o">=</span> <span class="n">HTTPException</span><span class="p">(</span>
+        <span class="n">status_code</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">,</span>
+        <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Could not validate credentials&quot;</span><span class="p">,</span>
+        <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;WWW-Authenticate&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer&quot;</span><span class="p">},</span>
+    <span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Decodificar token</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="n">jwt</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span>
+            <span class="n">token</span><span class="o">.</span><span class="n">credentials</span><span class="p">,</span>
+            <span class="n">settings</span><span class="o">.</span><span class="n">jwt_secret_key</span><span class="p">,</span>
+            <span class="n">algorithms</span><span class="o">=</span><span class="p">[</span><span class="n">settings</span><span class="o">.</span><span class="n">jwt_algorithm</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Extrair user ID</span>
+        <span class="n">user_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;sub&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">user_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">credentials_exception</span>
+
+    <span class="k">except</span> <span class="n">jwt</span><span class="o">.</span><span class="n">ExpiredSignatureError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span>
+            <span class="n">status_code</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">,</span>
+            <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Token has expired&quot;</span>
+        <span class="p">)</span>
+    <span class="k">except</span> <span class="n">jwt</span><span class="o">.</span><span class="n">JWTError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">credentials_exception</span>
+
+    <span class="c1"># Buscar usuário no banco</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">get_session</span><span class="p">()</span> <span class="k">as</span> <span class="n">db</span><span class="p">:</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">user_id</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">credentials_exception</span>
+
+    <span class="k">return</span> <span class="n">user</span>
+</code></pre></div>
+<h3 id="endpoint-de-login">Endpoint de Login</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># car_api/routers/auth.py</span>
+<span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/token&#39;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">Token</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">login</span><span class="p">(</span>
+    <span class="n">login_data</span><span class="p">:</span> <span class="n">LoginRequest</span><span class="p">,</span>
+    <span class="n">db</span><span class="p">:</span> <span class="n">AsyncSession</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_session</span><span class="p">)</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Endpoint de autenticação - gerar token JWT.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        login_data: Email e senha do usuário</span>
+<span class="sd">        db: Sessão do banco de dados</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Token: Access token e tipo</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Autenticar usuário</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="k">await</span> <span class="n">authenticate_user</span><span class="p">(</span><span class="n">login_data</span><span class="o">.</span><span class="n">email</span><span class="p">,</span> <span class="n">login_data</span><span class="o">.</span><span class="n">password</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span>
+            <span class="n">status_code</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">,</span>
+            <span class="n">detail</span><span class="o">=</span><span class="s1">&#39;Incorrect email or password&#39;</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;WWW-Authenticate&#39;</span><span class="p">:</span> <span class="s1">&#39;Bearer&#39;</span><span class="p">},</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Gerar token</span>
+    <span class="n">access_token</span> <span class="o">=</span> <span class="n">create_access_token</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;sub&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)})</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;access_token&#39;</span><span class="p">:</span> <span class="n">access_token</span><span class="p">,</span>
+        <span class="s1">&#39;token_type&#39;</span><span class="p">:</span> <span class="s1">&#39;bearer&#39;</span>
+    <span class="p">}</span>
+</code></pre></div>
+<h2 id="hash-de-senhas">🔒 Hash de Senhas</h2>
+<h3 id="pwdlib-com-argon2">PWDLib com Argon2</h3>
+<p>A API usa <strong>PWDLib</strong> com <strong>Argon2</strong> para hash seguro de senhas:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># car_api/core/security.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pwdlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">PasswordHash</span>
+
+<span class="c1"># Configuração recomendada para Argon2</span>
+<span class="n">pwd_context</span> <span class="o">=</span> <span class="n">PasswordHash</span><span class="o">.</span><span class="n">recommended</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_password_hash</span><span class="p">(</span><span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Gerar hash seguro da senha usando Argon2.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        password: Senha em texto plano</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: Hash da senha</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pwd_context</span><span class="o">.</span><span class="n">hash</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">verify_password</span><span class="p">(</span><span class="n">plain_password</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">hashed_password</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Verificar se senha corresponde ao hash.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        plain_password: Senha em texto plano</span>
+<span class="sd">        hashed_password: Hash armazenado</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bool: True se senha correta</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pwd_context</span><span class="o">.</span><span class="n">verify</span><span class="p">(</span><span class="n">plain_password</span><span class="p">,</span> <span class="n">hashed_password</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="por-que-argon2">Por que Argon2?</h3>
+<ul>
+<li><strong>Resistente a ataques de força bruta</strong></li>
+<li><strong>Memory-hard</strong>: Requer muita memória para calcular</li>
+<li><strong>Padrão recomendado</strong> pela OWASP</li>
+<li><strong>Configuração adaptável</strong> de custo computacional</li>
+</ul>
+<h2 id="autorizacao">🛡️ Autorização</h2>
+<h3 id="verificacao-de-propriedade">Verificação de Propriedade</h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">verify_car_ownership</span><span class="p">(</span><span class="n">current_user</span><span class="p">:</span> <span class="n">User</span><span class="p">,</span> <span class="n">car_owner_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Verificar se usuário é proprietário do carro.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        current_user: Usuário autenticado</span>
+<span class="sd">        car_owner_id: ID do proprietário do carro</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        HTTPException: Se usuário não é proprietário</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">current_user</span><span class="o">.</span><span class="n">id</span> <span class="o">!=</span> <span class="n">car_owner_id</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span>
+            <span class="n">status_code</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">,</span>
+            <span class="n">detail</span><span class="o">=</span><span class="s1">&#39;Acesso negado - você não é proprietário deste carro&#39;</span>
+        <span class="p">)</span>
+</code></pre></div>
+<h3 id="decorador-de-autorizacao">Decorador de Autorização</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">wraps</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTTPException</span><span class="p">,</span> <span class="n">status</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">require_ownership</span><span class="p">(</span><span class="n">resource_field</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;owner_id&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decorador para verificar propriedade de recurso.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        resource_field: Campo que contém o ID do proprietário</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="n">current_user</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;current_user&#39;</span><span class="p">)</span>
+            <span class="n">resource</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;resource&#39;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">current_user</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">resource</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span>
+                    <span class="n">status_code</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_401_UNAUTHORIZED</span><span class="p">,</span>
+                    <span class="n">detail</span><span class="o">=</span><span class="s1">&#39;Authentication required&#39;</span>
+                <span class="p">)</span>
+
+            <span class="n">owner_id</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span> <span class="n">resource_field</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">current_user</span><span class="o">.</span><span class="n">id</span> <span class="o">!=</span> <span class="n">owner_id</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span>
+                    <span class="n">status_code</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">,</span>
+                    <span class="n">detail</span><span class="o">=</span><span class="s1">&#39;Access denied&#39;</span>
+                <span class="p">)</span>
+
+            <span class="k">return</span> <span class="k">await</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">wrapper</span>
+    <span class="k">return</span> <span class="n">decorator</span>
+
+<span class="c1"># Uso do decorador</span>
+<span class="nd">@require_ownership</span><span class="p">(</span><span class="s1">&#39;owner_id&#39;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">update_car</span><span class="p">(</span><span class="n">car</span><span class="p">:</span> <span class="n">Car</span><span class="p">,</span> <span class="n">current_user</span><span class="p">:</span> <span class="n">User</span><span class="p">):</span>
+    <span class="c1"># Lógica de atualização</span>
+    <span class="k">pass</span>
+</code></pre></div>
+<h2 id="seguranca-de-endpoints">🔐 Segurança de Endpoints</h2>
+<h3 id="protecao-de-rotas">Proteção de Rotas</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Rota pública (sem autenticação)</span>
+<span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/users/&#39;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">UserPublicSchema</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">register_user</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">UserSchema</span><span class="p">,</span> <span class="n">db</span><span class="p">:</span> <span class="n">AsyncSession</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_session</span><span class="p">)):</span>
+    <span class="c1"># Qualquer um pode registrar</span>
+
+<span class="c1"># Rota protegida (requer autenticação)</span>
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/cars/&#39;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">CarListPublicSchema</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">list_cars</span><span class="p">(</span>
+    <span class="n">current_user</span><span class="p">:</span> <span class="n">User</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_current_user</span><span class="p">),</span>
+    <span class="n">db</span><span class="p">:</span> <span class="n">AsyncSession</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_session</span><span class="p">)</span>
+<span class="p">):</span>
+    <span class="c1"># Apenas usuários autenticados</span>
+
+<span class="c1"># Rota com autorização (requer ser proprietário)</span>
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/cars/</span><span class="si">{car_id}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">CarPublicSchema</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_car</span><span class="p">(</span>
+    <span class="n">car_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">current_user</span><span class="p">:</span> <span class="n">User</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_current_user</span><span class="p">),</span>
+    <span class="n">db</span><span class="p">:</span> <span class="n">AsyncSession</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_session</span><span class="p">)</span>
+<span class="p">):</span>
+    <span class="n">car</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">Car</span><span class="p">,</span> <span class="n">car_id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">car</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="mi">404</span><span class="p">,</span> <span class="s2">&quot;Carro não encontrado&quot;</span><span class="p">)</span>
+
+    <span class="n">verify_car_ownership</span><span class="p">(</span><span class="n">current_user</span><span class="p">,</span> <span class="n">car</span><span class="o">.</span><span class="n">owner_id</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">car</span>
+</code></pre></div>
+<h3 id="middleware-de-seguranca">Middleware de Segurança</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># car_api/app.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastAPI</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi.middleware.cors</span><span class="w"> </span><span class="kn">import</span> <span class="n">CORSMiddleware</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi.middleware.trustedhost</span><span class="w"> </span><span class="kn">import</span> <span class="n">TrustedHostMiddleware</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+<span class="c1"># CORS - Controlar origens permitidas</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add_middleware</span><span class="p">(</span>
+    <span class="n">CORSMiddleware</span><span class="p">,</span>
+    <span class="n">allow_origins</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;https://yourdomain.com&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;https://app.yourdomain.com&quot;</span>
+    <span class="p">],</span>
+    <span class="n">allow_credentials</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">allow_methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="s2">&quot;PUT&quot;</span><span class="p">,</span> <span class="s2">&quot;DELETE&quot;</span><span class="p">],</span>
+    <span class="n">allow_headers</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="c1"># Trusted Host - Prevenir ataques Host Header</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add_middleware</span><span class="p">(</span>
+    <span class="n">TrustedHostMiddleware</span><span class="p">,</span>
+    <span class="n">allowed_hosts</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;yourdomain.com&quot;</span><span class="p">,</span> <span class="s2">&quot;*.yourdomain.com&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+</code></pre></div>
+<h2 id="tratamento-de-erros-de-seguranca">🚨 Tratamento de Erros de Segurança</h2>
+<h3 id="respostas-padronizadas">Respostas Padronizadas</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Erro 401 - Não autenticado</span>
+<span class="p">{</span>
+    <span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;Could not validate credentials&quot;</span>
+<span class="p">}</span>
+
+<span class="c1"># Erro 403 - Sem permissão</span>
+<span class="p">{</span>
+    <span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;Acesso negado&quot;</span>
+<span class="p">}</span>
+
+<span class="c1"># Erro 422 - Dados inválidos</span>
+<span class="p">{</span>
+    <span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;loc&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;body&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;msg&quot;</span><span class="p">:</span> <span class="s2">&quot;ensure this value has at least 8 characters&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;value_error.any_str.min_length&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="exception-handlers-customizados">Exception Handlers Customizados</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Request</span><span class="p">,</span> <span class="n">HTTPException</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi.responses</span><span class="w"> </span><span class="kn">import</span> <span class="n">JSONResponse</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">jwt</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">jwt</span><span class="o">.</span><span class="n">ExpiredSignatureError</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">expired_token_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exc</span><span class="p">:</span> <span class="n">jwt</span><span class="o">.</span><span class="n">ExpiredSignatureError</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">JSONResponse</span><span class="p">(</span>
+        <span class="n">status_code</span><span class="o">=</span><span class="mi">401</span><span class="p">,</span>
+        <span class="n">content</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;Token has expired&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;error_code&quot;</span><span class="p">:</span> <span class="s2">&quot;TOKEN_EXPIRED&quot;</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">jwt</span><span class="o">.</span><span class="n">JWTError</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">jwt_error_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exc</span><span class="p">:</span> <span class="n">jwt</span><span class="o">.</span><span class="n">JWTError</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">JSONResponse</span><span class="p">(</span>
+        <span class="n">status_code</span><span class="o">=</span><span class="mi">401</span><span class="p">,</span>
+        <span class="n">content</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;Invalid token&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;error_code&quot;</span><span class="p">:</span> <span class="s2">&quot;INVALID_TOKEN&quot;</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+</code></pre></div>
+<h2 id="validacao-de-entrada">🔍 Validação de Entrada</h2>
+<h3 id="schemas-pydantic">Schemas Pydantic</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">validator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">UserSchema</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">username</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">min_length</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+        <span class="n">regex</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;^[a-zA-Z0-9_]+$&#39;</span>
+    <span class="p">)</span>
+    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;^[^@]+@[^@]+\.[^@]+$&#39;</span><span class="p">)</span>
+    <span class="n">password</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+    <span class="nd">@validator</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">password_strength</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validar força da senha.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[A-Z]&#39;</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Password must contain uppercase letter&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[a-z]&#39;</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Password must contain lowercase letter&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[0-9]&#39;</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Password must contain digit&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">v</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CarSchema</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">factory_year</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">1900</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">2030</span><span class="p">)</span>
+    <span class="n">price</span><span class="p">:</span> <span class="n">Decimal</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">plate</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">regex</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;^[A-Z]</span><span class="si">{3}</span><span class="s1">[0-9]</span><span class="si">{4}</span><span class="s1">$|^[A-Z]</span><span class="si">{3}</span><span class="s1">[0-9][A-Z][0-9]</span><span class="si">{2}</span><span class="s1">$&#39;</span>
+    <span class="p">)</span>
+
+    <span class="nd">@validator</span><span class="p">(</span><span class="s1">&#39;plate&#39;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_plate</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validar formato da placa brasileira.&quot;&quot;&quot;</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Formato antigo: ABC1234</span>
+        <span class="c1"># Formato Mercosul: ABC1A23</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^[A-Z]</span><span class="si">{3}</span><span class="s1">[0-9]</span><span class="si">{4}</span><span class="s1">$|^[A-Z]</span><span class="si">{3}</span><span class="s1">[0-9][A-Z][0-9]</span><span class="si">{2}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid plate format&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">v</span>
+</code></pre></div>
+<h3 id="sanitizacao-de-dados">Sanitização de Dados</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">html</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">bleach</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">sanitize_input</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sanitizar entrada de texto contra XSS.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        text: Texto de entrada</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: Texto sanitizado</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Escapar HTML</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+    <span class="c1"># Remover tags HTML perigosas</span>
+    <span class="n">allowed_tags</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;br&#39;</span><span class="p">,</span> <span class="s1">&#39;strong&#39;</span><span class="p">,</span> <span class="s1">&#39;em&#39;</span><span class="p">]</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">bleach</span><span class="o">.</span><span class="n">clean</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="n">allowed_tags</span><span class="p">,</span> <span class="n">strip</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">text</span>
+
+<span class="c1"># Uso em schemas</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CarUpdateSchema</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="nd">@validator</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="n">pre</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sanitize_description</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">v</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">sanitize_input</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">v</span>
+</code></pre></div>
+<h2 id="prevencao-de-vulnerabilidades">🔒 Prevenção de Vulnerabilidades</h2>
+<h3 id="sql-injection">SQL Injection</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># ✅ Correto - SQLAlchemy ORM com parâmetros</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">select</span><span class="p">(</span><span class="n">Car</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Car</span><span class="o">.</span><span class="n">plate</span> <span class="o">==</span> <span class="n">plate_value</span><span class="p">)</span>
+
+<span class="c1"># ✅ Correto - Query parametrizada</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">text</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM cars WHERE plate = :plate&quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;plate&quot;</span><span class="p">:</span> <span class="n">plate_value</span><span class="p">})</span>
+
+<span class="c1"># ❌ Incorreto - String concatenation (vulnerável)</span>
+<span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;SELECT * FROM cars WHERE plate = &#39;</span><span class="si">{</span><span class="n">plate_value</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+</code></pre></div>
+<h3 id="nosql-injection">NoSQL Injection</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># ✅ Correto - Validação de tipos</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_car_by_id</span><span class="p">(</span><span class="n">car_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>  <span class="c1"># Type hint garante int</span>
+    <span class="k">return</span> <span class="n">db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">Car</span><span class="p">,</span> <span class="n">car_id</span><span class="p">)</span>
+
+<span class="c1"># ❌ Incorreto - Aceitar qualquer tipo</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_car_by_id</span><span class="p">(</span><span class="n">car_id</span><span class="p">):</span>  <span class="c1"># Poderia receber dict malicioso</span>
+    <span class="k">return</span> <span class="n">db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">Car</span><span class="p">,</span> <span class="n">car_id</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="csrf-protection">CSRF Protection</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi_csrf_protect</span><span class="w"> </span><span class="kn">import</span> <span class="n">CsrfProtect</span>
+
+<span class="nd">@CsrfProtect</span><span class="o">.</span><span class="n">validate_csrf</span>
+<span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/cars/&#39;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_car</span><span class="p">(</span><span class="n">car</span><span class="p">:</span> <span class="n">CarSchema</span><span class="p">,</span> <span class="n">csrf_protect</span><span class="p">:</span> <span class="n">CsrfProtect</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">()):</span>
+    <span class="c1"># Endpoint protegido contra CSRF</span>
+    <span class="k">pass</span>
+</code></pre></div>
+<h3 id="rate-limiting">Rate Limiting</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">slowapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Limiter</span><span class="p">,</span> <span class="n">_rate_limit_exceeded_handler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">slowapi.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_remote_address</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">slowapi.errors</span><span class="w"> </span><span class="kn">import</span> <span class="n">RateLimitExceeded</span>
+
+<span class="n">limiter</span> <span class="o">=</span> <span class="n">Limiter</span><span class="p">(</span><span class="n">key_func</span><span class="o">=</span><span class="n">get_remote_address</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">limiter</span> <span class="o">=</span> <span class="n">limiter</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add_exception_handler</span><span class="p">(</span><span class="n">RateLimitExceeded</span><span class="p">,</span> <span class="n">_rate_limit_exceeded_handler</span><span class="p">)</span>
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/auth/token&#39;</span><span class="p">)</span>
+<span class="nd">@limiter</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="s2">&quot;5/minute&quot;</span><span class="p">)</span>  <span class="c1"># Máximo 5 tentativas de login por minuto</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">login</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">login_data</span><span class="p">:</span> <span class="n">LoginRequest</span><span class="p">):</span>
+    <span class="c1"># Lógica de login</span>
+    <span class="k">pass</span>
+</code></pre></div>
+<h2 id="configuracao-de-producao">🔐 Configuração de Produção</h2>
+<h3 id="variaveis-de-ambiente-seguras">Variáveis de Ambiente Seguras</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># .env.production</span>
+<span class="nv">JWT_SECRET_KEY</span><span class="o">=</span><span class="s1">&#39;sua-chave-super-secreta-de-pelo-menos-64-caracteres-aqui&#39;</span>
+<span class="nv">JWT_ALGORITHM</span><span class="o">=</span><span class="s1">&#39;HS256&#39;</span>
+<span class="nv">JWT_EXPIRATION_MINUTES</span><span class="o">=</span><span class="m">30</span>
+
+<span class="c1"># Database</span>
+<span class="nv">DATABASE_URL</span><span class="o">=</span><span class="s1">&#39;postgresql+psycopg://user:password@host:5432/db&#39;</span>
+
+<span class="c1"># HTTPS obrigatório</span>
+<span class="nv">FORCE_HTTPS</span><span class="o">=</span><span class="nb">true</span>
+
+<span class="c1"># Logging</span>
+<span class="nv">LOG_LEVEL</span><span class="o">=</span>INFO
+</code></pre></div>
+<h3 id="checklist-de-seguranca">Checklist de Segurança</h3>
+<h4 id="autenticacao">✅ Autenticação</h4>
+<ul>
+<li>[ ] JWT com chave secreta forte (64+ caracteres)</li>
+<li>[ ] Tempo de expiração adequado (15-30 minutos)</li>
+<li>[ ] Hash de senhas com Argon2</li>
+<li>[ ] Validação de força de senha</li>
+</ul>
+<h4 id="autorizacao_1">✅ Autorização</h4>
+<ul>
+<li>[ ] Verificação de propriedade de recursos</li>
+<li>[ ] Princípio de menor privilégio</li>
+<li>[ ] Validação de permissões por endpoint</li>
+</ul>
+<h4 id="entradasaida">✅ Entrada/Saída</h4>
+<ul>
+<li>[ ] Validação rigorosa com Pydantic</li>
+<li>[ ] Sanitização de dados de entrada</li>
+<li>[ ] Escape de dados de saída</li>
+<li>[ ] Limite de tamanho de payload</li>
+</ul>
+<h4 id="comunicacao">✅ Comunicação</h4>
+<ul>
+<li>[ ] HTTPS obrigatório em produção</li>
+<li>[ ] CORS configurado corretamente</li>
+<li>[ ] Headers de segurança adequados</li>
+</ul>
+<h4 id="infraestrutura">✅ Infraestrutura</h4>
+<ul>
+<li>[ ] Rate limiting implementado</li>
+<li>[ ] Logs de segurança habilitados</li>
+<li>[ ] Monitoramento de anomalias</li>
+<li>[ ] Backup seguro de dados</li>
+</ul>
+<h3 id="headers-de-seguranca">Headers de Segurança</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi.middleware.secure_headers</span><span class="w"> </span><span class="kn">import</span> <span class="n">SecureHeadersMiddleware</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">add_middleware</span><span class="p">(</span>
+    <span class="n">SecureHeadersMiddleware</span><span class="p">,</span>
+    <span class="n">server</span><span class="o">=</span><span class="s2">&quot;FastAPI&quot;</span><span class="p">,</span>  <span class="c1"># Ocultar versão</span>
+    <span class="n">x_frame_options</span><span class="o">=</span><span class="s2">&quot;DENY&quot;</span><span class="p">,</span>  <span class="c1"># Prevenir clickjacking</span>
+    <span class="n">content_type_options</span><span class="o">=</span><span class="s2">&quot;nosniff&quot;</span><span class="p">,</span>  <span class="c1"># Prevenir MIME sniffing</span>
+    <span class="n">x_xss_protection</span><span class="o">=</span><span class="s2">&quot;1; mode=block&quot;</span><span class="p">,</span>  <span class="c1"># XSS protection</span>
+    <span class="n">strict_transport_security</span><span class="o">=</span><span class="s2">&quot;max-age=31536000; includeSubDomains&quot;</span><span class="p">,</span>  <span class="c1"># HSTS</span>
+    <span class="n">content_security_policy</span><span class="o">=</span><span class="s2">&quot;default-src &#39;self&#39;&quot;</span><span class="p">,</span>  <span class="c1"># CSP</span>
+<span class="p">)</span>
+</code></pre></div>
+<h2 id="auditoria-e-monitoramento">📊 Auditoria e Monitoramento</h2>
+<h3 id="logs-de-seguranca">Logs de Segurança</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">security_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;security&quot;</span><span class="p">)</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">log_authentication_attempt</span><span class="p">(</span><span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">success</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">ip</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Registrar tentativa de login.&quot;&quot;&quot;</span>
+    <span class="n">security_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Authentication attempt - &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;Email: </span><span class="si">{</span><span class="n">email</span><span class="si">}</span><span class="s2">, &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;Success: </span><span class="si">{</span><span class="n">success</span><span class="si">}</span><span class="s2">, &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;IP: </span><span class="si">{</span><span class="n">ip</span><span class="si">}</span><span class="s2">, &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;Timestamp: </span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">log_authorization_failure</span><span class="p">(</span><span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">resource</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Registrar falha de autorização.&quot;&quot;&quot;</span>
+    <span class="n">security_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Authorization failure - &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;User: </span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2">, &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;Resource: </span><span class="si">{</span><span class="n">resource</span><span class="si">}</span><span class="s2">, &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;Action: </span><span class="si">{</span><span class="n">action</span><span class="si">}</span><span class="s2">, &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;Timestamp: </span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+</code></pre></div>
+<h3 id="metricas-de-seguranca">Métricas de Segurança</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">prometheus_client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">Histogram</span>
+
+<span class="c1"># Contadores de segurança</span>
+<span class="n">auth_attempts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="s1">&#39;auth_attempts_total&#39;</span><span class="p">,</span> <span class="s1">&#39;Total authentication attempts&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">])</span>
+<span class="n">auth_failures</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="s1">&#39;auth_failures_total&#39;</span><span class="p">,</span> <span class="s1">&#39;Failed authentication attempts&#39;</span><span class="p">)</span>
+<span class="n">forbidden_access</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="s1">&#39;forbidden_access_total&#39;</span><span class="p">,</span> <span class="s1">&#39;Forbidden access attempts&#39;</span><span class="p">)</span>
+
+<span class="c1"># Histograma de tempo de autenticação</span>
+<span class="n">auth_duration</span> <span class="o">=</span> <span class="n">Histogram</span><span class="p">(</span><span class="s1">&#39;auth_duration_seconds&#39;</span><span class="p">,</span> <span class="s1">&#39;Authentication duration&#39;</span><span class="p">)</span>
+
+<span class="c1"># Uso nos endpoints</span>
+<span class="nd">@auth_duration</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">authenticate_user</span><span class="p">(</span><span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Lógica de autenticação</span>
+        <span class="n">auth_attempts</span><span class="o">.</span><span class="n">labels</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s1">&#39;success&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">inc</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">user</span>
+    <span class="k">except</span> <span class="n">AuthenticationError</span><span class="p">:</span>
+        <span class="n">auth_attempts</span><span class="o">.</span><span class="n">labels</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="s1">&#39;failure&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">inc</span><span class="p">()</span>
+        <span class="n">auth_failures</span><span class="o">.</span><span class="n">inc</span><span class="p">()</span>
+        <span class="k">raise</span>
+</code></pre></div>
+<h2 id="proximos-passos">🚀 Próximos Passos</h2>
+<p>Para implementar melhorias de segurança:</p>
+<ol>
+<li>💻 <a href="../development/">Desenvolvimento</a> - Fluxo seguro de desenvolvimento</li>
+<li>🧪 <a href="../testing/">Testes</a> - Testes de segurança</li>
+<li>🚀 <a href="../deployment/">Deploy</a> - Deploy seguro</li>
+<li>📊 Implementar Rate Limiting com Redis</li>
+<li>🔍 Adicionar detecção de anomalias</li>
+<li>📱 Implementar 2FA (Two-Factor Authentication)</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

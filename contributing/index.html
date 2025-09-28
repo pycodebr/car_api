@@ -1,0 +1,1556 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Uma API REST completa para gerenciamento de carros e usuários">
+      
+      
+        <meta name="author" content="PyCodeBR">
+      
+      
+      
+        <link rel="prev" href="../deployment/">
+      
+      
+        <link rel="next" href="../release-notes/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Contribuição - Car API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#contribuicao" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Car API" class="md-header__button md-logo" aria-label="Car API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Car API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Contribuição
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Car API" class="md-nav__button md-logo" aria-label="Car API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Car API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Início
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Visão geral
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prerequisites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pré-requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Instalação
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuração
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guidelines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Guidelines e padrões
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Estrutura
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-endpoints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Endpoints
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../system-modeling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Modelagem do Sistema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Autenticação e Segurança
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Desenvolvimento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Testes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Contribuição
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contribuição
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#como-contribuir" class="md-nav__link">
+    <span class="md-ellipsis">
+      🤝 Como Contribuir
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-contribuicao" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Tipos de Contribuição
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 Tipos de Contribuição">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reportar-bugs" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐛 Reportar Bugs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sugerir-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✨ Sugerir Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#melhorar-documentacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Melhorar Documentação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contribuir-com-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Contribuir com Código
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#processo-de-contribuicao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Processo de Contribuição
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Processo de Contribuição">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-configurar-ambiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Configurar Ambiente
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-criar-branch-para-feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Criar Branch para Feature
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-desenvolver-e-testar" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Desenvolver e Testar
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-commit-e-push" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Commit e Push
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-criar-pull-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Criar Pull Request
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#padroes-de-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      📐 Padrões de Código
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📐 Padrões de Código">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conventional-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conventional Commits
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estrutura-de-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estrutura de Commits
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Review
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code Review">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checklist-para-revisores" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checklist para Revisores
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feedback-construtivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feedback Construtivo
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release Notes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#como-contribuir" class="md-nav__link">
+    <span class="md-ellipsis">
+      🤝 Como Contribuir
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-contribuicao" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Tipos de Contribuição
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 Tipos de Contribuição">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reportar-bugs" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐛 Reportar Bugs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sugerir-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✨ Sugerir Features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#melhorar-documentacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Melhorar Documentação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contribuir-com-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Contribuir com Código
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#processo-de-contribuicao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Processo de Contribuição
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Processo de Contribuição">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-configurar-ambiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Configurar Ambiente
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-criar-branch-para-feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Criar Branch para Feature
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-desenvolver-e-testar" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Desenvolver e Testar
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-commit-e-push" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Commit e Push
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-criar-pull-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Criar Pull Request
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#padroes-de-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      📐 Padrões de Código
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📐 Padrões de Código">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conventional-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conventional Commits
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estrutura-de-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estrutura de Commits
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Review
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code Review">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checklist-para-revisores" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checklist para Revisores
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feedback-construtivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feedback Construtivo
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="contribuicao">Contribuição</h1>
+<h2 id="como-contribuir">🤝 Como Contribuir</h2>
+<p>Agradecemos seu interesse em contribuir com o projeto Car API! Este guia detalha como você pode participar do desenvolvimento, reportar problemas e sugerir melhorias.</p>
+<h2 id="tipos-de-contribuicao">📋 Tipos de Contribuição</h2>
+<h3 id="reportar-bugs">🐛 Reportar Bugs</h3>
+<ul>
+<li>Descreva o problema claramente</li>
+<li>Inclua passos para reproduzir</li>
+<li>Forneça informações do ambiente</li>
+<li>Use o template de issue apropriado</li>
+</ul>
+<h3 id="sugerir-features">✨ Sugerir Features</h3>
+<ul>
+<li>Explique o caso de uso</li>
+<li>Descreva a solução proposta</li>
+<li>Considere alternativas</li>
+<li>Discuta o impacto na API</li>
+</ul>
+<h3 id="melhorar-documentacao">📝 Melhorar Documentação</h3>
+<ul>
+<li>Corrigir erros ou informações desatualizadas</li>
+<li>Adicionar exemplos práticos</li>
+<li>Traduzir documentação</li>
+<li>Melhorar clareza e organização</li>
+</ul>
+<h3 id="contribuir-com-codigo">🔧 Contribuir com Código</h3>
+<ul>
+<li>Implementar novas funcionalidades</li>
+<li>Corrigir bugs</li>
+<li>Melhorar performance</li>
+<li>Adicionar testes</li>
+</ul>
+<h2 id="processo-de-contribuicao">🚀 Processo de Contribuição</h2>
+<h3 id="1-configurar-ambiente">1. Configurar Ambiente</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Fork do repositório no GitHub</span>
+<span class="c1"># Clone do seu fork</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/seu-usuario/car_api.git
+<span class="nb">cd</span><span class="w"> </span>car_api
+
+<span class="c1"># Adicionar remote upstream</span>
+git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>https://github.com/pycodebr/car_api.git
+
+<span class="c1"># Configurar ambiente</span>
+poetry<span class="w"> </span>install
+poetry<span class="w"> </span>run<span class="w"> </span>alembic<span class="w"> </span>upgrade<span class="w"> </span>head
+</code></pre></div>
+<h3 id="2-criar-branch-para-feature">2. Criar Branch para Feature</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Atualizar main</span>
+git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>pull<span class="w"> </span>upstream<span class="w"> </span>main
+
+<span class="c1"># Criar branch para feature</span>
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature/nome-da-feature
+
+<span class="c1"># Ou para bugfix</span>
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>fix/nome-do-bug
+</code></pre></div>
+<h3 id="3-desenvolver-e-testar">3. Desenvolver e Testar</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Desenvolver seguindo os padrões</span>
+<span class="c1"># Escrever testes</span>
+poetry<span class="w"> </span>run<span class="w"> </span>pytest
+
+<span class="c1"># Verificar qualidade do código</span>
+poetry<span class="w"> </span>run<span class="w"> </span>task<span class="w"> </span>lint
+poetry<span class="w"> </span>run<span class="w"> </span>task<span class="w"> </span>format
+
+<span class="c1"># Executar todos os testes</span>
+poetry<span class="w"> </span>run<span class="w"> </span>task<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
+<h3 id="4-commit-e-push">4. Commit e Push</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Commit seguindo Conventional Commits</span>
+git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;feat: add new car insurance endpoint&quot;</span>
+
+<span class="c1"># Push para seu fork</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>feature/nome-da-feature
+</code></pre></div>
+<h3 id="5-criar-pull-request">5. Criar Pull Request</h3>
+<ul>
+<li>Acesse GitHub e crie PR do seu fork para o repositório principal</li>
+<li>Use o template de PR</li>
+<li>Descreva as mudanças claramente</li>
+<li>Referencie issues relacionadas</li>
+</ul>
+<h2 id="padroes-de-codigo">📐 Padrões de Código</h2>
+<h3 id="conventional-commits">Conventional Commits</h3>
+<p>Seguimos a especificação <a href="https://www.conventionalcommits.org/">Conventional Commits</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Tipos de commit</span>
+feat:<span class="w"> </span>nova<span class="w"> </span>funcionalidade
+fix:<span class="w"> </span>correção<span class="w"> </span>de<span class="w"> </span>bug
+docs:<span class="w"> </span>documentação
+style:<span class="w"> </span>formatação<span class="w"> </span><span class="o">(</span>sem<span class="w"> </span>mudança<span class="w"> </span>de<span class="w"> </span>lógica<span class="o">)</span>
+refactor:<span class="w"> </span>refatoração<span class="w"> </span>de<span class="w"> </span>código
+test:<span class="w"> </span>testes
+chore:<span class="w"> </span>tarefas<span class="w"> </span>de<span class="w"> </span>manutenção
+perf:<span class="w"> </span>melhorias<span class="w"> </span>de<span class="w"> </span>performance
+ci:<span class="w"> </span>mudanças<span class="w"> </span>no<span class="w"> </span>CI/CD
+
+<span class="c1"># Exemplos</span>
+feat:<span class="w"> </span>add<span class="w"> </span>insurance<span class="w"> </span>support<span class="w"> </span>to<span class="w"> </span>car<span class="w"> </span>model
+fix:<span class="w"> </span>resolve<span class="w"> </span>JWT<span class="w"> </span>token<span class="w"> </span>expiration<span class="w"> </span>issue
+docs:<span class="w"> </span>update<span class="w"> </span>API<span class="w"> </span>documentation<span class="w"> </span><span class="k">for</span><span class="w"> </span>new<span class="w"> </span>endpoints
+test:<span class="w"> </span>add<span class="w"> </span>unit<span class="w"> </span>tests<span class="w"> </span><span class="k">for</span><span class="w"> </span>car<span class="w"> </span>validation
+</code></pre></div>
+<h3 id="estrutura-de-commits">Estrutura de Commits</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Formato</span>
+&lt;tipo&gt;<span class="o">(</span>&lt;escopo&gt;<span class="o">)</span>:<span class="w"> </span>&lt;descrição&gt;
+
+<span class="o">[</span>corpo<span class="w"> </span>opcional<span class="o">]</span>
+
+<span class="o">[</span>rodapé<span class="w"> </span>opcional<span class="o">]</span>
+
+<span class="c1"># Exemplos</span>
+feat<span class="o">(</span>auth<span class="o">)</span>:<span class="w"> </span>add<span class="w"> </span>refresh<span class="w"> </span>token<span class="w"> </span>endpoint
+
+Add<span class="w"> </span>endpoint<span class="w"> </span>to<span class="w"> </span>refresh<span class="w"> </span>JWT<span class="w"> </span>tokens<span class="w"> </span>without<span class="w"> </span>requiring
+full<span class="w"> </span>authentication.<span class="w"> </span>This<span class="w"> </span>improves<span class="w"> </span>user<span class="w"> </span>experience
+by<span class="w"> </span>reducing<span class="w"> </span>login<span class="w"> </span>frequency.
+
+Closes<span class="w"> </span><span class="c1">#123</span>
+
+fix<span class="o">(</span>cars<span class="o">)</span>:<span class="w"> </span>resolve<span class="w"> </span>price<span class="w"> </span>validation<span class="w"> </span>error
+
+The<span class="w"> </span>price<span class="w"> </span>field<span class="w"> </span>was<span class="w"> </span>not<span class="w"> </span>properly<span class="w"> </span>validating<span class="w"> </span>decimal
+precision,<span class="w"> </span>causing<span class="w"> </span>errors<span class="w"> </span>with<span class="w"> </span>valid<span class="w"> </span>prices.
+
+Breaking<span class="w"> </span>change:<span class="w"> </span>Price<span class="w"> </span>format<span class="w"> </span>now<span class="w"> </span>requires<span class="w"> </span>exactly
+<span class="m">2</span><span class="w"> </span>decimal<span class="w"> </span>places.
+</code></pre></div>
+<h3 id="code-review">Code Review</h3>
+<h4 id="checklist-para-revisores">Checklist para Revisores</h4>
+<p><strong>Funcionalidade:</strong>
+- [ ] A feature funciona conforme especificado
+- [ ] Todos os casos de uso são cobertos
+- [ ] Não há regressões</p>
+<p><strong>Código:</strong>
+- [ ] Código é limpo e legível
+- [ ] Segue padrões do projeto
+- [ ] Não há duplicação desnecessária
+- [ ] Performance é adequada</p>
+<p><strong>Testes:</strong>
+- [ ] Testes cobrem funcionalidade nova
+- [ ] Testes são significativos
+- [ ] Todos os testes passam
+- [ ] Coverage mantido ou melhorado</p>
+<p><strong>Documentação:</strong>
+- [ ] Documentação atualizada
+- [ ] Docstrings adicionadas/atualizadas
+- [ ] Changelog atualizado se necessário</p>
+<h4 id="feedback-construtivo">Feedback Construtivo</h4>
+<div class="highlight"><pre><span></span><code><span class="gh"># ✅ Bom feedback</span>
+Considere usar o método <span class="sb">`validate_plate()`</span> existente aqui em vez de
+reimplementar a validação. Isso mantém a consistência e reduz duplicação.
+
+<span class="gh"># ❌ Feedback não construtivo</span>
+Este código está errado.
+
+<span class="gh"># ✅ Sugestão específica</span>
+```python
+<span class="gh"># Em vez de:</span>
+if len(plate) != 7:
+    raise ValueError(&quot;Invalid plate&quot;)
+
+<span class="gh"># Considere:</span>
+validate_plate(plate)  # Reutiliza validação existente
+</code></pre></div>
+<h1 id="reconhecer-pontos-positivos">✅ Reconhecer pontos positivos</h1>
+<p>Excelente implementação dos testes! A cobertura de casos edge está muito boa.
+<div class="highlight"><pre><span></span><code>## 🐛 Reportar Issues
+
+### Template de Bug Report
+
+```markdown
+## 🐛 Descrição do Bug
+Descrição clara e concisa do problema.
+
+## 🔄 Passos para Reproduzir
+1. Vá para &#39;...&#39;
+2. Clique em &#39;....&#39;
+3. Veja o erro
+
+## ✅ Comportamento Esperado
+Descrição do que deveria acontecer.
+
+## 📱 Screenshots/Logs
+Se aplicável, adicione screenshots ou logs de erro.
+
+## 🖥️ Ambiente
+- OS: [e.g. Ubuntu 22.04]
+- Python: [e.g. 3.13.0]
+- Poetry: [e.g. 1.7.1]
+- Browser: [e.g. Chrome 119]
+
+## 📋 Contexto Adicional
+Qualquer informação adicional sobre o problema.
+</code></pre></div></p>
+<h3 id="template-de-feature-request">Template de Feature Request</h3>
+<div class="highlight"><pre><span></span><code><span class="gu">## 🚀 Feature Request</span>
+
+<span class="gu">### 📝 Descrição</span>
+Descrição clara da funcionalidade desejada.
+
+<span class="gu">### 🎯 Problema</span>
+Que problema esta feature resolve?
+
+<span class="gu">### 💡 Solução Proposta</span>
+Como você imagina que a feature funcionaria?
+
+<span class="gu">### 🔄 Alternativas</span>
+Outras maneiras de resolver o problema?
+
+<span class="gu">### 📋 Critérios de Aceitação</span>
+<span class="k">- [ ]</span> Critério 1
+<span class="k">- [ ]</span> Critério 2
+<span class="k">- [ ]</span> Critério 3
+
+<span class="gu">### 📊 Impacto</span>
+<span class="k">-</span><span class="w"> </span><span class="gs">**Usuários**</span>: Quem se beneficia?
+<span class="k">-</span><span class="w"> </span><span class="gs">**Performance**</span>: Impacto na performance?
+<span class="k">-</span><span class="w"> </span><span class="gs">**Breaking**</span>: É uma breaking change?
+</code></pre></div>
+<h2 id="arquitetura-de-contribuicoes">🏗️ Arquitetura de Contribuições</h2>
+<h3 id="estrutura-para-novas-features">Estrutura para Novas Features</h3>
+<div class="highlight"><pre><span></span><code>feature/new-endpoint/
+├── models/           # Novos modelos se necessário
+├── schemas/          # Schemas de validação
+├── routers/          # Endpoints da API
+├── tests/            # Testes completos
+└── docs/             # Documentação atualizada
+</code></pre></div>
+<h3 id="exemplo-adicionar-sistema-de-avaliacoes">Exemplo: Adicionar Sistema de Avaliações</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. Modelo</span>
+<span class="c1"># car_api/models/reviews.py</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Review</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s1">&#39;reviews&#39;</span>
+
+    <span class="nb">id</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">mapped_column</span><span class="p">(</span><span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">rating</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">mapped_column</span><span class="p">(</span><span class="n">Integer</span><span class="p">)</span>  <span class="c1"># 1-5</span>
+    <span class="n">comment</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">mapped_column</span><span class="p">(</span><span class="n">Text</span><span class="p">)</span>
+    <span class="n">car_id</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">mapped_column</span><span class="p">(</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;cars.id&#39;</span><span class="p">))</span>
+    <span class="n">reviewer_id</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">mapped_column</span><span class="p">(</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;users.id&#39;</span><span class="p">))</span>
+
+<span class="c1"># 2. Schema</span>
+<span class="c1"># car_api/schemas/reviews.py</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ReviewSchema</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">rating</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">comment</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="n">car_id</span><span class="p">:</span> <span class="nb">int</span>
+
+<span class="c1"># 3. Router</span>
+<span class="c1"># car_api/routers/reviews.py</span>
+<span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_review</span><span class="p">(</span>
+    <span class="n">review</span><span class="p">:</span> <span class="n">ReviewSchema</span><span class="p">,</span>
+    <span class="n">current_user</span><span class="p">:</span> <span class="n">User</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_current_user</span><span class="p">),</span>
+    <span class="n">db</span><span class="p">:</span> <span class="n">AsyncSession</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_session</span><span class="p">)</span>
+<span class="p">):</span>
+    <span class="c1"># Implementação</span>
+
+<span class="c1"># 4. Testes</span>
+<span class="c1"># tests/integration/test_reviews.py</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TestReviewsAPI</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_create_review_success</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">auth_headers</span><span class="p">):</span>
+        <span class="c1"># Teste implementação</span>
+
+<span class="c1"># 5. Migração</span>
+<span class="c1"># poetry run alembic revision --autogenerate -m &quot;add reviews table&quot;</span>
+</code></pre></div>
+<h2 id="guidelines-de-testes">🧪 Guidelines de Testes</h2>
+<h3 id="cobertura-de-testes">Cobertura de Testes</h3>
+<p><strong>Mínimo requerido:</strong>
+- Unit tests: 80%+
+- Integration tests para novos endpoints
+- E2E tests para fluxos críticos</p>
+<h3 id="estrutura-de-testes">Estrutura de Testes</h3>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TestNewFeature</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Teste para nova funcionalidade.&quot;&quot;&quot;</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_success_case</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar caso de sucesso.&quot;&quot;&quot;</span>
+        <span class="c1"># Arrange</span>
+        <span class="c1"># Act</span>
+        <span class="c1"># Assert</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_validation_error</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar validação de entrada.&quot;&quot;&quot;</span>
+        <span class="c1"># Teste com dados inválidos</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_authorization_error</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar autorização.&quot;&quot;&quot;</span>
+        <span class="c1"># Teste acesso negado</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_not_found_error</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar recurso não encontrado.&quot;&quot;&quot;</span>
+        <span class="c1"># Teste 404</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_edge_cases</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar casos extremos.&quot;&quot;&quot;</span>
+        <span class="c1"># Testes de boundary conditions</span>
+</code></pre></div>
+<h3 id="mocks-e-fixtures">Mocks e Fixtures</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Fixture reutilizável</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">sample_review</span><span class="p">(</span><span class="n">db_session</span><span class="p">,</span> <span class="n">sample_car</span><span class="p">,</span> <span class="n">sample_user</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Review de exemplo para testes.&quot;&quot;&quot;</span>
+    <span class="n">review</span> <span class="o">=</span> <span class="n">Review</span><span class="p">(</span>
+        <span class="n">rating</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">comment</span><span class="o">=</span><span class="s2">&quot;Excelente carro!&quot;</span><span class="p">,</span>
+        <span class="n">car_id</span><span class="o">=</span><span class="n">sample_car</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="n">reviewer_id</span><span class="o">=</span><span class="n">sample_user</span><span class="o">.</span><span class="n">id</span>
+    <span class="p">)</span>
+    <span class="n">db_session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">review</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">db_session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">review</span>
+
+<span class="c1"># Mock de serviço externo</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">mock_notification_service</span><span class="p">(</span><span class="n">mocker</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Mock do serviço de notificações.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s1">&#39;car_api.services.notification.send_email&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="documentacao">📝 Documentação</h2>
+<h3 id="docstrings">Docstrings</h3>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_car</span><span class="p">(</span>
+    <span class="n">car</span><span class="p">:</span> <span class="n">CarSchema</span><span class="p">,</span>
+    <span class="n">current_user</span><span class="p">:</span> <span class="n">User</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_current_user</span><span class="p">),</span>
+    <span class="n">db</span><span class="p">:</span> <span class="n">AsyncSession</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_session</span><span class="p">),</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Car</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Criar novo carro no sistema.</span>
+
+<span class="sd">    Registra um novo carro para o usuário autenticado, validando</span>
+<span class="sd">    todas as informações e associando à marca especificada.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        car: Dados do carro a ser criado</span>
+<span class="sd">        current_user: Usuário autenticado via JWT</span>
+<span class="sd">        db: Sessão do banco de dados</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Car: Carro criado com relacionamentos carregados</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        HTTPException: 400 se placa já existe ou marca inválida</span>
+<span class="sd">        HTTPException: 401 se usuário não autenticado</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; car_data = CarSchema(model=&quot;Civic&quot;, brand_id=1, ...)</span>
+<span class="sd">        &gt;&gt;&gt; car = await create_car(car_data, user, db)</span>
+<span class="sd">        &gt;&gt;&gt; assert car.owner_id == user.id</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div>
+<h3 id="comentarios-no-codigo">Comentários no Código</h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">verify_car_ownership</span><span class="p">(</span><span class="n">current_user</span><span class="p">:</span> <span class="n">User</span><span class="p">,</span> <span class="n">car_owner_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Verificar propriedade do carro.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Implementar autorização granular para garantir que usuários</span>
+    <span class="c1"># só possam acessar/modificar seus próprios recursos</span>
+    <span class="k">if</span> <span class="n">current_user</span><span class="o">.</span><span class="n">id</span> <span class="o">!=</span> <span class="n">car_owner_id</span><span class="p">:</span>
+        <span class="c1"># Retornar 403 em vez de 404 para não vazar informações</span>
+        <span class="c1"># sobre existência de recursos de outros usuários</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span>
+            <span class="n">status_code</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">,</span>
+            <span class="n">detail</span><span class="o">=</span><span class="s1">&#39;Acesso negado&#39;</span>
+        <span class="p">)</span>
+</code></pre></div>
+<h3 id="atualizacoes-na-documentacao">Atualizações na Documentação</h3>
+<div class="highlight"><pre><span></span><code><span class="gh"># Ao adicionar nova feature, atualizar:</span>
+
+<span class="k">1.</span> <span class="gs">**API Endpoints**</span> (<span class="sb">`docs/api-endpoints.md`</span>)
+<span class="w">   </span><span class="k">-</span><span class="w"> </span>Documentar novos endpoints
+<span class="w">   </span><span class="k">-</span><span class="w"> </span>Adicionar exemplos de request/response
+<span class="w">   </span><span class="k">-</span><span class="w"> </span>Incluir códigos de erro
+
+<span class="k">2.</span> <span class="gs">**Modelagem do Sistema**</span> (<span class="sb">`docs/system-modeling.md`</span>)
+<span class="w">   </span><span class="k">-</span><span class="w"> </span>Atualizar ERD se novos modelos
+<span class="w">   </span><span class="k">-</span><span class="w"> </span>Incluir novos fluxos se aplicável
+
+<span class="k">3.</span> <span class="gs">**README**</span> (se mudança significativa)
+<span class="w">   </span><span class="k">-</span><span class="w"> </span>Atualizar features principais
+<span class="w">   </span><span class="k">-</span><span class="w"> </span>Modificar instruções se necessário
+</code></pre></div>
+<h2 id="release-process">🚀 Release Process</h2>
+<h3 id="versionamento-semantico">Versionamento Semântico</h3>
+<p>Seguimos <a href="https://semver.org/">Semantic Versioning</a>:</p>
+<div class="highlight"><pre><span></span><code>MAJOR.MINOR.PATCH
+
+1.0.0 → 1.0.1 (patch: bug fix)
+1.0.1 → 1.1.0 (minor: new feature)
+1.1.0 → 2.0.0 (major: breaking change)
+</code></pre></div>
+<h3 id="criterios-para-release">Critérios para Release</h3>
+<p><strong>Patch (x.x.X):</strong>
+- Bug fixes
+- Melhorias de segurança
+- Atualizações de documentação</p>
+<p><strong>Minor (x.X.x):</strong>
+- Novas features
+- Melhorias de performance
+- Novos endpoints (não breaking)</p>
+<p><strong>Major (X.x.x):</strong>
+- Breaking changes na API
+- Mudanças na estrutura do banco
+- Remoção de features deprecated</p>
+<h3 id="processo-de-release">Processo de Release</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. Atualizar CHANGELOG.md</span>
+<span class="c1"># 2. Bump version no pyproject.toml</span>
+<span class="c1"># 3. Criar release tag</span>
+git<span class="w"> </span>tag<span class="w"> </span>-a<span class="w"> </span>v1.2.0<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Release v1.2.0&quot;</span>
+
+<span class="c1"># 4. Push tag</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>v1.2.0
+
+<span class="c1"># 5. GitHub Actions cria release automaticamente</span>
+</code></pre></div>
+<h2 id="reconhecimento">🏆 Reconhecimento</h2>
+<h3 id="hall-of-fame">Hall of Fame</h3>
+<p>Contribuidores que fizeram diferença significativa:</p>
+<ul>
+<li><strong>@pycodebr</strong> - Criador e maintainer principal</li>
+<li><strong>@contributor1</strong> - Sistema de autenticação</li>
+<li><strong>@contributor2</strong> - Documentação e testes</li>
+<li><strong>@contributor3</strong> - Performance e otimizações</li>
+</ul>
+<h3 id="como-ser-reconhecido">Como ser Reconhecido</h3>
+<p><strong>First-time Contributor:</strong>
+- Badge especial no primeiro PR merged
+- Menção no README</p>
+<p><strong>Regular Contributor:</strong>
+- Adição ao CONTRIBUTORS.md
+- Acesso a discussões de roadmap</p>
+<p><strong>Core Contributor:</strong>
+- Direitos de review
+- Participação em decisões técnicas
+- Mentor para novos contribuidores</p>
+<h2 id="comunicacao">📞 Comunicação</h2>
+<h3 id="canais-de-comunicacao">Canais de Comunicação</h3>
+<p><strong>GitHub Issues:</strong>
+- Reportar bugs
+- Solicitar features
+- Discussões técnicas</p>
+<p><strong>GitHub Discussions:</strong>
+- Dúvidas gerais
+- Compartilhar ideias
+- Ajuda da comunidade</p>
+<p><strong>Discord (em breve):</strong>
+- Chat em tempo real
+- Mentoria
+- Networking</p>
+<h3 id="codigo-de-conduta">Código de Conduta</h3>
+<p>Seguimos o <a href="https://www.contributor-covenant.org/">Contributor Covenant</a>:</p>
+<h4 id="nosso-compromisso">Nosso Compromisso</h4>
+<p>Estamos comprometidos em tornar a participação no projeto uma experiência livre de assédio para todos, independentemente de idade, corpo, deficiência, etnia, identidade de gênero, nível de experiência, nacionalidade, aparência pessoal, raça, religião ou identidade sexual.</p>
+<h4 id="padroes">Padrões</h4>
+<p><strong>Comportamentos que contribuem para um ambiente positivo:</strong>
+- Usar linguagem acolhedora e inclusiva
+- Respeitar diferentes pontos de vista
+- Aceitar críticas construtivas
+- Focar no que é melhor para a comunidade
+- Mostrar empatia com outros membros</p>
+<p><strong>Comportamentos inaceitáveis:</strong>
+- Linguagem ou imagens sexualizadas
+- Trolling, comentários insultuosos
+- Assédio público ou privado
+- Publicar informações privadas sem permissão
+- Outras condutas consideradas inadequadas</p>
+<h2 id="roadmap">🎯 Roadmap</h2>
+<h3 id="proximas-features-v110">Próximas Features (v1.1.0)</h3>
+<ul>
+<li>[ ] Sistema de avaliações de carros</li>
+<li>[ ] Upload de imagens de carros</li>
+<li>[ ] Filtros avançados de busca</li>
+<li>[ ] Notificações por email</li>
+<li>[ ] API de favoritos</li>
+</ul>
+<h3 id="melhorias-tecnicas">Melhorias Técnicas</h3>
+<ul>
+<li>[ ] Rate limiting com Redis</li>
+<li>[ ] Cache de queries frequentes</li>
+<li>[ ] Logs estruturados</li>
+<li>[ ] Métricas de performance</li>
+<li>[ ] Documentação interativa</li>
+</ul>
+<h3 id="como-influenciar-o-roadmap">Como Influenciar o Roadmap</h3>
+<ol>
+<li><strong>Participar de discussões</strong> no GitHub</li>
+<li><strong>Votar em features</strong> através de 👍 nas issues</li>
+<li><strong>Propor novas ideias</strong> com justificativa</li>
+<li><strong>Implementar features</strong> prioritárias</li>
+</ol>
+<h2 id="comecar-agora">🚀 Começar Agora</h2>
+<h3 id="issues-para-iniciantes">Issues para Iniciantes</h3>
+<p>Procure por labels:
+- <code>good first issue</code> - Ideal para primeiro PR
+- <code>help wanted</code> - Precisamos de ajuda
+- <code>documentation</code> - Melhorar docs
+- <code>bug</code> - Correções de bugs</p>
+<h3 id="primeiros-passos">Primeiros Passos</h3>
+<ol>
+<li><strong>Escolha uma issue</strong> marcada como <code>good first issue</code></li>
+<li><strong>Comente na issue</strong> manifestando interesse</li>
+<li><strong>Faça fork</strong> do repositório</li>
+<li><strong>Implemente</strong> seguindo os guidelines</li>
+<li><strong>Abra PR</strong> usando o template</li>
+</ol>
+<hr />
+<h2 id="agradecimentos">🙏 Agradecimentos</h2>
+<p>Obrigado por considerar contribuir com o Car API! Sua participação faz toda a diferença para o crescimento e qualidade do projeto.</p>
+<p>Para dúvidas sobre contribuição:
+- 📧 <strong>Email</strong>: pycodebr@gmail.com
+- 🐛 <strong>Issues</strong>: <a href="https://github.com/pycodebr/car_api/issues">GitHub Issues</a>
+- 💬 <strong>Discussions</strong>: <a href="https://github.com/pycodebr/car_api/discussions">GitHub Discussions</a></p>
+<p><strong>Juntos construímos software melhor! 🚀</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

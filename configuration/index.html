@@ -1,0 +1,1894 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Uma API REST completa para gerenciamento de carros e usuários">
+      
+      
+        <meta name="author" content="PyCodeBR">
+      
+      
+      
+        <link rel="prev" href="../installation/">
+      
+      
+        <link rel="next" href="../guidelines/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Configuração - Car API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#configuracao-do-projeto" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Car API" class="md-header__button md-logo" aria-label="Car API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Car API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Configuração
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Car API" class="md-nav__button md-logo" aria-label="Car API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Car API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Início
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Visão geral
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prerequisites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pré-requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Instalação
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Configuração
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuração
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuracoes-gerais" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Configurações Gerais
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Configurações Gerais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arquivo-de-configuracao-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquivo de Configuração Principal
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variaveis-de-ambiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌍 Variáveis de Ambiente
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌍 Variáveis de Ambiente">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arquivo-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquivo .env
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracoes-por-ambiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurações por Ambiente
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configurações por Ambiente">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#desenvolvimento-sqlite" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔬 Desenvolvimento (SQLite)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testes-sqlite-in-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 Testes (SQLite in-memory)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#producao-postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Produção (PostgreSQL)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracao-de-banco-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      🗃️ Configuração de Banco de Dados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🗃️ Configuração de Banco de Dados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sqlite-desenvolvimento" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQLite (Desenvolvimento)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postgresql-producao" class="md-nav__link">
+    <span class="md-ellipsis">
+      PostgreSQL (Produção)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PostgreSQL (Produção)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuracao-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuração Local
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracao-com-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuração com Docker
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracao-de-seguranca-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔐 Configuração de Segurança JWT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔐 Configuração de Segurança JWT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gerar-chave-secreta-segura" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gerar Chave Secreta Segura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracoes-de-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurações de JWT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracoes-avancadas-de-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurações Avançadas de JWT
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracao-do-alembic" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ Configuração do Alembic
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ Configuração do Alembic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alembicini" class="md-nav__link">
+    <span class="md-ellipsis">
+      alembic.ini
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migrationsenvpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      migrations/env.py
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracao-do-fastapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Configuração do FastAPI
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Configuração do FastAPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuracoes-da-aplicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurações da Aplicação
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracao-de-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 Configuração de Testes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 Configuração de Testes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pytestini" class="md-nav__link">
+    <span class="md-ellipsis">
+      pytest.ini
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conftestpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      conftest.py
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracao-do-poetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 Configuração do Poetry
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📦 Configuração do Poetry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyprojecttoml" class="md-nav__link">
+    <span class="md-ellipsis">
+      pyproject.toml
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracoes-adicionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Configurações Adicionais
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Configurações Adicionais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cors" class="md-nav__link">
+    <span class="md-ellipsis">
+      CORS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verificacao-de-configuracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Verificação de Configuração
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximos-passos" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Próximos Passos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guidelines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Guidelines e padrões
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Estrutura
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-endpoints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Endpoints
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../system-modeling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Modelagem do Sistema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Autenticação e Segurança
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Desenvolvimento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Testes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contribuição
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release Notes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuracoes-gerais" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Configurações Gerais
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Configurações Gerais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arquivo-de-configuracao-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquivo de Configuração Principal
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variaveis-de-ambiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌍 Variáveis de Ambiente
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌍 Variáveis de Ambiente">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arquivo-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquivo .env
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracoes-por-ambiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurações por Ambiente
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configurações por Ambiente">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#desenvolvimento-sqlite" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔬 Desenvolvimento (SQLite)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testes-sqlite-in-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 Testes (SQLite in-memory)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#producao-postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Produção (PostgreSQL)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracao-de-banco-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      🗃️ Configuração de Banco de Dados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🗃️ Configuração de Banco de Dados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sqlite-desenvolvimento" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQLite (Desenvolvimento)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postgresql-producao" class="md-nav__link">
+    <span class="md-ellipsis">
+      PostgreSQL (Produção)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PostgreSQL (Produção)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuracao-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuração Local
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracao-com-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuração com Docker
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracao-de-seguranca-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔐 Configuração de Segurança JWT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔐 Configuração de Segurança JWT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gerar-chave-secreta-segura" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gerar Chave Secreta Segura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracoes-de-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurações de JWT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracoes-avancadas-de-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurações Avançadas de JWT
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracao-do-alembic" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ Configuração do Alembic
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ Configuração do Alembic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alembicini" class="md-nav__link">
+    <span class="md-ellipsis">
+      alembic.ini
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migrationsenvpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      migrations/env.py
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracao-do-fastapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Configuração do FastAPI
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Configuração do FastAPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuracoes-da-aplicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurações da Aplicação
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracao-de-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 Configuração de Testes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 Configuração de Testes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pytestini" class="md-nav__link">
+    <span class="md-ellipsis">
+      pytest.ini
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conftestpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      conftest.py
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracao-do-poetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 Configuração do Poetry
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📦 Configuração do Poetry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyprojecttoml" class="md-nav__link">
+    <span class="md-ellipsis">
+      pyproject.toml
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracoes-adicionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Configurações Adicionais
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Configurações Adicionais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cors" class="md-nav__link">
+    <span class="md-ellipsis">
+      CORS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verificacao-de-configuracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Verificação de Configuração
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximos-passos" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Próximos Passos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="configuracao-do-projeto">Configuração do Projeto</h1>
+<h2 id="configuracoes-gerais">🔧 Configurações Gerais</h2>
+<h3 id="arquivo-de-configuracao-principal">Arquivo de Configuração Principal</h3>
+<p>O projeto utiliza o arquivo <code>car_api/core/settings.py</code> para gerenciar todas as configurações:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># car_api/core/settings.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic_settings</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSettings</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Settings</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span>
+    <span class="n">database_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;sqlite+aiosqlite:///./car.db&#39;</span>
+    <span class="n">jwt_secret_key</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">jwt_algorithm</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;HS256&#39;</span>
+    <span class="n">jwt_expiration_minutes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">:</span>
+        <span class="n">env_file</span> <span class="o">=</span> <span class="s1">&#39;.env&#39;</span>
+</code></pre></div>
+<h2 id="variaveis-de-ambiente">🌍 Variáveis de Ambiente</h2>
+<h3 id="arquivo-env">Arquivo .env</h3>
+<p>Crie um arquivo <code>.env</code> na raiz do projeto com as seguintes configurações:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Banco de Dados</span>
+<span class="nv">DATABASE_URL</span><span class="o">=</span><span class="s1">&#39;sqlite+aiosqlite:///./car.db&#39;</span>
+
+<span class="c1"># JWT Authentication</span>
+<span class="nv">JWT_SECRET_KEY</span><span class="o">=</span><span class="s1">&#39;your-super-secret-jwt-key-here-change-this-in-production&#39;</span>
+<span class="nv">JWT_ALGORITHM</span><span class="o">=</span><span class="s1">&#39;HS256&#39;</span>
+<span class="nv">JWT_EXPIRATION_MINUTES</span><span class="o">=</span><span class="m">30</span>
+</code></pre></div>
+<h3 id="configuracoes-por-ambiente">Configurações por Ambiente</h3>
+<h4 id="desenvolvimento-sqlite">🔬 Desenvolvimento (SQLite)</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># .env.development</span>
+<span class="nv">DATABASE_URL</span><span class="o">=</span><span class="s1">&#39;sqlite+aiosqlite:///./car.db&#39;</span>
+<span class="nv">JWT_SECRET_KEY</span><span class="o">=</span><span class="s1">&#39;dev-secret-key-not-for-production&#39;</span>
+<span class="nv">JWT_ALGORITHM</span><span class="o">=</span><span class="s1">&#39;HS256&#39;</span>
+<span class="nv">JWT_EXPIRATION_MINUTES</span><span class="o">=</span><span class="m">60</span>
+<span class="nv">DEBUG</span><span class="o">=</span><span class="nb">true</span>
+</code></pre></div>
+<h4 id="testes-sqlite-in-memory">🧪 Testes (SQLite in-memory)</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># .env.test</span>
+<span class="nv">DATABASE_URL</span><span class="o">=</span><span class="s1">&#39;sqlite+aiosqlite:///:memory:&#39;</span>
+<span class="nv">JWT_SECRET_KEY</span><span class="o">=</span><span class="s1">&#39;test-secret-key&#39;</span>
+<span class="nv">JWT_ALGORITHM</span><span class="o">=</span><span class="s1">&#39;HS256&#39;</span>
+<span class="nv">JWT_EXPIRATION_MINUTES</span><span class="o">=</span><span class="m">5</span>
+<span class="nv">DEBUG</span><span class="o">=</span><span class="nb">true</span>
+</code></pre></div>
+<h4 id="producao-postgresql">🚀 Produção (PostgreSQL)</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># .env.production</span>
+<span class="nv">DATABASE_URL</span><span class="o">=</span><span class="s1">&#39;postgresql+psycopg://username:password@localhost:5432/car_api&#39;</span>
+<span class="nv">JWT_SECRET_KEY</span><span class="o">=</span><span class="s1">&#39;super-secure-production-key-64-chars-minimum&#39;</span>
+<span class="nv">JWT_ALGORITHM</span><span class="o">=</span><span class="s1">&#39;HS256&#39;</span>
+<span class="nv">JWT_EXPIRATION_MINUTES</span><span class="o">=</span><span class="m">30</span>
+<span class="nv">DEBUG</span><span class="o">=</span><span class="nb">false</span>
+</code></pre></div>
+<h2 id="configuracao-de-banco-de-dados">🗃️ Configuração de Banco de Dados</h2>
+<h3 id="sqlite-desenvolvimento">SQLite (Desenvolvimento)</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Configuração automática</span>
+<span class="nv">DATABASE_URL</span><span class="o">=</span><span class="s1">&#39;sqlite+aiosqlite:///./car.db&#39;</span>
+</code></pre></div>
+<p><strong>Características:</strong>
+- ✅ Não requer instalação adicional
+- ✅ Arquivo local (<code>car.db</code>)
+- ✅ Ideal para desenvolvimento
+- ❌ Não suporta múltiplas conexões simultâneas</p>
+<h3 id="postgresql-producao">PostgreSQL (Produção)</h3>
+<h4 id="configuracao-local">Configuração Local</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. Instalar PostgreSQL</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>postgresql<span class="w"> </span>postgresql-contrib
+
+<span class="c1"># 2. Criar banco e usuário</span>
+sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>psql
+CREATE<span class="w"> </span>DATABASE<span class="w"> </span>car_api<span class="p">;</span>
+CREATE<span class="w"> </span>USER<span class="w"> </span>car_api_user<span class="w"> </span>WITH<span class="w"> </span>PASSWORD<span class="w"> </span><span class="s1">&#39;secure_password&#39;</span><span class="p">;</span>
+GRANT<span class="w"> </span>ALL<span class="w"> </span>PRIVILEGES<span class="w"> </span>ON<span class="w"> </span>DATABASE<span class="w"> </span>car_api<span class="w"> </span>TO<span class="w"> </span>car_api_user<span class="p">;</span>
+<span class="se">\q</span>
+
+<span class="c1"># 3. Configurar .env</span>
+<span class="nv">DATABASE_URL</span><span class="o">=</span><span class="s1">&#39;postgresql+psycopg://car_api_user:secure_password@localhost:5432/car_api&#39;</span>
+</code></pre></div>
+<h4 id="configuracao-com-docker">Configuração com Docker</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># docker-compose.yml</span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.8&#39;</span>
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">db</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres:15</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">POSTGRES_DB</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">car_api</span>
+<span class="w">      </span><span class="nt">POSTGRES_USER</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres</span>
+<span class="w">      </span><span class="nt">POSTGRES_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;5432:5432&quot;</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres_data:/var/lib/postgresql/data</span>
+
+<span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">postgres_data</span><span class="p">:</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># .env para Docker</span>
+<span class="nv">DATABASE_URL</span><span class="o">=</span><span class="s1">&#39;postgresql+psycopg://postgres:postgres@localhost:5432/car_api&#39;</span>
+</code></pre></div>
+<h2 id="configuracao-de-seguranca-jwt">🔐 Configuração de Segurança JWT</h2>
+<h3 id="gerar-chave-secreta-segura">Gerar Chave Secreta Segura</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Método 1: Python</span>
+python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import secrets; print(secrets.token_urlsafe(64))&quot;</span>
+
+<span class="c1"># Método 2: OpenSSL</span>
+openssl<span class="w"> </span>rand<span class="w"> </span>-base64<span class="w"> </span><span class="m">64</span>
+
+<span class="c1"># Método 3: Online (cuidado com segurança)</span>
+<span class="c1"># https://generate-secret.vercel.app/64</span>
+</code></pre></div>
+<h3 id="configuracoes-de-jwt">Configurações de JWT</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Chave secreta (mínimo 64 caracteres)</span>
+<span class="nv">JWT_SECRET_KEY</span><span class="o">=</span><span class="s1">&#39;sua-chave-super-secreta-de-pelo-menos-64-caracteres-aqui&#39;</span>
+
+<span class="c1"># Algoritmo de criptografia</span>
+<span class="nv">JWT_ALGORITHM</span><span class="o">=</span><span class="s1">&#39;HS256&#39;</span><span class="w">  </span><span class="c1"># HS256, HS384, HS512, RS256, etc.</span>
+
+<span class="c1"># Tempo de expiração em minutos</span>
+<span class="nv">JWT_EXPIRATION_MINUTES</span><span class="o">=</span><span class="m">30</span><span class="w">  </span><span class="c1"># 30 minutos (recomendado para produção)</span>
+</code></pre></div>
+<h3 id="configuracoes-avancadas-de-jwt">Configurações Avançadas de JWT</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># car_api/core/settings.py (versão expandida)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Settings</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span>
+    <span class="c1"># ... outras configurações</span>
+
+    <span class="c1"># JWT</span>
+    <span class="n">jwt_secret_key</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">jwt_algorithm</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;HS256&#39;</span>
+    <span class="n">jwt_expiration_minutes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30</span>
+    <span class="n">jwt_refresh_expiration_days</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">7</span>  <span class="c1"># Para refresh tokens</span>
+
+    <span class="c1"># Segurança</span>
+    <span class="n">cors_origins</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;http://localhost:3000&#39;</span><span class="p">,</span> <span class="s1">&#39;http://localhost:8080&#39;</span><span class="p">]</span>
+    <span class="n">allowed_hosts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Rate Limiting</span>
+    <span class="n">rate_limit_requests</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">rate_limit_window</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">60</span>  <span class="c1"># segundos</span>
+</code></pre></div>
+<h2 id="configuracao-do-alembic">⚙️ Configuração do Alembic</h2>
+<h3 id="alembicini">alembic.ini</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># alembic.ini</span>
+<span class="k">[alembic]</span>
+<span class="na">script_location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">migrations</span>
+<span class="na">file_template</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">%%(year)d%%(month).2d%%(day).2d_%%(hour).2d%%(minute).2d_%%(rev)s_%%(slug)s</span>
+<span class="na">truncate_slug_length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">40</span>
+
+<span class="c1"># Formato de saída</span>
+<span class="na">output_encoding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">utf-8</span>
+
+<span class="c1"># Configurações do banco</span>
+<span class="na">sqlalchemy.url</span><span class="w"> </span><span class="o">=</span>
+
+<span class="k">[post_write_hooks]</span>
+<span class="na">hooks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">black</span>
+<span class="na">black.type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">console_scripts</span>
+<span class="na">black.entrypoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">black</span>
+<span class="na">black.options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-l 79 REVISION_SCRIPT_FILENAME</span>
+
+<span class="k">[loggers]</span>
+<span class="na">keys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">root,sqlalchemy,alembic</span>
+
+<span class="k">[handlers]</span>
+<span class="na">keys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">console</span>
+
+<span class="k">[formatters]</span>
+<span class="na">keys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">generic</span>
+
+<span class="k">[logger_root]</span>
+<span class="na">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">WARN</span>
+<span class="na">handlers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">console</span>
+<span class="na">qualname</span><span class="w"> </span><span class="o">=</span>
+
+<span class="k">[logger_sqlalchemy]</span>
+<span class="na">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">WARN</span>
+<span class="na">handlers</span><span class="w"> </span><span class="o">=</span>
+<span class="na">qualname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">sqlalchemy.engine</span>
+
+<span class="k">[logger_alembic]</span>
+<span class="na">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">INFO</span>
+<span class="na">handlers</span><span class="w"> </span><span class="o">=</span>
+<span class="na">qualname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">alembic</span>
+
+<span class="k">[handler_console]</span>
+<span class="na">class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">StreamHandler</span>
+<span class="na">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">(sys.stderr,)</span>
+<span class="na">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">NOTSET</span>
+<span class="na">formatter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">generic</span>
+
+<span class="k">[formatter_generic]</span>
+<span class="na">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">%(levelname)-5.5s [%(name)s] %(message)s</span>
+<span class="na">datefmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">%H:%M:%S</span>
+</code></pre></div>
+<h3 id="migrationsenvpy">migrations/env.py</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># migrations/env.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">logging.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">fileConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy</span><span class="w"> </span><span class="kn">import</span> <span class="n">pool</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy.engine</span><span class="w"> </span><span class="kn">import</span> <span class="n">Connection</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy.ext.asyncio</span><span class="w"> </span><span class="kn">import</span> <span class="n">async_engine_from_config</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">alembic</span><span class="w"> </span><span class="kn">import</span> <span class="n">context</span>
+
+<span class="c1"># Importar modelos</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">car_api.models.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">Base</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">car_api.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">users</span><span class="p">,</span> <span class="n">cars</span>  <span class="c1"># noqa</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">car_api.core.settings</span><span class="w"> </span><span class="kn">import</span> <span class="n">Settings</span>
+
+<span class="c1"># Configurações</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">config</span>
+<span class="n">settings</span> <span class="o">=</span> <span class="n">Settings</span><span class="p">()</span>
+
+<span class="c1"># Configurar logging</span>
+<span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">config_file_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">fileConfig</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">config_file_name</span><span class="p">)</span>
+
+<span class="c1"># Metadados dos modelos</span>
+<span class="n">target_metadata</span> <span class="o">=</span> <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">run_migrations_offline</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Executar migrações offline.&quot;&quot;&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">database_url</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span>
+        <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+        <span class="n">target_metadata</span><span class="o">=</span><span class="n">target_metadata</span><span class="p">,</span>
+        <span class="n">literal_binds</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">dialect_opts</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;paramstyle&quot;</span><span class="p">:</span> <span class="s2">&quot;named&quot;</span><span class="p">},</span>
+    <span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">context</span><span class="o">.</span><span class="n">begin_transaction</span><span class="p">():</span>
+        <span class="n">context</span><span class="o">.</span><span class="n">run_migrations</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">do_run_migrations</span><span class="p">(</span><span class="n">connection</span><span class="p">:</span> <span class="n">Connection</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Executar migrações com conexão.&quot;&quot;&quot;</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">connection</span><span class="o">=</span><span class="n">connection</span><span class="p">,</span> <span class="n">target_metadata</span><span class="o">=</span><span class="n">target_metadata</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">context</span><span class="o">.</span><span class="n">begin_transaction</span><span class="p">():</span>
+        <span class="n">context</span><span class="o">.</span><span class="n">run_migrations</span><span class="p">()</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_async_migrations</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Executar migrações assíncronas.&quot;&quot;&quot;</span>
+    <span class="n">configuration</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_section</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">config_ini_section</span><span class="p">)</span>
+    <span class="n">configuration</span><span class="p">[</span><span class="s2">&quot;sqlalchemy.url&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">database_url</span>
+
+    <span class="n">connectable</span> <span class="o">=</span> <span class="n">async_engine_from_config</span><span class="p">(</span>
+        <span class="n">configuration</span><span class="p">,</span>
+        <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;sqlalchemy.&quot;</span><span class="p">,</span>
+        <span class="n">poolclass</span><span class="o">=</span><span class="n">pool</span><span class="o">.</span><span class="n">NullPool</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">with</span> <span class="n">connectable</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">connection</span><span class="o">.</span><span class="n">run_sync</span><span class="p">(</span><span class="n">do_run_migrations</span><span class="p">)</span>
+
+    <span class="k">await</span> <span class="n">connectable</span><span class="o">.</span><span class="n">dispose</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">run_migrations_online</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Executar migrações online.&quot;&quot;&quot;</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">run_async_migrations</span><span class="p">())</span>
+
+<span class="k">if</span> <span class="n">context</span><span class="o">.</span><span class="n">is_offline_mode</span><span class="p">():</span>
+    <span class="n">run_migrations_offline</span><span class="p">()</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">run_migrations_online</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="configuracao-do-fastapi">🚀 Configuração do FastAPI</h2>
+<h3 id="configuracoes-da-aplicacao">Configurações da Aplicação</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># car_api/app.py (versão expandida)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastAPI</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi.middleware.cors</span><span class="w"> </span><span class="kn">import</span> <span class="n">CORSMiddleware</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi.middleware.trustedhost</span><span class="w"> </span><span class="kn">import</span> <span class="n">TrustedHostMiddleware</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">car_api.core.settings</span><span class="w"> </span><span class="kn">import</span> <span class="n">Settings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">car_api.routers</span><span class="w"> </span><span class="kn">import</span> <span class="n">auth</span><span class="p">,</span> <span class="n">brands</span><span class="p">,</span> <span class="n">cars</span><span class="p">,</span> <span class="n">users</span>
+
+<span class="n">settings</span> <span class="o">=</span> <span class="n">Settings</span><span class="p">()</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Car API&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;API para gerenciamento de carros e usuários&quot;</span><span class="p">,</span>
+    <span class="n">version</span><span class="o">=</span><span class="s2">&quot;0.1.0&quot;</span><span class="p">,</span>
+    <span class="n">docs_url</span><span class="o">=</span><span class="s2">&quot;/docs&quot;</span><span class="p">,</span>
+    <span class="n">redoc_url</span><span class="o">=</span><span class="s2">&quot;/redoc&quot;</span><span class="p">,</span>
+    <span class="n">openapi_url</span><span class="o">=</span><span class="s2">&quot;/openapi.json&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Middleware CORS</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add_middleware</span><span class="p">(</span>
+    <span class="n">CORSMiddleware</span><span class="p">,</span>
+    <span class="n">allow_origins</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">cors_origins</span><span class="p">,</span>
+    <span class="n">allow_credentials</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">allow_methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="s2">&quot;PUT&quot;</span><span class="p">,</span> <span class="s2">&quot;DELETE&quot;</span><span class="p">],</span>
+    <span class="n">allow_headers</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="c1"># Middleware Trusted Host</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add_middleware</span><span class="p">(</span>
+    <span class="n">TrustedHostMiddleware</span><span class="p">,</span>
+    <span class="n">allowed_hosts</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">allowed_hosts</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Routers</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">auth</span><span class="o">.</span><span class="n">router</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/api/v1/auth&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;authentication&quot;</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">router</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/api/v1/users&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;users&quot;</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">brands</span><span class="o">.</span><span class="n">router</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/api/v1/brands&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;brands&quot;</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">cars</span><span class="o">.</span><span class="n">router</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;/api/v1/cars&quot;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;cars&quot;</span><span class="p">])</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/health_check&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">health_check</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span> <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;0.1.0&quot;</span><span class="p">}</span>
+</code></pre></div>
+<h2 id="configuracao-de-testes">🧪 Configuração de Testes</h2>
+<h3 id="pytestini">pytest.ini</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># pytest.ini</span>
+<span class="k">[tool:pytest]</span>
+<span class="na">testpaths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">tests</span>
+<span class="na">python_files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">test_*.py</span>
+<span class="na">python_classes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Test*</span>
+<span class="na">python_functions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">test_*</span>
+<span class="na">asyncio_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">auto</span>
+<span class="na">asyncio_default_fixture_loop_scope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">function</span>
+<span class="na">addopts</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="na">-v</span>
+<span class="w">    </span><span class="na">--strict-markers</span>
+<span class="w">    </span><span class="na">--strict-config</span>
+<span class="w">    </span><span class="na">--cov</span><span class="o">=</span><span class="s">car_api</span>
+<span class="w">    </span><span class="na">--cov-report</span><span class="o">=</span><span class="s">html</span>
+<span class="w">    </span><span class="na">--cov-report</span><span class="o">=</span><span class="s">term-missing</span>
+<span class="w">    </span><span class="na">--cov-fail-under</span><span class="o">=</span><span class="s">90</span>
+<span class="na">markers</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="na">unit</span><span class="o">:</span><span class="w"> </span><span class="s">Unit tests</span>
+<span class="w">    </span><span class="na">integration</span><span class="o">:</span><span class="w"> </span><span class="s">Integration tests</span>
+<span class="w">    </span><span class="na">slow</span><span class="o">:</span><span class="w"> </span><span class="s">Slow tests</span>
+<span class="w">    </span><span class="na">database</span><span class="o">:</span><span class="w"> </span><span class="s">Tests that require database</span>
+</code></pre></div>
+<h3 id="conftestpy">conftest.py</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># tests/conftest.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest_asyncio</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">httpx</span><span class="w"> </span><span class="kn">import</span> <span class="n">AsyncClient</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy.ext.asyncio</span><span class="w"> </span><span class="kn">import</span> <span class="n">async_sessionmaker</span><span class="p">,</span> <span class="n">create_async_engine</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">car_api.app</span><span class="w"> </span><span class="kn">import</span> <span class="n">app</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">car_api.core.database</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_session</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">car_api.models.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">Base</span>
+
+<span class="c1"># Engine de teste</span>
+<span class="n">TEST_DATABASE_URL</span> <span class="o">=</span> <span class="s2">&quot;sqlite+aiosqlite:///:memory:&quot;</span>
+<span class="n">test_engine</span> <span class="o">=</span> <span class="n">create_async_engine</span><span class="p">(</span><span class="n">TEST_DATABASE_URL</span><span class="p">)</span>
+<span class="n">TestSessionLocal</span> <span class="o">=</span> <span class="n">async_sessionmaker</span><span class="p">(</span>
+    <span class="n">test_engine</span><span class="p">,</span> <span class="n">expire_on_commit</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="nd">@pytest_asyncio</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">db_session</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Criar sessão de banco para testes.&quot;&quot;&quot;</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">test_engine</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">conn</span><span class="o">.</span><span class="n">run_sync</span><span class="p">(</span><span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">with</span> <span class="n">TestSessionLocal</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">session</span>
+
+    <span class="k">async</span> <span class="k">with</span> <span class="n">test_engine</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">conn</span><span class="o">.</span><span class="n">run_sync</span><span class="p">(</span><span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">drop_all</span><span class="p">)</span>
+
+<span class="nd">@pytest_asyncio</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">client</span><span class="p">(</span><span class="n">db_session</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Cliente HTTP para testes.&quot;&quot;&quot;</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">dependency_overrides</span><span class="p">[</span><span class="n">get_session</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">db_session</span>
+
+    <span class="k">async</span> <span class="k">with</span> <span class="n">AsyncClient</span><span class="p">(</span><span class="n">app</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;http://test&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ac</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">ac</span>
+
+    <span class="n">app</span><span class="o">.</span><span class="n">dependency_overrides</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="configuracao-do-poetry">📦 Configuração do Poetry</h2>
+<h3 id="pyprojecttoml">pyproject.toml</h3>
+<div class="highlight"><pre><span></span><code><span class="k">[tool.poetry]</span>
+<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;car-api&quot;</span>
+<span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
+<span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;API para gerenciamento de carros e usuários&quot;</span>
+<span class="n">authors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;PyCodeBR &lt;pycodebr@gmail.com&gt;&quot;</span><span class="p">]</span>
+<span class="n">readme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;README.md&quot;</span>
+<span class="n">packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[{</span><span class="n">include</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;car_api&quot;</span><span class="p">}]</span>
+
+<span class="k">[tool.poetry.dependencies]</span>
+<span class="n">python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;^3.13&quot;</span>
+<span class="n">fastapi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">extras</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;standard&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;^0.116.1&quot;</span><span class="p">}</span>
+<span class="n">sqlalchemy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">extras</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;asyncio&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;^2.0.42&quot;</span><span class="p">}</span>
+<span class="n">alembic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;^1.16.4&quot;</span>
+<span class="n">aiosqlite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;^0.21.0&quot;</span>
+<span class="n">psycopg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">extras</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;binary&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;^3.2.9&quot;</span><span class="p">}</span>
+<span class="n">pydantic-settings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;^2.10.1&quot;</span>
+<span class="n">pwdlib</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">extras</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;argon2&quot;</span><span class="p">],</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;^0.2.1&quot;</span><span class="p">}</span>
+<span class="n">pyjwt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;^2.10.1&quot;</span>
+
+<span class="k">[tool.poetry.group.dev.dependencies]</span>
+<span class="n">pytest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;^8.0.0&quot;</span>
+<span class="n">pytest-asyncio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;^0.25.0&quot;</span>
+<span class="n">pytest-cov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;^5.0.0&quot;</span>
+<span class="n">httpx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;^0.27.0&quot;</span>
+<span class="n">ruff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;^0.12.7&quot;</span>
+<span class="n">taskipy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;^1.14.1&quot;</span>
+<span class="n">mkdocs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;^1.6.1&quot;</span>
+<span class="n">mkdocs-material</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;^9.5.0&quot;</span>
+
+<span class="k">[build-system]</span>
+<span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;poetry-core&quot;</span><span class="p">]</span>
+<span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;poetry.core.masonry.api&quot;</span>
+
+<span class="k">[tool.pytest.ini_options]</span>
+<span class="n">pythonpath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;.&quot;</span>
+<span class="n">addopts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;-p no:warnings&quot;</span>
+<span class="n">asyncio_default_fixture_loop_scope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;function&quot;</span>
+
+<span class="k">[tool.coverage.run]</span>
+<span class="n">concurrency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;thread&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;greenlet&quot;</span><span class="p">]</span>
+
+<span class="k">[tool.ruff]</span>
+<span class="n">line-length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">79</span>
+<span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;.git&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;.tox&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;.venv&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;__pycache__&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;migrations&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;alembic&quot;</span>
+<span class="p">]</span>
+
+<span class="k">[tool.ruff.lint]</span>
+<span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;I&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;F&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;E&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;W&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;PL&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;PT&quot;</span><span class="p">]</span>
+<span class="n">ignore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;PLR2004&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;PLR0917&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;PLR0913&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;PT022&quot;</span><span class="p">]</span>
+
+<span class="k">[tool.ruff.format]</span>
+<span class="n">quote-style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;single&quot;</span>
+
+<span class="k">[tool.taskipy.tasks]</span>
+<span class="n">lint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ruff check&quot;</span>
+<span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ruff format&quot;</span>
+<span class="n">test</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;pytest -v --cov=car_api&quot;</span>
+<span class="n">run</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;fastapi dev car_api/app.py&quot;</span>
+<span class="n">docs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;mkdocs serve&quot;</span>
+<span class="n">migrate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;alembic upgrade head&quot;</span>
+</code></pre></div>
+<h2 id="configuracoes-adicionais">🔧 Configurações Adicionais</h2>
+<h3 id="logging">Logging</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># car_api/core/logging.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">setup_logging</span><span class="p">(</span><span class="n">level</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;INFO&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configurar logging da aplicação.&quot;&quot;&quot;</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+        <span class="n">level</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">logging</span><span class="p">,</span> <span class="n">level</span><span class="o">.</span><span class="n">upper</span><span class="p">()),</span>
+        <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2"> - </span><span class="si">%(name)s</span><span class="s2"> - </span><span class="si">%(levelname)s</span><span class="s2"> - </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">handlers</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">(),</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="s2">&quot;app.log&quot;</span><span class="p">),</span>
+        <span class="p">],</span>
+    <span class="p">)</span>
+
+<span class="c1"># Usar na aplicação</span>
+<span class="c1"># setup_logging(settings.log_level)</span>
+</code></pre></div>
+<h3 id="cors">CORS</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Configuração detalhada de CORS</span>
+<span class="n">CORS_SETTINGS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;allow_origins&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;http://localhost:3000&quot;</span><span class="p">,</span>      <span class="c1"># React dev</span>
+        <span class="s2">&quot;http://localhost:8080&quot;</span><span class="p">,</span>      <span class="c1"># Vue dev</span>
+        <span class="s2">&quot;https://yourdomain.com&quot;</span><span class="p">,</span>     <span class="c1"># Produção</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;allow_credentials&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;allow_methods&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="s2">&quot;PUT&quot;</span><span class="p">,</span> <span class="s2">&quot;DELETE&quot;</span><span class="p">,</span> <span class="s2">&quot;OPTIONS&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;allow_headers&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;Accept&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Accept-Language&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Content-Language&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Content-Type&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Authorization&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="verificacao-de-configuracao">✅ Verificação de Configuração</h2>
+<p>Execute este script para verificar todas as configurações:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># scripts/check_config.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">car_api.core.settings</span><span class="w"> </span><span class="kn">import</span> <span class="n">Settings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">car_api.core.database</span><span class="w"> </span><span class="kn">import</span> <span class="n">engine</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">check_configuration</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Verificar configurações do projeto.&quot;&quot;&quot;</span>
+    <span class="n">settings</span> <span class="o">=</span> <span class="n">Settings</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🔧 Verificando configurações...&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Database URL: </span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">database_url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ JWT Algorithm: </span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">jwt_algorithm</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ JWT Expiration: </span><span class="si">{</span><span class="n">settings</span><span class="o">.</span><span class="n">jwt_expiration_minutes</span><span class="si">}</span><span class="s2"> minutos&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Testar conexão com banco</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="n">engine</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT 1&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Conexão com banco: OK&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ Erro na conexão: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">check_configuration</span><span class="p">())</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># Executar verificação</span>
+poetry<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>scripts/check_config.py
+</code></pre></div>
+<h2 id="proximos-passos">📚 Próximos Passos</h2>
+<p>Após configurar o projeto:</p>
+<ol>
+<li>📊 Entenda a <a href="../structure/">Estrutura do Projeto</a></li>
+<li>🔍 Explore os <a href="../guidelines/">Guidelines e Padrões</a></li>
+<li>🛠️ Comece o <a href="../development/">Desenvolvimento</a></li>
+<li>🧪 Execute os <a href="../testing/">Testes</a></li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

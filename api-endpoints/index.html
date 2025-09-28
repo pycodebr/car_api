@@ -1,0 +1,3419 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Uma API REST completa para gerenciamento de carros e usuários">
+      
+      
+        <meta name="author" content="PyCodeBR">
+      
+      
+      
+        <link rel="prev" href="../structure/">
+      
+      
+        <link rel="next" href="../system-modeling/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>API Endpoints - Car API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#api-endpoints" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Car API" class="md-header__button md-logo" aria-label="Car API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Car API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API Endpoints
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Car API" class="md-nav__button md-logo" aria-label="Car API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Car API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Início
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Visão geral
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prerequisites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pré-requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Instalação
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuração
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guidelines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Guidelines e padrões
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Estrutura
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    API Endpoints
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Endpoints
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral-da-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌐 Visão Geral da API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌐 Visão Geral da API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Base URL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentacao-interativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Documentação Interativa
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#autenticacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔑 Autenticação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔑 Autenticação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gerar-token-de-acesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gerar Token de Acesso
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gerar Token de Acesso">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request-body" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Body
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-200" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (200)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-401" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (401)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      cURL Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renovar-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      Renovar Token
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Renovar Token">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-200_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (200)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usuarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      👤 Usuários
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="👤 Usuários">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#criar-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Criar Usuário
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Criar Usuário">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request-body_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Body
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-201" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (201)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-400" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (400)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listar-usuarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Listar Usuários
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Listar Usuários">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-200_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (200)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl-example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      cURL Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buscar-usuario-por-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      Buscar Usuário por ID
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Buscar Usuário por ID">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#path-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Path Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-200_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (200)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-404" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (404)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atualizar-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atualizar Usuário
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atualizar Usuário">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-body-todos-os-campos-sao-opcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Body (Todos os campos são opcionais)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-200_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (200)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deletar-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deletar Usuário
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deletar Usuário">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-204" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (204)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#marcas" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏷️ Marcas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏷️ Marcas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#criar-marca" class="md-nav__link">
+    <span class="md-ellipsis">
+      Criar Marca
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Criar Marca">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-body_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Body
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-201_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (201)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-400_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (400)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listar-marcas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Listar Marcas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Listar Marcas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-parameters_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-200_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (200)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buscar-marca-por-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      Buscar Marca por ID
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Buscar Marca por ID">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-200_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (200)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atualizar-marca" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atualizar Marca
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atualizar Marca">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-body-todos-os-campos-sao-opcionais_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Body (Todos os campos são opcionais)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deletar-marca" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deletar Marca
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deletar Marca">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-204_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (204)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-400_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (400)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#carros" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚗 Carros
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚗 Carros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#criar-carro" class="md-nav__link">
+    <span class="md-ellipsis">
+      Criar Carro
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Criar Carro">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-body_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Body
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enums-validos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enums Válidos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-201_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (201)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-400_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (400)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listar-carros" class="md-nav__link">
+    <span class="md-ellipsis">
+      Listar Carros
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Listar Carros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-parameters_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-200_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (200)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl-example_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      cURL Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buscar-carro-por-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      Buscar Carro por ID
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Buscar Carro por ID">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-200_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (200)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-403" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (403)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atualizar-carro" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atualizar Carro
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atualizar Carro">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-body-todos-os-campos-sao-opcionais_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Body (Todos os campos são opcionais)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-200_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (200)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deletar-carro" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deletar Carro
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deletar Carro">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-204_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (204)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#health-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏥 Health Check
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏥 Health Check">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verificar-status-da-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verificar Status da API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Verificar Status da API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#response-200_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (200)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codigos-de-status-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Códigos de Status HTTP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Códigos de Status HTTP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#codigos-de-sucesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Códigos de Sucesso
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codigos-de-erro-do-cliente" class="md-nav__link">
+    <span class="md-ellipsis">
+      Códigos de Erro do Cliente
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codigos-de-erro-do-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Códigos de Erro do Servidor
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔒 Segurança
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔒 Segurança">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#autenticacao-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Autenticação JWT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validacao-de-propriedade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validação de Propriedade
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rate Limiting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplos-de-uso" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Exemplos de Uso
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📝 Exemplos de Uso">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluxo-completo-registrar-usuario-e-criar-carro" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fluxo Completo: Registrar Usuário e Criar Carro
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#busca-avancada-de-carros" class="md-nav__link">
+    <span class="md-ellipsis">
+      Busca Avançada de Carros
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testes-da-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 Testes da API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 Testes da API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#executar-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Executar Testes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testar-com-httpie" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testar com HTTPie
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximos-passos" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Próximos Passos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../system-modeling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Modelagem do Sistema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Autenticação e Segurança
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Desenvolvimento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Testes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contribuição
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release Notes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral-da-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌐 Visão Geral da API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌐 Visão Geral da API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Base URL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentacao-interativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Documentação Interativa
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#autenticacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔑 Autenticação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔑 Autenticação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gerar-token-de-acesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gerar Token de Acesso
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gerar Token de Acesso">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request-body" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Body
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-200" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (200)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-401" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (401)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      cURL Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renovar-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      Renovar Token
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Renovar Token">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-200_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (200)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usuarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      👤 Usuários
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="👤 Usuários">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#criar-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Criar Usuário
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Criar Usuário">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request-body_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Body
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-201" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (201)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-400" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (400)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listar-usuarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Listar Usuários
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Listar Usuários">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-200_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (200)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl-example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      cURL Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buscar-usuario-por-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      Buscar Usuário por ID
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Buscar Usuário por ID">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#path-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Path Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-200_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (200)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-404" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (404)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atualizar-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atualizar Usuário
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atualizar Usuário">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-body-todos-os-campos-sao-opcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Body (Todos os campos são opcionais)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-200_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (200)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deletar-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deletar Usuário
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deletar Usuário">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-204" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (204)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#marcas" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏷️ Marcas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏷️ Marcas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#criar-marca" class="md-nav__link">
+    <span class="md-ellipsis">
+      Criar Marca
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Criar Marca">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-body_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Body
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-201_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (201)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-400_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (400)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listar-marcas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Listar Marcas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Listar Marcas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-parameters_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-200_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (200)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buscar-marca-por-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      Buscar Marca por ID
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Buscar Marca por ID">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-200_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (200)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atualizar-marca" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atualizar Marca
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atualizar Marca">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-body-todos-os-campos-sao-opcionais_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Body (Todos os campos são opcionais)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deletar-marca" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deletar Marca
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deletar Marca">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-204_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (204)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-400_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (400)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#carros" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚗 Carros
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚗 Carros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#criar-carro" class="md-nav__link">
+    <span class="md-ellipsis">
+      Criar Carro
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Criar Carro">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-body_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Body
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enums-validos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enums Válidos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-201_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (201)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-400_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (400)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listar-carros" class="md-nav__link">
+    <span class="md-ellipsis">
+      Listar Carros
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Listar Carros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-parameters_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-200_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (200)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl-example_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      cURL Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buscar-carro-por-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      Buscar Carro por ID
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Buscar Carro por ID">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-200_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (200)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-403" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (403)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atualizar-carro" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atualizar Carro
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atualizar Carro">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-body-todos-os-campos-sao-opcionais_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Body (Todos os campos são opcionais)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-200_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (200)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deletar-carro" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deletar Carro
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deletar Carro">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response-204_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (204)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#health-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏥 Health Check
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏥 Health Check">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verificar-status-da-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verificar Status da API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Verificar Status da API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#response-200_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response (200)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codigos-de-status-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Códigos de Status HTTP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Códigos de Status HTTP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#codigos-de-sucesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Códigos de Sucesso
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codigos-de-erro-do-cliente" class="md-nav__link">
+    <span class="md-ellipsis">
+      Códigos de Erro do Cliente
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codigos-de-erro-do-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Códigos de Erro do Servidor
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔒 Segurança
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔒 Segurança">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#autenticacao-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Autenticação JWT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validacao-de-propriedade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validação de Propriedade
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rate Limiting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplos-de-uso" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Exemplos de Uso
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📝 Exemplos de Uso">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluxo-completo-registrar-usuario-e-criar-carro" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fluxo Completo: Registrar Usuário e Criar Carro
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#busca-avancada-de-carros" class="md-nav__link">
+    <span class="md-ellipsis">
+      Busca Avançada de Carros
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testes-da-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 Testes da API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 Testes da API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#executar-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Executar Testes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testar-com-httpie" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testar com HTTPie
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximos-passos" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Próximos Passos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="api-endpoints">API Endpoints</h1>
+<h2 id="visao-geral-da-api">🌐 Visão Geral da API</h2>
+<p>A Car API expõe endpoints RESTful organizados por funcionalidade. Todos os endpoints seguem padrões consistentes de nomenclatura, códigos de status HTTP e estruturas de resposta.</p>
+<h3 id="base-url">🔗 Base URL</h3>
+<div class="highlight"><pre><span></span><code>http://localhost:8000/api/v1
+</code></pre></div>
+<h3 id="documentacao-interativa">📚 Documentação Interativa</h3>
+<ul>
+<li><strong>Swagger UI</strong>: <code>http://localhost:8000/docs</code></li>
+<li><strong>ReDoc</strong>: <code>http://localhost:8000/redoc</code></li>
+<li><strong>OpenAPI Schema</strong>: <code>http://localhost:8000/openapi.json</code></li>
+</ul>
+<h2 id="autenticacao">🔑 Autenticação</h2>
+<h3 id="gerar-token-de-acesso">Gerar Token de Acesso</h3>
+<p><strong>POST</strong> <code>/auth/token</code></p>
+<p>Autentica um usuário e retorna um token JWT.</p>
+<h4 id="request-body">Request Body</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user@example.com&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;password123&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="response-200">Response (200)</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;access_token&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;token_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bearer&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="response-401">Response (401)</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Incorrect email or password&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="curl-example">cURL Example</h4>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;http://localhost:8000/api/v1/auth/token&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;email&quot;: &quot;user@example.com&quot;,</span>
+<span class="s1">    &quot;password&quot;: &quot;password123&quot;</span>
+<span class="s1">  }&#39;</span>
+</code></pre></div>
+<h3 id="renovar-token">Renovar Token</h3>
+<p><strong>POST</strong> <code>/auth/refresh_token</code></p>
+<p>Gera um novo token para o usuário autenticado.</p>
+<h4 id="headers">Headers</h4>
+<div class="highlight"><pre><span></span><code>Authorization: Bearer &lt;access_token&gt;
+</code></pre></div>
+<h4 id="response-200_1">Response (200)</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;access_token&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;token_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bearer&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="usuarios">👤 Usuários</h2>
+<h3 id="criar-usuario">Criar Usuário</h3>
+<p><strong>POST</strong> <code>/users/</code></p>
+<p>Registra um novo usuário no sistema.</p>
+<h4 id="request-body_1">Request Body</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;joao_silva&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;joao@example.com&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;senha_segura123&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="response-201">Response (201)</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;joao_silva&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;joao@example.com&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-01T10:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;updated_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-01T10:00:00Z&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="response-400">Response (400)</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Email já está em uso&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="listar-usuarios">Listar Usuários</h3>
+<p><strong>GET</strong> <code>/users/</code></p>
+<p>Lista usuários com paginação e busca.</p>
+<h4 id="query-parameters">Query Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parâmetro</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>offset</code></td>
+<td>int</td>
+<td>Não</td>
+<td>0</td>
+<td>Registros para pular</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td>int</td>
+<td>Não</td>
+<td>100</td>
+<td>Limite de registros (máx: 100)</td>
+</tr>
+<tr>
+<td><code>search</code></td>
+<td>string</td>
+<td>Não</td>
+<td>-</td>
+<td>Buscar por username ou email</td>
+</tr>
+</tbody>
+</table>
+<h4 id="response-200_2">Response (200)</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;users&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;joao_silva&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;joao@example.com&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-01T10:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;updated_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-01T10:00:00Z&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;offset&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="curl-example_1">cURL Example</h4>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://localhost:8000/api/v1/users/?search=joao&amp;limit=10&quot;</span>
+</code></pre></div>
+<h3 id="buscar-usuario-por-id">Buscar Usuário por ID</h3>
+<p><strong>GET</strong> <code>/users/{user_id}</code></p>
+<p>Retorna detalhes de um usuário específico.</p>
+<h4 id="path-parameters">Path Parameters</h4>
+<ul>
+<li><code>user_id</code> (int): ID do usuário</li>
+</ul>
+<h4 id="response-200_3">Response (200)</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;joao_silva&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;joao@example.com&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-01T10:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;updated_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-01T10:00:00Z&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="response-404">Response (404)</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Usuário não encontrado&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="atualizar-usuario">Atualizar Usuário</h3>
+<p><strong>PUT</strong> <code>/users/{user_id}</code></p>
+<p>Atualiza dados de um usuário. Requer autenticação.</p>
+<h4 id="headers_1">Headers</h4>
+<div class="highlight"><pre><span></span><code>Authorization: Bearer &lt;access_token&gt;
+</code></pre></div>
+<h4 id="request-body-todos-os-campos-sao-opcionais">Request Body (Todos os campos são opcionais)</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;novo_username&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;novo@example.com&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nova_senha123&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="response-200_4">Response (200)</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;novo_username&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;novo@example.com&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-01T10:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;updated_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-01T12:00:00Z&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="deletar-usuario">Deletar Usuário</h3>
+<p><strong>DELETE</strong> <code>/users/{user_id}</code></p>
+<p>Remove um usuário do sistema. Requer autenticação.</p>
+<h4 id="headers_2">Headers</h4>
+<div class="highlight"><pre><span></span><code>Authorization: Bearer &lt;access_token&gt;
+</code></pre></div>
+<h4 id="response-204">Response (204)</h4>
+<div class="highlight"><pre><span></span><code>No Content
+</code></pre></div>
+<h2 id="marcas">🏷️ Marcas</h2>
+<h3 id="criar-marca">Criar Marca</h3>
+<p><strong>POST</strong> <code>/brands/</code></p>
+<p>Cria uma nova marca de veículo. Requer autenticação.</p>
+<h4 id="headers_3">Headers</h4>
+<div class="highlight"><pre><span></span><code>Authorization: Bearer &lt;access_token&gt;
+</code></pre></div>
+<h4 id="request-body_2">Request Body</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toyota&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Marca japonesa conhecida pela confiabilidade&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;is_active&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="response-201_1">Response (201)</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toyota&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Marca japonesa conhecida pela confiabilidade&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;is_active&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-01T10:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;updated_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-01T10:00:00Z&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="response-400_1">Response (400)</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Nome da marca já está em uso&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="listar-marcas">Listar Marcas</h3>
+<p><strong>GET</strong> <code>/brands/</code></p>
+<p>Lista marcas com filtros. Requer autenticação.</p>
+<h4 id="headers_4">Headers</h4>
+<div class="highlight"><pre><span></span><code>Authorization: Bearer &lt;access_token&gt;
+</code></pre></div>
+<h4 id="query-parameters_1">Query Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parâmetro</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>offset</code></td>
+<td>int</td>
+<td>Não</td>
+<td>0</td>
+<td>Registros para pular</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td>int</td>
+<td>Não</td>
+<td>100</td>
+<td>Limite de registros</td>
+</tr>
+<tr>
+<td><code>search</code></td>
+<td>string</td>
+<td>Não</td>
+<td>-</td>
+<td>Buscar por nome da marca</td>
+</tr>
+<tr>
+<td><code>is_active</code></td>
+<td>boolean</td>
+<td>Não</td>
+<td>-</td>
+<td>Filtrar por marcas ativas</td>
+</tr>
+</tbody>
+</table>
+<h4 id="response-200_5">Response (200)</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;brands&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toyota&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Marca japonesa conhecida pela confiabilidade&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;is_active&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-01T10:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;updated_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-01T10:00:00Z&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;offset&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="buscar-marca-por-id">Buscar Marca por ID</h3>
+<p><strong>GET</strong> <code>/brands/{brand_id}</code></p>
+<p>Retorna detalhes de uma marca específica. Requer autenticação.</p>
+<h4 id="headers_5">Headers</h4>
+<div class="highlight"><pre><span></span><code>Authorization: Bearer &lt;access_token&gt;
+</code></pre></div>
+<h4 id="response-200_6">Response (200)</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toyota&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Marca japonesa conhecida pela confiabilidade&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;is_active&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-01T10:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;updated_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-01T10:00:00Z&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="atualizar-marca">Atualizar Marca</h3>
+<p><strong>PUT</strong> <code>/brands/{brand_id}</code></p>
+<p>Atualiza dados de uma marca. Requer autenticação.</p>
+<h4 id="headers_6">Headers</h4>
+<div class="highlight"><pre><span></span><code>Authorization: Bearer &lt;access_token&gt;
+</code></pre></div>
+<h4 id="request-body-todos-os-campos-sao-opcionais_1">Request Body (Todos os campos são opcionais)</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toyota Motors&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Marca japonesa líder mundial&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;is_active&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="deletar-marca">Deletar Marca</h3>
+<p><strong>DELETE</strong> <code>/brands/{brand_id}</code></p>
+<p>Remove uma marca do sistema. Requer autenticação.
+<strong>Nota</strong>: Não é possível deletar marcas que possuem carros associados.</p>
+<h4 id="headers_7">Headers</h4>
+<div class="highlight"><pre><span></span><code>Authorization: Bearer &lt;access_token&gt;
+</code></pre></div>
+<h4 id="response-204_1">Response (204)</h4>
+<div class="highlight"><pre><span></span><code>No Content
+</code></pre></div>
+<h4 id="response-400_2">Response (400)</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Não é possível deletar marca que possui carros associados&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="carros">🚗 Carros</h2>
+<h3 id="criar-carro">Criar Carro</h3>
+<p><strong>POST</strong> <code>/cars/</code></p>
+<p>Registra um novo carro no sistema. Requer autenticação.</p>
+<h4 id="headers_8">Headers</h4>
+<div class="highlight"><pre><span></span><code>Authorization: Bearer &lt;access_token&gt;
+</code></pre></div>
+<h4 id="request-body_3">Request Body</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Corolla&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;factory_year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2022</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;model_year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2023</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Prata&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;plate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ABC1234&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;fuel_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;flex&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;transmission&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;automatic&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;price&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;85000.00&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sedan econômico e confiável&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;is_available&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;brand_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="enums-validos">Enums Válidos</h4>
+<p><strong>Fuel Type:</strong>
+- <code>gasoline</code> - Gasolina
+- <code>ethanol</code> - Etanol
+- <code>flex</code> - Flex
+- <code>diesel</code> - Diesel
+- <code>electric</code> - Elétrico
+- <code>hybrid</code> - Híbrido</p>
+<p><strong>Transmission Type:</strong>
+- <code>manual</code> - Manual
+- <code>automatic</code> - Automático
+- <code>semi_automatic</code> - Semi-automático
+- <code>cvt</code> - CVT</p>
+<h4 id="response-201_2">Response (201)</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Corolla&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;factory_year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2022</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;model_year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2023</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Prata&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;plate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ABC1234&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;fuel_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;flex&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;transmission&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;automatic&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;price&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;85000.00&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sedan econômico e confiável&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;is_available&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-01T10:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;updated_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-01T10:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;brand&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toyota&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Marca japonesa conhecida pela confiabilidade&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;is_active&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;owner&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;joao_silva&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;joao@example.com&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="response-400_3">Response (400)</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Placa já está em uso&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="listar-carros">Listar Carros</h3>
+<p><strong>GET</strong> <code>/cars/</code></p>
+<p>Lista carros do usuário autenticado com filtros avançados.</p>
+<h4 id="headers_9">Headers</h4>
+<div class="highlight"><pre><span></span><code>Authorization: Bearer &lt;access_token&gt;
+</code></pre></div>
+<h4 id="query-parameters_2">Query Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parâmetro</th>
+<th>Tipo</th>
+<th>Obrigatório</th>
+<th>Padrão</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>offset</code></td>
+<td>int</td>
+<td>Não</td>
+<td>0</td>
+<td>Registros para pular</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td>int</td>
+<td>Não</td>
+<td>100</td>
+<td>Limite de registros</td>
+</tr>
+<tr>
+<td><code>search</code></td>
+<td>string</td>
+<td>Não</td>
+<td>-</td>
+<td>Buscar por modelo ou placa</td>
+</tr>
+<tr>
+<td><code>brand_id</code></td>
+<td>int</td>
+<td>Não</td>
+<td>-</td>
+<td>Filtrar por marca</td>
+</tr>
+<tr>
+<td><code>fuel_type</code></td>
+<td>string</td>
+<td>Não</td>
+<td>-</td>
+<td>Filtrar por combustível</td>
+</tr>
+<tr>
+<td><code>transmission</code></td>
+<td>string</td>
+<td>Não</td>
+<td>-</td>
+<td>Filtrar por transmissão</td>
+</tr>
+<tr>
+<td><code>is_available</code></td>
+<td>boolean</td>
+<td>Não</td>
+<td>-</td>
+<td>Filtrar por disponibilidade</td>
+</tr>
+<tr>
+<td><code>min_price</code></td>
+<td>float</td>
+<td>Não</td>
+<td>-</td>
+<td>Preço mínimo</td>
+</tr>
+<tr>
+<td><code>max_price</code></td>
+<td>float</td>
+<td>Não</td>
+<td>-</td>
+<td>Preço máximo</td>
+</tr>
+</tbody>
+</table>
+<h4 id="response-200_7">Response (200)</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;cars&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Corolla&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;factory_year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2022</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;model_year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2023</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Prata&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;plate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ABC1234&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;fuel_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;flex&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;transmission&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;automatic&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;price&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;85000.00&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sedan econômico e confiável&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;is_available&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-01T10:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;updated_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-01T10:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;brand&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toyota&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;owner&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;joao_silva&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;offset&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="curl-example_2">cURL Example</h4>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://localhost:8000/api/v1/cars/?fuel_type=flex&amp;min_price=50000&amp;max_price=100000&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;access_token&gt;&quot;</span>
+</code></pre></div>
+<h3 id="buscar-carro-por-id">Buscar Carro por ID</h3>
+<p><strong>GET</strong> <code>/cars/{car_id}</code></p>
+<p>Retorna detalhes de um carro específico. Requer autenticação e propriedade.</p>
+<h4 id="headers_10">Headers</h4>
+<div class="highlight"><pre><span></span><code>Authorization: Bearer &lt;access_token&gt;
+</code></pre></div>
+<h4 id="response-200_8">Response (200)</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Corolla&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;factory_year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2022</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;model_year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2023</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Prata&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;plate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ABC1234&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;fuel_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;flex&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;transmission&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;automatic&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;price&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;85000.00&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sedan econômico e confiável&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;is_available&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-01T10:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;updated_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-01T10:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;brand&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toyota&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Marca japonesa conhecida pela confiabilidade&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;is_active&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;owner&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;joao_silva&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;joao@example.com&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="response-403">Response (403)</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Acesso negado&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="atualizar-carro">Atualizar Carro</h3>
+<p><strong>PUT</strong> <code>/cars/{car_id}</code></p>
+<p>Atualiza dados de um carro. Requer autenticação e propriedade.</p>
+<h4 id="headers_11">Headers</h4>
+<div class="highlight"><pre><span></span><code>Authorization: Bearer &lt;access_token&gt;
+</code></pre></div>
+<h4 id="request-body-todos-os-campos-sao-opcionais_2">Request Body (Todos os campos são opcionais)</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Corolla XEi&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;price&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;88000.00&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sedan econômico e confiável - versão XEi&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;is_available&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="response-200_9">Response (200)</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Corolla XEi&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;factory_year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2022</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;model_year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2023</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;color&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Prata&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;plate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ABC1234&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;fuel_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;flex&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;transmission&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;automatic&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;price&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;88000.00&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sedan econômico e confiável - versão XEi&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;is_available&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-01T10:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;updated_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-12-01T12:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;brand&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Toyota&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;owner&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;joao_silva&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="deletar-carro">Deletar Carro</h3>
+<p><strong>DELETE</strong> <code>/cars/{car_id}</code></p>
+<p>Remove um carro do sistema. Requer autenticação e propriedade.</p>
+<h4 id="headers_12">Headers</h4>
+<div class="highlight"><pre><span></span><code>Authorization: Bearer &lt;access_token&gt;
+</code></pre></div>
+<h4 id="response-204_2">Response (204)</h4>
+<div class="highlight"><pre><span></span><code>No Content
+</code></pre></div>
+<h2 id="health-check">🏥 Health Check</h2>
+<h3 id="verificar-status-da-api">Verificar Status da API</h3>
+<p><strong>GET</strong> <code>/health_check</code></p>
+<p>Endpoint público para verificar se a API está funcionando.</p>
+<h4 id="response-200_10">Response (200)</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="codigos-de-status-http">📊 Códigos de Status HTTP</h2>
+<h3 id="codigos-de-sucesso">Códigos de Sucesso</h3>
+<ul>
+<li><strong>200 OK</strong>: Operação bem-sucedida</li>
+<li><strong>201 Created</strong>: Recurso criado com sucesso</li>
+<li><strong>204 No Content</strong>: Recurso deletado com sucesso</li>
+</ul>
+<h3 id="codigos-de-erro-do-cliente">Códigos de Erro do Cliente</h3>
+<ul>
+<li><strong>400 Bad Request</strong>: Dados inválidos ou regra de negócio violada</li>
+<li><strong>401 Unauthorized</strong>: Token inválido ou ausente</li>
+<li><strong>403 Forbidden</strong>: Acesso negado (sem permissão)</li>
+<li><strong>404 Not Found</strong>: Recurso não encontrado</li>
+<li><strong>422 Unprocessable Entity</strong>: Erro de validação de dados</li>
+</ul>
+<h3 id="codigos-de-erro-do-servidor">Códigos de Erro do Servidor</h3>
+<ul>
+<li><strong>500 Internal Server Error</strong>: Erro interno do servidor</li>
+</ul>
+<h2 id="seguranca">🔒 Segurança</h2>
+<h3 id="autenticacao-jwt">Autenticação JWT</h3>
+<p>Todos os endpoints protegidos requerem um token JWT válido no header:</p>
+<div class="highlight"><pre><span></span><code>Authorization: Bearer &lt;access_token&gt;
+</code></pre></div>
+<h3 id="validacao-de-propriedade">Validação de Propriedade</h3>
+<p>Usuários só podem acessar/modificar seus próprios carros:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">verify_car_ownership</span><span class="p">(</span><span class="n">current_user</span><span class="p">:</span> <span class="n">User</span><span class="p">,</span> <span class="n">car_owner_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">current_user</span><span class="o">.</span><span class="n">id</span> <span class="o">!=</span> <span class="n">car_owner_id</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span>
+            <span class="n">status_code</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_403_FORBIDDEN</span><span class="p">,</span>
+            <span class="n">detail</span><span class="o">=</span><span class="s1">&#39;Acesso negado&#39;</span>
+        <span class="p">)</span>
+</code></pre></div>
+<h3 id="rate-limiting">Rate Limiting</h3>
+<p>⚠️ <strong>Planejado para implementação futura</strong>:
+- Limite de 100 requests por minuto por usuário
+- Limite de 1000 requests por hora por IP</p>
+<h2 id="exemplos-de-uso">📝 Exemplos de Uso</h2>
+<h3 id="fluxo-completo-registrar-usuario-e-criar-carro">Fluxo Completo: Registrar Usuário e Criar Carro</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. Registrar usuário</span>
+curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;http://localhost:8000/api/v1/users/&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;username&quot;: &quot;maria_silva&quot;,</span>
+<span class="s1">    &quot;email&quot;: &quot;maria@example.com&quot;,</span>
+<span class="s1">    &quot;password&quot;: &quot;senha123&quot;</span>
+<span class="s1">  }&#39;</span>
+
+<span class="c1"># 2. Fazer login</span>
+<span class="nv">TOKEN</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;http://localhost:8000/api/v1/auth/token&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;email&quot;: &quot;maria@example.com&quot;,</span>
+<span class="s1">    &quot;password&quot;: &quot;senha123&quot;</span>
+<span class="s1">  }&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.access_token&#39;</span><span class="k">)</span>
+
+<span class="c1"># 3. Criar marca</span>
+curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;http://localhost:8000/api/v1/brands/&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;name&quot;: &quot;Honda&quot;,</span>
+<span class="s1">    &quot;description&quot;: &quot;Marca japonesa inovadora&quot;,</span>
+<span class="s1">    &quot;is_active&quot;: true</span>
+<span class="s1">  }&#39;</span>
+
+<span class="c1"># 4. Criar carro</span>
+curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;http://localhost:8000/api/v1/cars/&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;model&quot;: &quot;Civic&quot;,</span>
+<span class="s1">    &quot;factory_year&quot;: 2023,</span>
+<span class="s1">    &quot;model_year&quot;: 2023,</span>
+<span class="s1">    &quot;color&quot;: &quot;Branco&quot;,</span>
+<span class="s1">    &quot;plate&quot;: &quot;XYZ9876&quot;,</span>
+<span class="s1">    &quot;fuel_type&quot;: &quot;flex&quot;,</span>
+<span class="s1">    &quot;transmission&quot;: &quot;manual&quot;,</span>
+<span class="s1">    &quot;price&quot;: &quot;95000.00&quot;,</span>
+<span class="s1">    &quot;description&quot;: &quot;Sedan esportivo&quot;,</span>
+<span class="s1">    &quot;is_available&quot;: true,</span>
+<span class="s1">    &quot;brand_id&quot;: 2</span>
+<span class="s1">  }&#39;</span>
+
+<span class="c1"># 5. Listar carros</span>
+curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://localhost:8000/api/v1/cars/&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span>
+</code></pre></div>
+<h3 id="busca-avancada-de-carros">Busca Avançada de Carros</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Buscar carros Honda automáticos entre R$ 80.000 e R$ 120.000</span>
+curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://localhost:8000/api/v1/cars/?brand_id=2&amp;transmission=automatic&amp;min_price=80000&amp;max_price=120000&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span>
+
+<span class="c1"># Buscar carros por modelo</span>
+curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://localhost:8000/api/v1/cars/?search=civic&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span>
+
+<span class="c1"># Buscar carros elétricos disponíveis</span>
+curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span><span class="s2">&quot;http://localhost:8000/api/v1/cars/?fuel_type=electric&amp;is_available=true&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span>
+</code></pre></div>
+<h2 id="testes-da-api">🧪 Testes da API</h2>
+<h3 id="executar-testes">Executar Testes</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Todos os testes</span>
+poetry<span class="w"> </span>run<span class="w"> </span>task<span class="w"> </span><span class="nb">test</span>
+
+<span class="c1"># Testes específicos</span>
+poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/test_cars.py<span class="w"> </span>-v
+poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/test_auth.py::test_login_success<span class="w"> </span>-v
+</code></pre></div>
+<h3 id="testar-com-httpie">Testar com HTTPie</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Instalar HTTPie</span>
+pip<span class="w"> </span>install<span class="w"> </span>httpie
+
+<span class="c1"># Registrar usuário</span>
+http<span class="w"> </span>POST<span class="w"> </span>localhost:8000/api/v1/users/<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="nv">username</span><span class="o">=</span>test_user<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="nv">email</span><span class="o">=</span>test@example.com<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="nv">password</span><span class="o">=</span>test123
+
+<span class="c1"># Fazer login</span>
+http<span class="w"> </span>POST<span class="w"> </span>localhost:8000/api/v1/auth/token<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="nv">email</span><span class="o">=</span>test@example.com<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="nv">password</span><span class="o">=</span>test123
+</code></pre></div>
+<h2 id="proximos-passos">📚 Próximos Passos</h2>
+<p>Para explorar mais:</p>
+<ol>
+<li>🏗️ Entenda a <a href="../system-modeling/">Modelagem do Sistema</a></li>
+<li>🔐 Saiba mais sobre <a href="../authentication/">Autenticação e Segurança</a></li>
+<li>🧪 Aprenda sobre <a href="../testing/">Testes</a></li>
+<li>💻 Comece o <a href="../development/">Desenvolvimento</a></li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2335 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Uma API REST completa para gerenciamento de carros e usuários">
+      
+      
+        <meta name="author" content="PyCodeBR">
+      
+      
+      
+        <link rel="prev" href="../api-endpoints/">
+      
+      
+        <link rel="next" href="../authentication/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Modelagem do Sistema - Car API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#modelagem-do-sistema" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Car API" class="md-header__button md-logo" aria-label="Car API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Car API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Modelagem do Sistema
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Car API" class="md-nav__button md-logo" aria-label="Car API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Car API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Início
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Visão geral
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prerequisites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pré-requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Instalação
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuração
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guidelines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Guidelines e padrões
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Estrutura
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-endpoints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Endpoints
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Modelagem do Sistema
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Modelagem do Sistema
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral-arquitetural" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏗️ Visão Geral Arquitetural
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelo-de-dados-erd" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Modelo de Dados (ERD)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Modelo de Dados (ERD)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagrama-entidade-relacionamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagrama Entidade-Relacionamento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#descricao-das-entidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      Descrição das Entidades
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Descrição das Entidades">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#users-usuarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      👤 USERS (Usuários)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#brands-marcas" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏷️ BRANDS (Marcas)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cars-carros" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚗 CARS (Carros)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relacionamentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relacionamentos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints-e-validacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints e Validações
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arquitetura-do-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏛️ Arquitetura do Sistema
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏛️ Arquitetura do Sistema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagrama-de-arquitetura" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagrama de Arquitetura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#camadas-da-arquitetura" class="md-nav__link">
+    <span class="md-ellipsis">
+      Camadas da Arquitetura
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Camadas da Arquitetura">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-cliente-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Cliente Layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-api-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. API Layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-application-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Application Layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-business-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Business Layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-data-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Data Layer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fluxo-de-autenticacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔑 Fluxo de Autenticação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔑 Fluxo de Autenticação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagrama-de-autenticacao-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagrama de Autenticação JWT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#componentes-de-seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      Componentes de Segurança
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Componentes de Segurança">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-password-hashing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Password Hashing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-jwt-token-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. JWT Token Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-authorization-middleware" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Authorization Middleware
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fluxo-crud-de-carros" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚗 Fluxo CRUD de Carros
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚗 Fluxo CRUD de Carros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagrama-de-operacoes-crud" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagrama de Operações CRUD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validacoes-e-regras-de-negocio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validações e Regras de Negócio
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Validações e Regras de Negócio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-validacoes-de-criacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Validações de Criação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-validacoes-de-propriedade" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Validações de Propriedade
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-filtros-de-busca" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Filtros de Busca
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fluxo-de-seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛡️ Fluxo de Segurança
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛡️ Fluxo de Segurança">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagrama-de-seguranca-integrada" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagrama de Segurança Integrada
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controles-de-seguranca-implementados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Controles de Segurança Implementados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Controles de Segurança Implementados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-autenticacao-multi-camada" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Autenticação Multi-Camada
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-validacao-de-entrada" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Validação de Entrada
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-rate-limiting-e-cors" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Rate Limiting e CORS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metricas-e-monitoramento" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Métricas e Monitoramento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Métricas e Monitoramento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagrama-de-observabilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagrama de Observabilidade
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kpis-e-metricas" class="md-nav__link">
+    <span class="md-ellipsis">
+      KPIs e Métricas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="KPIs e Métricas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-metricas-de-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Métricas de Performance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-metricas-de-negocio" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Métricas de Negócio
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-metricas-de-seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Métricas de Segurança
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#padroes-de-integracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Padrões de Integração
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 Padrões de Integração">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagrama-de-integracoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagrama de Integrações
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#escalabilidade-e-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      📈 Escalabilidade e Performance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📈 Escalabilidade e Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estrategias-de-escalabilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estratégias de Escalabilidade
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Estratégias de Escalabilidade">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-horizontal-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Horizontal Scaling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-caching-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Caching Strategy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximos-passos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Próximos Passos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Autenticação e Segurança
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Desenvolvimento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Testes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contribuição
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release Notes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral-arquitetural" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏗️ Visão Geral Arquitetural
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelo-de-dados-erd" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Modelo de Dados (ERD)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Modelo de Dados (ERD)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagrama-entidade-relacionamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagrama Entidade-Relacionamento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#descricao-das-entidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      Descrição das Entidades
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Descrição das Entidades">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#users-usuarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      👤 USERS (Usuários)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#brands-marcas" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏷️ BRANDS (Marcas)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cars-carros" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚗 CARS (Carros)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relacionamentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relacionamentos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints-e-validacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints e Validações
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arquitetura-do-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏛️ Arquitetura do Sistema
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏛️ Arquitetura do Sistema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagrama-de-arquitetura" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagrama de Arquitetura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#camadas-da-arquitetura" class="md-nav__link">
+    <span class="md-ellipsis">
+      Camadas da Arquitetura
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Camadas da Arquitetura">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-cliente-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Cliente Layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-api-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. API Layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-application-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Application Layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-business-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Business Layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-data-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Data Layer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fluxo-de-autenticacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔑 Fluxo de Autenticação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔑 Fluxo de Autenticação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagrama-de-autenticacao-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagrama de Autenticação JWT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#componentes-de-seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      Componentes de Segurança
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Componentes de Segurança">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-password-hashing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Password Hashing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-jwt-token-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. JWT Token Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-authorization-middleware" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Authorization Middleware
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fluxo-crud-de-carros" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚗 Fluxo CRUD de Carros
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚗 Fluxo CRUD de Carros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagrama-de-operacoes-crud" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagrama de Operações CRUD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validacoes-e-regras-de-negocio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validações e Regras de Negócio
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Validações e Regras de Negócio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-validacoes-de-criacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Validações de Criação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-validacoes-de-propriedade" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Validações de Propriedade
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-filtros-de-busca" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Filtros de Busca
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fluxo-de-seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛡️ Fluxo de Segurança
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛡️ Fluxo de Segurança">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagrama-de-seguranca-integrada" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagrama de Segurança Integrada
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controles-de-seguranca-implementados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Controles de Segurança Implementados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Controles de Segurança Implementados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-autenticacao-multi-camada" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Autenticação Multi-Camada
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-validacao-de-entrada" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Validação de Entrada
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-rate-limiting-e-cors" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Rate Limiting e CORS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metricas-e-monitoramento" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Métricas e Monitoramento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Métricas e Monitoramento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagrama-de-observabilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagrama de Observabilidade
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kpis-e-metricas" class="md-nav__link">
+    <span class="md-ellipsis">
+      KPIs e Métricas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="KPIs e Métricas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-metricas-de-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Métricas de Performance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-metricas-de-negocio" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Métricas de Negócio
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-metricas-de-seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Métricas de Segurança
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#padroes-de-integracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Padrões de Integração
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 Padrões de Integração">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagrama-de-integracoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagrama de Integrações
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#escalabilidade-e-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      📈 Escalabilidade e Performance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📈 Escalabilidade e Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estrategias-de-escalabilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estratégias de Escalabilidade
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Estratégias de Escalabilidade">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-horizontal-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Horizontal Scaling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-caching-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Caching Strategy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximos-passos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Próximos Passos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="modelagem-do-sistema">Modelagem do Sistema</h1>
+<h2 id="visao-geral-arquitetural">🏗️ Visão Geral Arquitetural</h2>
+<p>Este documento apresenta a modelagem completa do sistema Car API, incluindo diagramas de dados, arquitetura, fluxos de autenticação e operações CRUD.</p>
+<h2 id="modelo-de-dados-erd">📊 Modelo de Dados (ERD)</h2>
+<h3 id="diagrama-entidade-relacionamento">Diagrama Entidade-Relacionamento</h3>
+<pre class="mermaid"><code>erDiagram
+    USERS {
+        int id PK
+        string username UK
+        string email UK
+        string password
+        datetime created_at
+        datetime updated_at
+    }
+
+    BRANDS {
+        int id PK
+        string name UK
+        text description
+        boolean is_active
+        datetime created_at
+        datetime updated_at
+    }
+
+    CARS {
+        int id PK
+        string model
+        int factory_year
+        int model_year
+        string color
+        string plate UK
+        string fuel_type
+        string transmission
+        decimal price
+        text description
+        boolean is_available
+        int brand_id FK
+        int owner_id FK
+        datetime created_at
+        datetime updated_at
+    }
+
+    USERS ||--o{ CARS : "owns"
+    BRANDS ||--o{ CARS : "belongs_to"</code></pre>
+<h3 id="descricao-das-entidades">Descrição das Entidades</h3>
+<h4 id="users-usuarios">👤 USERS (Usuários)</h4>
+<ul>
+<li><strong>Propósito</strong>: Armazenar informações dos usuários do sistema</li>
+<li><strong>Características</strong>:</li>
+<li>Cada usuário pode ter múltiplos carros</li>
+<li>Username e email são únicos</li>
+<li>Senha armazenada com hash Argon2</li>
+<li>Timestamps de auditoria</li>
+</ul>
+<h4 id="brands-marcas">🏷️ BRANDS (Marcas)</h4>
+<ul>
+<li><strong>Propósito</strong>: Catálogo de marcas de veículos</li>
+<li><strong>Características</strong>:</li>
+<li>Nome único no sistema</li>
+<li>Controle de ativação/desativação</li>
+<li>Descrição opcional</li>
+<li>Uma marca pode ter múltiplos carros</li>
+</ul>
+<h4 id="cars-carros">🚗 CARS (Carros)</h4>
+<ul>
+<li><strong>Propósito</strong>: Registro de veículos no sistema</li>
+<li><strong>Características</strong>:</li>
+<li>Placa única no sistema</li>
+<li>Relacionamento com marca e proprietário</li>
+<li>Informações técnicas detalhadas</li>
+<li>Controle de disponibilidade</li>
+<li>Preço com precisão decimal</li>
+</ul>
+<h3 id="relacionamentos">Relacionamentos</h3>
+<ol>
+<li><strong>USERS → CARS</strong> (1:N)</li>
+<li>Um usuário pode possuir múltiplos carros</li>
+<li>Um carro pertence a apenas um usuário</li>
+<li>
+<p>Relacionamento obrigatório (owner_id NOT NULL)</p>
+</li>
+<li>
+<p><strong>BRANDS → CARS</strong> (1:N)</p>
+</li>
+<li>Uma marca pode ter múltiplos carros</li>
+<li>Um carro pertence a apenas uma marca</li>
+<li>Relacionamento obrigatório (brand_id NOT NULL)</li>
+</ol>
+<h3 id="constraints-e-validacoes">Constraints e Validações</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Constraints de unicidade</span>
+<span class="k">UNIQUE</span><span class="p">(</span><span class="n">users</span><span class="p">.</span><span class="n">username</span><span class="p">)</span>
+<span class="k">UNIQUE</span><span class="p">(</span><span class="n">users</span><span class="p">.</span><span class="n">email</span><span class="p">)</span>
+<span class="k">UNIQUE</span><span class="p">(</span><span class="n">brands</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
+<span class="k">UNIQUE</span><span class="p">(</span><span class="n">cars</span><span class="p">.</span><span class="n">plate</span><span class="p">)</span>
+
+<span class="c1">-- Constraints de integridade referencial</span>
+<span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">cars</span><span class="p">.</span><span class="n">owner_id</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">users</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+<span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">cars</span><span class="p">.</span><span class="n">brand_id</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">brands</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+
+<span class="c1">-- Constraints de validação</span>
+<span class="k">CHECK</span><span class="p">(</span><span class="n">cars</span><span class="p">.</span><span class="n">factory_year</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">1900</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">cars</span><span class="p">.</span><span class="n">factory_year</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">2030</span><span class="p">)</span>
+<span class="k">CHECK</span><span class="p">(</span><span class="n">cars</span><span class="p">.</span><span class="n">model_year</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">1900</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">cars</span><span class="p">.</span><span class="n">model_year</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">2030</span><span class="p">)</span>
+<span class="k">CHECK</span><span class="p">(</span><span class="n">cars</span><span class="p">.</span><span class="n">price</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="k">CHECK</span><span class="p">(</span><span class="n">cars</span><span class="p">.</span><span class="n">fuel_type</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;gasoline&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ethanol&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;flex&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;diesel&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;electric&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;hybrid&#39;</span><span class="p">))</span>
+<span class="k">CHECK</span><span class="p">(</span><span class="n">cars</span><span class="p">.</span><span class="n">transmission</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;manual&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;automatic&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;semi_automatic&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;cvt&#39;</span><span class="p">))</span>
+</code></pre></div>
+<h2 id="arquitetura-do-sistema">🏛️ Arquitetura do Sistema</h2>
+<h3 id="diagrama-de-arquitetura">Diagrama de Arquitetura</h3>
+<pre class="mermaid"><code>graph TB
+    subgraph "Cliente"
+        CLI[Cliente HTTP]
+        UI[Interface Web]
+        MOB[App Mobile]
+    end
+
+    subgraph "API Layer"
+        GW[API Gateway]
+        LB[Load Balancer]
+    end
+
+    subgraph "FastAPI Application"
+        RT[Routers]
+        MW[Middleware]
+        DI[Dependency Injection]
+    end
+
+    subgraph "Business Layer"
+        AUTH[Auth Service]
+        USER[User Service]
+        CAR[Car Service]
+        BRAND[Brand Service]
+    end
+
+    subgraph "Data Layer"
+        ORM[SQLAlchemy ORM]
+        CACHE[Redis Cache]
+        DB[(PostgreSQL)]
+    end
+
+    subgraph "External Services"
+        JWT[JWT Provider]
+        LOG[Logging]
+        MON[Monitoring]
+    end
+
+    CLI --&gt; GW
+    UI --&gt; GW
+    MOB --&gt; GW
+
+    GW --&gt; LB
+    LB --&gt; RT
+
+    RT --&gt; MW
+    MW --&gt; DI
+    DI --&gt; AUTH
+    DI --&gt; USER
+    DI --&gt; CAR
+    DI --&gt; BRAND
+
+    AUTH --&gt; ORM
+    USER --&gt; ORM
+    CAR --&gt; ORM
+    BRAND --&gt; ORM
+
+    ORM --&gt; CACHE
+    ORM --&gt; DB
+
+    AUTH --&gt; JWT
+    RT --&gt; LOG
+    MW --&gt; MON
+
+    style CLI fill:#e1f5fe
+    style UI fill:#e1f5fe
+    style MOB fill:#e1f5fe
+    style RT fill:#f3e5f5
+    style DB fill:#e8f5e8
+    style CACHE fill:#fff3e0</code></pre>
+<h3 id="camadas-da-arquitetura">Camadas da Arquitetura</h3>
+<h4 id="1-cliente-layer">1. <strong>Cliente Layer</strong></h4>
+<ul>
+<li><strong>Responsabilidade</strong>: Interface com usuário</li>
+<li><strong>Componentes</strong>: CLI, Web UI, Mobile App</li>
+<li><strong>Protocolos</strong>: HTTP/HTTPS, REST</li>
+</ul>
+<h4 id="2-api-layer">2. <strong>API Layer</strong></h4>
+<ul>
+<li><strong>Responsabilidade</strong>: Gerenciamento de tráfego</li>
+<li><strong>Componentes</strong>: API Gateway, Load Balancer</li>
+<li><strong>Funcionalidades</strong>: Rate limiting, CORS, SSL</li>
+</ul>
+<h4 id="3-application-layer">3. <strong>Application Layer</strong></h4>
+<ul>
+<li><strong>Responsabilidade</strong>: Lógica de apresentação</li>
+<li><strong>Componentes</strong>: FastAPI Routers, Middleware</li>
+<li><strong>Funcionalidades</strong>: Roteamento, validação, serialização</li>
+</ul>
+<h4 id="4-business-layer">4. <strong>Business Layer</strong></h4>
+<ul>
+<li><strong>Responsabilidade</strong>: Regras de negócio</li>
+<li><strong>Componentes</strong>: Services (implícitos nos routers)</li>
+<li><strong>Funcionalidades</strong>: Autenticação, CRUD, validações</li>
+</ul>
+<h4 id="5-data-layer">5. <strong>Data Layer</strong></h4>
+<ul>
+<li><strong>Responsabilidade</strong>: Persistência de dados</li>
+<li><strong>Componentes</strong>: SQLAlchemy ORM, PostgreSQL</li>
+<li><strong>Funcionalidades</strong>: Transações, relacionamentos, cache</li>
+</ul>
+<h2 id="fluxo-de-autenticacao">🔑 Fluxo de Autenticação</h2>
+<h3 id="diagrama-de-autenticacao-jwt">Diagrama de Autenticação JWT</h3>
+<pre class="mermaid"><code>sequenceDiagram
+    participant C as Cliente
+    participant A as API
+    participant JWT as JWT Service
+    participant DB as Database
+
+    C-&gt;&gt;A: POST /auth/token (username, password)
+    A-&gt;&gt;DB: Validar credenciais
+    DB--&gt;&gt;A: Usuário válido
+    A-&gt;&gt;JWT: Gerar token
+    JWT--&gt;&gt;A: Access token
+    A--&gt;&gt;C: {access_token, token_type}
+
+    Note over C: Cliente armazena token
+
+    C-&gt;&gt;A: GET /users/ (Authorization: Bearer token)
+    A-&gt;&gt;JWT: Validar token
+    JWT--&gt;&gt;A: Token válido + user_id
+    A-&gt;&gt;DB: Buscar dados do usuário
+    DB--&gt;&gt;A: Dados do usuário
+    A--&gt;&gt;C: Lista de usuários</code></pre>
+<h3 id="componentes-de-seguranca">Componentes de Segurança</h3>
+<h4 id="1-password-hashing">1. <strong>Password Hashing</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pwdlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">PasswordHash</span>
+
+<span class="n">pwd_context</span> <span class="o">=</span> <span class="n">PasswordHash</span><span class="o">.</span><span class="n">recommended</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_password_hash</span><span class="p">(</span><span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">pwd_context</span><span class="o">.</span><span class="n">hash</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">verify_password</span><span class="p">(</span><span class="n">plain_password</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">hashed_password</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">pwd_context</span><span class="o">.</span><span class="n">verify</span><span class="p">(</span><span class="n">plain_password</span><span class="p">,</span> <span class="n">hashed_password</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="2-jwt-token-management">2. <strong>JWT Token Management</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">jwt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">create_access_token</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">to_encode</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">expire</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">jwt_expiration_minutes</span><span class="p">)</span>
+    <span class="n">to_encode</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;exp&quot;</span><span class="p">:</span> <span class="n">expire</span><span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">jwt</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">to_encode</span><span class="p">,</span> <span class="n">settings</span><span class="o">.</span><span class="n">jwt_secret_key</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">jwt_algorithm</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="3-authorization-middleware">3. <strong>Authorization Middleware</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_current_user</span><span class="p">(</span><span class="n">token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">oauth2_scheme</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">User</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="n">jwt</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">settings</span><span class="o">.</span><span class="n">jwt_secret_key</span><span class="p">,</span> <span class="n">algorithms</span><span class="o">=</span><span class="p">[</span><span class="n">settings</span><span class="o">.</span><span class="n">jwt_algorithm</span><span class="p">])</span>
+        <span class="n">user_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;sub&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">user_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">credentials_exception</span>
+    <span class="k">except</span> <span class="n">JWTError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">credentials_exception</span>
+
+    <span class="n">user</span> <span class="o">=</span> <span class="k">await</span> <span class="n">get_user_by_id</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">credentials_exception</span>
+
+    <span class="k">return</span> <span class="n">user</span>
+</code></pre></div>
+<h2 id="fluxo-crud-de-carros">🚗 Fluxo CRUD de Carros</h2>
+<h3 id="diagrama-de-operacoes-crud">Diagrama de Operações CRUD</h3>
+<pre class="mermaid"><code>flowchart TD
+    Start([Início]) --&gt; Auth{Token válido?}
+    Auth --&gt;|Não| Unauthorized[401 Unauthorized]
+    Auth --&gt;|Sim| Operation{Tipo de operação?}
+
+    Operation --&gt;|CREATE| ValidateData[Validar dados do carro]
+    ValidateData --&gt; CheckBrand{Marca existe?}
+    CheckBrand --&gt;|Não| CreateBrand[Criar nova marca]
+    CheckBrand --&gt;|Sim| CheckPlate{Placa única?}
+    CreateBrand --&gt; CheckPlate
+    CheckPlate --&gt;|Não| ConflictError[409 Conflict]
+    CheckPlate --&gt;|Sim| CreateCar[Criar carro]
+    CreateCar --&gt; ReturnCar[Retornar carro criado]
+
+    Operation --&gt;|READ| GetCars[Buscar carros]
+    GetCars --&gt; FilterOwner{Filtrar por proprietário?}
+    FilterOwner --&gt;|Sim| UserCars[Carros do usuário]
+    FilterOwner --&gt;|Não| AllCars[Todos os carros]
+    UserCars --&gt; ReturnCars[Retornar lista]
+    AllCars --&gt; ReturnCars
+
+    Operation --&gt;|UPDATE| FindCar[Buscar carro por ID]
+    FindCar --&gt; CarExists{Carro existe?}
+    CarExists --&gt;|Não| NotFound[404 Not Found]
+    CarExists --&gt;|Sim| CheckOwner{É o proprietário?}
+    CheckOwner --&gt;|Não| Forbidden[403 Forbidden]
+    CheckOwner --&gt;|Sim| UpdateCar[Atualizar carro]
+    UpdateCar --&gt; ReturnUpdated[Retornar carro atualizado]
+
+    Operation --&gt;|DELETE| FindCar2[Buscar carro por ID]
+    FindCar2 --&gt; CarExists2{Carro existe?}
+    CarExists2 --&gt;|Não| NotFound2[404 Not Found]
+    CarExists2 --&gt;|Sim| CheckOwner2{É o proprietário?}
+    CheckOwner2 --&gt;|Não| Forbidden2[403 Forbidden]
+    CheckOwner2 --&gt;|Sim| DeleteCar[Deletar carro]
+    DeleteCar --&gt; Success[204 No Content]
+
+    style Start fill:#e8f5e8
+    style Success fill:#e8f5e8
+    style ReturnCar fill:#e8f5e8
+    style ReturnCars fill:#e8f5e8
+    style ReturnUpdated fill:#e8f5e8
+    style Unauthorized fill:#ffe8e8
+    style ConflictError fill:#ffe8e8
+    style NotFound fill:#ffe8e8
+    style NotFound2 fill:#ffe8e8
+    style Forbidden fill:#ffe8e8
+    style Forbidden2 fill:#ffe8e8</code></pre>
+<h3 id="validacoes-e-regras-de-negocio">Validações e Regras de Negócio</h3>
+<h4 id="1-validacoes-de-criacao">1. <strong>Validações de Criação</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_car</span><span class="p">(</span><span class="n">car</span><span class="p">:</span> <span class="n">CarSchema</span><span class="p">,</span> <span class="n">current_user</span><span class="p">:</span> <span class="n">User</span><span class="p">,</span> <span class="n">db</span><span class="p">:</span> <span class="n">AsyncSession</span><span class="p">):</span>
+    <span class="c1"># 1. Validar placa única</span>
+    <span class="n">plate_exists</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db</span><span class="o">.</span><span class="n">scalar</span><span class="p">(</span><span class="n">select</span><span class="p">(</span><span class="n">exists</span><span class="p">()</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Car</span><span class="o">.</span><span class="n">plate</span> <span class="o">==</span> <span class="n">car</span><span class="o">.</span><span class="n">plate</span><span class="p">)))</span>
+    <span class="k">if</span> <span class="n">plate_exists</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="s2">&quot;Placa já está em uso&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 2. Validar marca existe</span>
+    <span class="n">brand_exists</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db</span><span class="o">.</span><span class="n">scalar</span><span class="p">(</span><span class="n">select</span><span class="p">(</span><span class="n">exists</span><span class="p">()</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Brand</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">car</span><span class="o">.</span><span class="n">brand_id</span><span class="p">)))</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">brand_exists</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="s2">&quot;Marca não encontrada&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 3. Criar carro com proprietário</span>
+    <span class="n">db_car</span> <span class="o">=</span> <span class="n">Car</span><span class="p">(</span><span class="o">**</span><span class="n">car</span><span class="o">.</span><span class="n">dict</span><span class="p">(),</span> <span class="n">owner_id</span><span class="o">=</span><span class="n">current_user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="2-validacoes-de-propriedade">2. <strong>Validações de Propriedade</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">verify_car_ownership</span><span class="p">(</span><span class="n">current_user</span><span class="p">:</span> <span class="n">User</span><span class="p">,</span> <span class="n">car_owner_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">current_user</span><span class="o">.</span><span class="n">id</span> <span class="o">!=</span> <span class="n">car_owner_id</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="mi">403</span><span class="p">,</span> <span class="s2">&quot;Acesso negado&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="3-filtros-de-busca">3. <strong>Filtros de Busca</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Aplicar filtros dinamicamente</span>
+<span class="k">if</span> <span class="n">search</span><span class="p">:</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">Car</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">ilike</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;%</span><span class="si">{</span><span class="n">search</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">))</span> <span class="o">|</span>
+        <span class="p">(</span><span class="n">Car</span><span class="o">.</span><span class="n">plate</span><span class="o">.</span><span class="n">ilike</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;%</span><span class="si">{</span><span class="n">search</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">))</span>
+    <span class="p">)</span>
+
+<span class="k">if</span> <span class="n">brand_id</span><span class="p">:</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Car</span><span class="o">.</span><span class="n">brand_id</span> <span class="o">==</span> <span class="n">brand_id</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">fuel_type</span><span class="p">:</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Car</span><span class="o">.</span><span class="n">fuel_type</span> <span class="o">==</span> <span class="n">fuel_type</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">min_price</span><span class="p">:</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Car</span><span class="o">.</span><span class="n">price</span> <span class="o">&gt;=</span> <span class="n">min_price</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="fluxo-de-seguranca">🛡️ Fluxo de Segurança</h2>
+<h3 id="diagrama-de-seguranca-integrada">Diagrama de Segurança Integrada</h3>
+<pre class="mermaid"><code>flowchart LR
+    subgraph REQ_PROC ["Request Processing"]
+        REQ[HTTP Request] --&gt; CORS[CORS Middleware]
+        CORS --&gt; RATE[Rate Limiting]
+        RATE --&gt; AUTH[Authentication]
+        AUTH --&gt; AUTHZ[Authorization]
+        AUTHZ --&gt; VAL[Input Validation]
+        VAL --&gt; BIZ[Business Logic]
+        BIZ --&gt; RES[Response]
+    end
+
+    subgraph SEC_LAYERS ["Security Layers"]
+        subgraph NET_SEC ["Network Security"]
+            HTTPS[HTTPS/TLS]
+            FIREWALL[Firewall]
+        end
+
+        subgraph APP_SEC ["Application Security"]
+            JWT_SEC[JWT Validation]
+            HASH[Password Hashing]
+            SANIT[Input Sanitization]
+        end
+
+        subgraph DATA_SEC ["Data Security"]
+            ENCRYPT[Database Encryption]
+            BACKUP[Secure Backups]
+            AUDIT[Audit Logs]
+        end
+    end
+
+    subgraph THREAT_MIT ["Threat Mitigation"]
+        DDOS[DDoS Protection]
+        INJECTION[SQL Injection Prevention]
+        XSS[XSS Protection]
+        CSRF[CSRF Protection]
+    end
+
+    REQ --&gt; HTTPS
+    AUTH --&gt; JWT_SEC
+    VAL --&gt; SANIT
+    BIZ --&gt; AUDIT
+
+    style REQ fill:#ffebee
+    style AUTH fill:#e8f5e8
+    style VAL fill:#e3f2fd
+    style RES fill:#f3e5f5</code></pre>
+<h3 id="controles-de-seguranca-implementados">Controles de Segurança Implementados</h3>
+<h4 id="1-autenticacao-multi-camada">1. <strong>Autenticação Multi-Camada</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Layer 1: Token Validation</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">validate_token</span><span class="p">(</span><span class="n">token</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="n">jwt</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">SECRET_KEY</span><span class="p">,</span> <span class="n">algorithms</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;HS256&quot;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">payload</span>
+    <span class="k">except</span> <span class="n">JWTError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="mi">401</span><span class="p">,</span> <span class="s2">&quot;Token inválido&quot;</span><span class="p">)</span>
+
+<span class="c1"># Layer 2: User Verification</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_current_user</span><span class="p">(</span><span class="n">payload</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">db</span><span class="p">:</span> <span class="n">AsyncSession</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">User</span><span class="p">:</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="k">await</span> <span class="n">db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">payload</span><span class="p">[</span><span class="s2">&quot;sub&quot;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="mi">401</span><span class="p">,</span> <span class="s2">&quot;Usuário não encontrado&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">user</span>
+
+<span class="c1"># Layer 3: Resource Authorization</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">verify_resource_access</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">User</span><span class="p">,</span> <span class="n">resource_owner_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">id</span> <span class="o">!=</span> <span class="n">resource_owner_id</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="mi">403</span><span class="p">,</span> <span class="s2">&quot;Acesso negado&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="2-validacao-de-entrada">2. <strong>Validação de Entrada</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Schema Validation</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CarSchema</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">factory_year</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">1900</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">2030</span><span class="p">)</span>
+    <span class="n">price</span><span class="p">:</span> <span class="n">Decimal</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">plate</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;^[A-Z]</span><span class="si">{3}</span><span class="s1">[0-9]</span><span class="si">{4}</span><span class="s1">$|^[A-Z]</span><span class="si">{3}</span><span class="s1">[0-9][A-Z][0-9]</span><span class="si">{2}</span><span class="s1">$&#39;</span><span class="p">)</span>
+
+<span class="c1"># SQL Injection Prevention (SQLAlchemy ORM)</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">select</span><span class="p">(</span><span class="n">Car</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Car</span><span class="o">.</span><span class="n">plate</span> <span class="o">==</span> <span class="n">plate</span><span class="p">)</span>  <span class="c1"># Parameterized query</span>
+</code></pre></div>
+<h4 id="3-rate-limiting-e-cors">3. <strong>Rate Limiting e CORS</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># CORS Configuration</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add_middleware</span><span class="p">(</span>
+    <span class="n">CORSMiddleware</span><span class="p">,</span>
+    <span class="n">allow_origins</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;https://yourdomain.com&quot;</span><span class="p">],</span>
+    <span class="n">allow_credentials</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">allow_methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="s2">&quot;PUT&quot;</span><span class="p">,</span> <span class="s2">&quot;DELETE&quot;</span><span class="p">],</span>
+    <span class="n">allow_headers</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="c1"># Rate Limiting (Planned)</span>
+<span class="nd">@limits</span><span class="p">(</span><span class="n">calls</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>  <span class="c1"># 100 calls per minute</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">rate_limited_endpoint</span><span class="p">():</span>
+    <span class="k">pass</span>
+</code></pre></div>
+<h2 id="metricas-e-monitoramento">📊 Métricas e Monitoramento</h2>
+<h3 id="diagrama-de-observabilidade">Diagrama de Observabilidade</h3>
+<pre class="mermaid"><code>graph LR
+    subgraph "Application"
+        APP[FastAPI App]
+        LOGS[Application Logs]
+        METRICS[Business Metrics]
+    end
+
+    subgraph "Monitoring Stack"
+        PROM[Prometheus]
+        GRAF[Grafana]
+        ALERT[AlertManager]
+    end
+
+    subgraph "Logging Stack"
+        ELASTIC[Elasticsearch]
+        LOGSTASH[Logstash]
+        KIBANA[Kibana]
+    end
+
+    subgraph "Tracing"
+        JAEGER[Jaeger]
+        TRACE[Distributed Tracing]
+    end
+
+    APP --&gt; LOGS
+    APP --&gt; METRICS
+
+    LOGS --&gt; LOGSTASH
+    LOGSTASH --&gt; ELASTIC
+    ELASTIC --&gt; KIBANA
+
+    METRICS --&gt; PROM
+    PROM --&gt; GRAF
+    PROM --&gt; ALERT
+
+    APP --&gt; TRACE
+    TRACE --&gt; JAEGER
+
+    style APP fill:#e8f5e8
+    style PROM fill:#e3f2fd
+    style ELASTIC fill:#fff3e0
+    style JAEGER fill:#f3e5f5</code></pre>
+<h3 id="kpis-e-metricas">KPIs e Métricas</h3>
+<h4 id="1-metricas-de-performance">1. <strong>Métricas de Performance</strong></h4>
+<ul>
+<li>Response time médio: &lt; 200ms</li>
+<li>Throughput: requests/segundo</li>
+<li>Error rate: &lt; 1%</li>
+<li>Uptime: &gt; 99.9%</li>
+</ul>
+<h4 id="2-metricas-de-negocio">2. <strong>Métricas de Negócio</strong></h4>
+<ul>
+<li>Usuários ativos</li>
+<li>Carros cadastrados</li>
+<li>Transações por hora</li>
+<li>Taxa de conversão</li>
+</ul>
+<h4 id="3-metricas-de-seguranca">3. <strong>Métricas de Segurança</strong></h4>
+<ul>
+<li>Tentativas de login falhadas</li>
+<li>Tokens expirados</li>
+<li>Acessos negados</li>
+<li>Anomalias de tráfego</li>
+</ul>
+<h2 id="padroes-de-integracao">🔄 Padrões de Integração</h2>
+<h3 id="diagrama-de-integracoes">Diagrama de Integrações</h3>
+<pre class="mermaid"><code>graph TB
+    subgraph "Car API Core"
+        API[FastAPI Application]
+        DB[(PostgreSQL)]
+        CACHE[(Redis)]
+    end
+
+    subgraph "External APIs"
+        PAYMENT[Payment Gateway]
+        MAPS[Maps Service]
+        NOTIF[Notification Service]
+        FILE[File Storage]
+    end
+
+    subgraph "Internal Services"
+        USER_SVC[User Service]
+        INVENTORY[Inventory Service]
+        ANALYTICS[Analytics Service]
+    end
+
+    subgraph "Event System"
+        QUEUE[Message Queue]
+        EVENTS[Event Bus]
+    end
+
+    API &lt;--&gt; PAYMENT
+    API &lt;--&gt; MAPS
+    API &lt;--&gt; NOTIF
+    API &lt;--&gt; FILE
+
+    API --&gt; QUEUE
+    QUEUE --&gt; USER_SVC
+    QUEUE --&gt; INVENTORY
+    QUEUE --&gt; ANALYTICS
+
+    API --&gt; EVENTS
+    EVENTS --&gt; CACHE
+    EVENTS --&gt; DB
+
+    style API fill:#e8f5e8
+    style QUEUE fill:#e3f2fd
+    style EVENTS fill:#fff3e0</code></pre>
+<h2 id="escalabilidade-e-performance">📈 Escalabilidade e Performance</h2>
+<h3 id="estrategias-de-escalabilidade">Estratégias de Escalabilidade</h3>
+<h4 id="1-horizontal-scaling">1. <strong>Horizontal Scaling</strong></h4>
+<pre class="mermaid"><code>graph TB
+    LB[Load Balancer]
+
+    subgraph "API Instances"
+        API1[Car API - Instance 1]
+        API2[Car API - Instance 2]
+        API3[Car API - Instance 3]
+    end
+
+    subgraph "Database Cluster"
+        MASTER[(PostgreSQL Master)]
+        SLAVE1[(PostgreSQL Slave 1)]
+        SLAVE2[(PostgreSQL Slave 2)]
+    end
+
+    CACHE[(Redis Cluster)]
+
+    LB --&gt; API1
+    LB --&gt; API2
+    LB --&gt; API3
+
+    API1 --&gt; MASTER
+    API1 --&gt; SLAVE1
+    API2 --&gt; MASTER
+    API2 --&gt; SLAVE2
+    API3 --&gt; MASTER
+    API3 --&gt; SLAVE1
+
+    API1 --&gt; CACHE
+    API2 --&gt; CACHE
+    API3 --&gt; CACHE</code></pre>
+<h4 id="2-caching-strategy">2. <strong>Caching Strategy</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Multi-level caching</span>
+<span class="nd">@cache</span><span class="o">.</span><span class="n">memoize</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>  <span class="c1"># 5 minutes</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_popular_cars</span><span class="p">():</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+        <span class="n">select</span><span class="p">(</span><span class="n">Car</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Car</span><span class="o">.</span><span class="n">is_available</span> <span class="o">==</span> <span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="c1"># Database query optimization</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">select</span><span class="p">(</span><span class="n">Car</span><span class="p">)</span><span class="o">.</span><span class="n">options</span><span class="p">(</span>
+    <span class="n">selectinload</span><span class="p">(</span><span class="n">Car</span><span class="o">.</span><span class="n">brand</span><span class="p">),</span>  <span class="c1"># Eager loading</span>
+    <span class="n">selectinload</span><span class="p">(</span><span class="n">Car</span><span class="o">.</span><span class="n">owner</span><span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Car</span><span class="o">.</span><span class="n">owner_id</span> <span class="o">==</span> <span class="n">user_id</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="proximos-passos">🎯 Próximos Passos</h2>
+<p>Para explorar mais detalhes:</p>
+<ol>
+<li>🔐 <a href="../authentication/">Autenticação e Segurança</a> - Implementação detalhada</li>
+<li>💻 <a href="../development/">Desenvolvimento</a> - Fluxo de desenvolvimento</li>
+<li>🧪 <a href="../testing/">Testes</a> - Estratégias de teste</li>
+<li>🚀 <a href="../deployment/">Deploy</a> - Processo de implantação</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

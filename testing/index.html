@@ -1,0 +1,2419 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Uma API REST completa para gerenciamento de carros e usuários">
+      
+      
+        <meta name="author" content="PyCodeBR">
+      
+      
+      
+        <link rel="prev" href="../development/">
+      
+      
+        <link rel="next" href="../deployment/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Testes - Car API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#testes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Car API" class="md-header__button md-logo" aria-label="Car API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Car API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Testes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Car API" class="md-nav__button md-logo" aria-label="Car API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Car API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Início
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Visão geral
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prerequisites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pré-requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Instalação
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuração
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guidelines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Guidelines e padrões
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Estrutura
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-endpoints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Endpoints
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../system-modeling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Modelagem do Sistema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Autenticação e Segurança
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Desenvolvimento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Testes
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Testes
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#estrategia-de-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 Estratégia de Testes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 Estratégia de Testes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#piramide-de-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pirâmide de Testes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-testes-implementados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tipos de Testes Implementados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tipos de Testes Implementados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-unit-tests-70" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Unit Tests (70%)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-integration-tests-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Integration Tests (20%)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-end-to-end-tests-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. End-to-End Tests (10%)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estrutura-de-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Estrutura de Testes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracao-de-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ Configuração de Testes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ Configuração de Testes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conftestpy-fixtures-globais" class="md-nav__link">
+    <span class="md-ellipsis">
+      conftest.py - Fixtures Globais
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pytestini-configuracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      pytest.ini - Configuração
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testes-unitarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 Testes Unitários
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 Testes Unitários">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testes-de-seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testes de Segurança
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testes-de-modelos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testes de Modelos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testes-de-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testes de Schemas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testes-de-integracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Testes de Integração
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔗 Testes de Integração">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testes-de-autenticacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testes de Autenticação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testes-de-api-de-carros" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testes de API de Carros
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testes-end-to-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Testes End-to-End
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Testes End-to-End">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jornada-completa-do-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jornada Completa do Usuário
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cobertura-de-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Cobertura de Testes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Cobertura de Testes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuracao-de-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuração de Coverage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#executar-testes-com-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Executar Testes com Coverage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relatorio-de-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relatório de Coverage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#automacao-de-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Automação de Testes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Automação de Testes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#github-actions-cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub Actions CI/CD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-commit-hooks-para-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-commit Hooks para Testes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testes-de-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Testes de Performance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Testes de Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#teste-de-carga" class="md-nav__link">
+    <span class="md-ellipsis">
+      Teste de Carga
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comandos-de-teste" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Comandos de Teste
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 Comandos de Teste">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comandos-basicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comandos Básicos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comandos-avancados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comandos Avançados
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximos-passos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Próximos Passos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contribuição
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release Notes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#estrategia-de-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 Estratégia de Testes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 Estratégia de Testes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#piramide-de-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pirâmide de Testes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-testes-implementados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tipos de Testes Implementados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tipos de Testes Implementados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-unit-tests-70" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Unit Tests (70%)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-integration-tests-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Integration Tests (20%)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-end-to-end-tests-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. End-to-End Tests (10%)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estrutura-de-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Estrutura de Testes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracao-de-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ Configuração de Testes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ Configuração de Testes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conftestpy-fixtures-globais" class="md-nav__link">
+    <span class="md-ellipsis">
+      conftest.py - Fixtures Globais
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pytestini-configuracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      pytest.ini - Configuração
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testes-unitarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 Testes Unitários
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 Testes Unitários">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testes-de-seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testes de Segurança
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testes-de-modelos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testes de Modelos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testes-de-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testes de Schemas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testes-de-integracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Testes de Integração
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔗 Testes de Integração">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testes-de-autenticacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testes de Autenticação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testes-de-api-de-carros" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testes de API de Carros
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testes-end-to-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Testes End-to-End
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Testes End-to-End">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jornada-completa-do-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jornada Completa do Usuário
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cobertura-de-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Cobertura de Testes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Cobertura de Testes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuracao-de-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuração de Coverage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#executar-testes-com-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Executar Testes com Coverage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relatorio-de-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relatório de Coverage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#automacao-de-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Automação de Testes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Automação de Testes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#github-actions-cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub Actions CI/CD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-commit-hooks-para-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-commit Hooks para Testes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testes-de-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Testes de Performance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Testes de Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#teste-de-carga" class="md-nav__link">
+    <span class="md-ellipsis">
+      Teste de Carga
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comandos-de-teste" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Comandos de Teste
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 Comandos de Teste">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comandos-basicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comandos Básicos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comandos-avancados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comandos Avançados
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximos-passos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Próximos Passos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="testes">Testes</h1>
+<h2 id="estrategia-de-testes">🧪 Estratégia de Testes</h2>
+<h3 id="piramide-de-testes">Pirâmide de Testes</h3>
+<pre class="mermaid"><code>graph TB
+    subgraph "Pirâmide de Testes"
+        E2E[End-to-End Tests]
+        INT[Integration Tests]
+        UNIT[Unit Tests]
+    end
+
+    subgraph "Distribuição"
+        E2E_PCT[10%&lt;br/&gt;Poucos e Caros]
+        INT_PCT[20%&lt;br/&gt;Moderados]
+        UNIT_PCT[70%&lt;br/&gt;Muitos e Rápidos]
+    end
+
+    E2E --&gt; E2E_PCT
+    INT --&gt; INT_PCT
+    UNIT --&gt; UNIT_PCT
+
+    style UNIT fill:#e8f5e8
+    style INT fill:#e3f2fd
+    style E2E fill:#fff3e0</code></pre>
+<h3 id="tipos-de-testes-implementados">Tipos de Testes Implementados</h3>
+<h4 id="1-unit-tests-70">1. <strong>Unit Tests (70%)</strong></h4>
+<ul>
+<li>Testam funções/métodos isoladamente</li>
+<li>Rápidos de executar (&lt; 1s cada)</li>
+<li>Mocks para dependências externas</li>
+<li>Cobertura de lógica de negócio</li>
+</ul>
+<h4 id="2-integration-tests-20">2. <strong>Integration Tests (20%)</strong></h4>
+<ul>
+<li>Testam interação entre componentes</li>
+<li>Incluem banco de dados de teste</li>
+<li>Validam schemas e validações</li>
+<li>Testam endpoints da API</li>
+</ul>
+<h4 id="3-end-to-end-tests-10">3. <strong>End-to-End Tests (10%)</strong></h4>
+<ul>
+<li>Testam fluxos completos</li>
+<li>Simulam usuário real</li>
+<li>Validam funcionalidades críticas</li>
+<li>Executados menos frequentemente</li>
+</ul>
+<h2 id="estrutura-de-testes">📁 Estrutura de Testes</h2>
+<div class="highlight"><pre><span></span><code>tests/
+├── __init__.py
+├── conftest.py              # 🔧 Configurações e fixtures
+├── unit/                    # 🧪 Testes unitários
+│   ├── test_security.py     # 🔐 Funções de segurança
+│   ├── test_models.py       # 🏗️ Modelos SQLAlchemy
+│   └── test_schemas.py      # 📝 Validações Pydantic
+├── integration/             # 🔗 Testes de integração
+│   ├── test_auth.py         # 🔑 Autenticação
+│   ├── test_brands.py       # 🏷️ API de marcas
+│   ├── test_cars.py         # 🚗 API de carros
+│   ├── test_users.py        # 👤 API de usuários
+│   └── test_db.py           # 🗃️ Banco de dados
+├── e2e/                     # 🎯 Testes end-to-end
+│   ├── test_user_journey.py # 👤 Jornada do usuário
+│   └── test_car_workflow.py # 🚗 Fluxo de carros
+└── fixtures/                # 📦 Dados de teste
+    ├── cars.json
+    ├── brands.json
+    └── users.json
+</code></pre></div>
+<h2 id="configuracao-de-testes">⚙️ Configuração de Testes</h2>
+<h3 id="conftestpy-fixtures-globais">conftest.py - Fixtures Globais</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># tests/conftest.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest_asyncio</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">httpx</span><span class="w"> </span><span class="kn">import</span> <span class="n">AsyncClient</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy.ext.asyncio</span><span class="w"> </span><span class="kn">import</span> <span class="n">async_sessionmaker</span><span class="p">,</span> <span class="n">create_async_engine</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy.pool</span><span class="w"> </span><span class="kn">import</span> <span class="n">StaticPool</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">car_api.app</span><span class="w"> </span><span class="kn">import</span> <span class="n">app</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">car_api.core.database</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_session</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">car_api.core.security</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_access_token</span><span class="p">,</span> <span class="n">get_password_hash</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">car_api.models.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">Base</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">car_api.models.cars</span><span class="w"> </span><span class="kn">import</span> <span class="n">Brand</span><span class="p">,</span> <span class="n">Car</span><span class="p">,</span> <span class="n">FuelType</span><span class="p">,</span> <span class="n">TransmissionType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">car_api.models.users</span><span class="w"> </span><span class="kn">import</span> <span class="n">User</span>
+
+<span class="c1"># Database de teste em memória</span>
+<span class="n">TEST_DATABASE_URL</span> <span class="o">=</span> <span class="s2">&quot;sqlite+aiosqlite:///:memory:&quot;</span>
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;session&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">event_loop</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Criar event loop para a sessão de testes.&quot;&quot;&quot;</span>
+    <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">new_event_loop</span><span class="p">()</span>
+    <span class="k">yield</span> <span class="n">loop</span>
+    <span class="n">loop</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="nd">@pytest_asyncio</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">db_engine</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Engine de banco de dados para testes.&quot;&quot;&quot;</span>
+    <span class="n">engine</span> <span class="o">=</span> <span class="n">create_async_engine</span><span class="p">(</span>
+        <span class="n">TEST_DATABASE_URL</span><span class="p">,</span>
+        <span class="n">connect_args</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;check_same_thread&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="n">poolclass</span><span class="o">=</span><span class="n">StaticPool</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">with</span> <span class="n">engine</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">conn</span><span class="o">.</span><span class="n">run_sync</span><span class="p">(</span><span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">)</span>
+
+    <span class="k">yield</span> <span class="n">engine</span>
+
+    <span class="k">async</span> <span class="k">with</span> <span class="n">engine</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">conn</span><span class="o">.</span><span class="n">run_sync</span><span class="p">(</span><span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">drop_all</span><span class="p">)</span>
+
+    <span class="k">await</span> <span class="n">engine</span><span class="o">.</span><span class="n">dispose</span><span class="p">()</span>
+
+<span class="nd">@pytest_asyncio</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">db_session</span><span class="p">(</span><span class="n">db_engine</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sessão de banco de dados para testes.&quot;&quot;&quot;</span>
+    <span class="n">TestSessionLocal</span> <span class="o">=</span> <span class="n">async_sessionmaker</span><span class="p">(</span>
+        <span class="n">db_engine</span><span class="p">,</span> <span class="n">expire_on_commit</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">with</span> <span class="n">TestSessionLocal</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">session</span>
+
+<span class="nd">@pytest_asyncio</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">client</span><span class="p">(</span><span class="n">db_session</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Cliente HTTP para testes de API.&quot;&quot;&quot;</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">dependency_overrides</span><span class="p">[</span><span class="n">get_session</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">db_session</span>
+
+    <span class="k">async</span> <span class="k">with</span> <span class="n">AsyncClient</span><span class="p">(</span><span class="n">app</span><span class="o">=</span><span class="n">app</span><span class="p">,</span> <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;http://test&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ac</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">ac</span>
+
+    <span class="n">app</span><span class="o">.</span><span class="n">dependency_overrides</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+<span class="nd">@pytest_asyncio</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">sample_user</span><span class="p">(</span><span class="n">db_session</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Usuário de exemplo para testes.&quot;&quot;&quot;</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span>
+        <span class="n">username</span><span class="o">=</span><span class="s2">&quot;testuser&quot;</span><span class="p">,</span>
+        <span class="n">email</span><span class="o">=</span><span class="s2">&quot;test@example.com&quot;</span><span class="p">,</span>
+        <span class="n">password</span><span class="o">=</span><span class="n">get_password_hash</span><span class="p">(</span><span class="s2">&quot;password123&quot;</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">db_session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">db_session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">await</span> <span class="n">db_session</span><span class="o">.</span><span class="n">refresh</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">user</span>
+
+<span class="nd">@pytest_asyncio</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">auth_headers</span><span class="p">(</span><span class="n">sample_user</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Headers de autenticação para testes.&quot;&quot;&quot;</span>
+    <span class="n">token</span> <span class="o">=</span> <span class="n">create_access_token</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">sample_user</span><span class="o">.</span><span class="n">id</span><span class="p">)})</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+
+<span class="nd">@pytest_asyncio</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">sample_brand</span><span class="p">(</span><span class="n">db_session</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Marca de exemplo para testes.&quot;&quot;&quot;</span>
+    <span class="n">brand</span> <span class="o">=</span> <span class="n">Brand</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Toyota&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Marca japonesa confiável&quot;</span><span class="p">,</span>
+        <span class="n">is_active</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="n">db_session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">brand</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">db_session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">await</span> <span class="n">db_session</span><span class="o">.</span><span class="n">refresh</span><span class="p">(</span><span class="n">brand</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">brand</span>
+
+<span class="nd">@pytest_asyncio</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">sample_car</span><span class="p">(</span><span class="n">db_session</span><span class="p">,</span> <span class="n">sample_user</span><span class="p">,</span> <span class="n">sample_brand</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Carro de exemplo para testes.&quot;&quot;&quot;</span>
+    <span class="n">car</span> <span class="o">=</span> <span class="n">Car</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;Corolla&quot;</span><span class="p">,</span>
+        <span class="n">factory_year</span><span class="o">=</span><span class="mi">2022</span><span class="p">,</span>
+        <span class="n">model_year</span><span class="o">=</span><span class="mi">2023</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;Prata&quot;</span><span class="p">,</span>
+        <span class="n">plate</span><span class="o">=</span><span class="s2">&quot;ABC1234&quot;</span><span class="p">,</span>
+        <span class="n">fuel_type</span><span class="o">=</span><span class="n">FuelType</span><span class="o">.</span><span class="n">FLEX</span><span class="p">,</span>
+        <span class="n">transmission</span><span class="o">=</span><span class="n">TransmissionType</span><span class="o">.</span><span class="n">AUTOMATIC</span><span class="p">,</span>
+        <span class="n">price</span><span class="o">=</span><span class="mf">85000.00</span><span class="p">,</span>
+        <span class="n">brand_id</span><span class="o">=</span><span class="n">sample_brand</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="n">owner_id</span><span class="o">=</span><span class="n">sample_user</span><span class="o">.</span><span class="n">id</span>
+    <span class="p">)</span>
+    <span class="n">db_session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">car</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">db_session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">await</span> <span class="n">db_session</span><span class="o">.</span><span class="n">refresh</span><span class="p">(</span><span class="n">car</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">car</span>
+</code></pre></div>
+<h3 id="pytestini-configuracao">pytest.ini - Configuração</h3>
+<div class="highlight"><pre><span></span><code><span class="k">[tool:pytest]</span>
+<span class="na">testpaths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">tests</span>
+<span class="na">python_files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">test_*.py</span>
+<span class="na">python_classes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Test*</span>
+<span class="na">python_functions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">test_*</span>
+<span class="na">asyncio_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">auto</span>
+<span class="na">asyncio_default_fixture_loop_scope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">function</span>
+<span class="na">addopts</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="na">-v</span>
+<span class="w">    </span><span class="na">--strict-markers</span>
+<span class="w">    </span><span class="na">--strict-config</span>
+<span class="w">    </span><span class="na">--cov</span><span class="o">=</span><span class="s">car_api</span>
+<span class="w">    </span><span class="na">--cov-report</span><span class="o">=</span><span class="s">html</span>
+<span class="w">    </span><span class="na">--cov-report</span><span class="o">=</span><span class="s">term-missing</span>
+<span class="w">    </span><span class="na">--cov-fail-under</span><span class="o">=</span><span class="s">90</span>
+<span class="na">markers</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="na">unit</span><span class="o">:</span><span class="w"> </span><span class="s">Unit tests</span>
+<span class="w">    </span><span class="na">integration</span><span class="o">:</span><span class="w"> </span><span class="s">Integration tests</span>
+<span class="w">    </span><span class="na">e2e</span><span class="o">:</span><span class="w"> </span><span class="s">End-to-end tests</span>
+<span class="w">    </span><span class="na">slow</span><span class="o">:</span><span class="w"> </span><span class="s">Slow tests</span>
+<span class="w">    </span><span class="na">database</span><span class="o">:</span><span class="w"> </span><span class="s">Tests that require database</span>
+<span class="w">    </span><span class="na">auth</span><span class="o">:</span><span class="w"> </span><span class="s">Authentication tests</span>
+</code></pre></div>
+<h2 id="testes-unitarios">🧪 Testes Unitários</h2>
+<h3 id="testes-de-seguranca">Testes de Segurança</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># tests/unit/test_security.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">jwt</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">car_api.core.security</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">create_access_token</span><span class="p">,</span>
+    <span class="n">get_password_hash</span><span class="p">,</span>
+    <span class="n">verify_password</span><span class="p">,</span>
+    <span class="n">get_current_user</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">car_api.core.settings</span><span class="w"> </span><span class="kn">import</span> <span class="n">Settings</span>
+
+<span class="n">settings</span> <span class="o">=</span> <span class="n">Settings</span><span class="p">()</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TestPasswordHashing</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_password_hash_and_verify</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar hash e verificação de senha.&quot;&quot;&quot;</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;my_secure_password123&quot;</span>
+
+        <span class="c1"># Hash da senha</span>
+        <span class="n">hashed</span> <span class="o">=</span> <span class="n">get_password_hash</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+
+        <span class="c1"># Verificações</span>
+        <span class="k">assert</span> <span class="n">hashed</span> <span class="o">!=</span> <span class="n">password</span>  <span class="c1"># Hash é diferente da senha original</span>
+        <span class="k">assert</span> <span class="n">verify_password</span><span class="p">(</span><span class="n">password</span><span class="p">,</span> <span class="n">hashed</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">True</span>  <span class="c1"># Verificação positiva</span>
+        <span class="k">assert</span> <span class="n">verify_password</span><span class="p">(</span><span class="s2">&quot;wrong_password&quot;</span><span class="p">,</span> <span class="n">hashed</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">False</span>  <span class="c1"># Verificação negativa</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_different_hashes_for_same_password</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar que a mesma senha gera hashes diferentes (salt).&quot;&quot;&quot;</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;same_password&quot;</span>
+
+        <span class="n">hash1</span> <span class="o">=</span> <span class="n">get_password_hash</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+        <span class="n">hash2</span> <span class="o">=</span> <span class="n">get_password_hash</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">hash1</span> <span class="o">!=</span> <span class="n">hash2</span>  <span class="c1"># Hashes diferentes devido ao salt</span>
+        <span class="k">assert</span> <span class="n">verify_password</span><span class="p">(</span><span class="n">password</span><span class="p">,</span> <span class="n">hash1</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">True</span>
+        <span class="k">assert</span> <span class="n">verify_password</span><span class="p">(</span><span class="n">password</span><span class="p">,</span> <span class="n">hash2</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">True</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TestJWT</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_create_and_decode_token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar criação e decodificação de token JWT.&quot;&quot;&quot;</span>
+        <span class="n">user_data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="s2">&quot;123&quot;</span><span class="p">}</span>
+
+        <span class="c1"># Criar token</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">create_access_token</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">user_data</span><span class="p">)</span>
+
+        <span class="c1"># Decodificar token</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="n">jwt</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span>
+            <span class="n">token</span><span class="p">,</span>
+            <span class="n">settings</span><span class="o">.</span><span class="n">jwt_secret_key</span><span class="p">,</span>
+            <span class="n">algorithms</span><span class="o">=</span><span class="p">[</span><span class="n">settings</span><span class="o">.</span><span class="n">jwt_algorithm</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">payload</span><span class="p">[</span><span class="s2">&quot;sub&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;123&quot;</span>
+        <span class="k">assert</span> <span class="s2">&quot;exp&quot;</span> <span class="ow">in</span> <span class="n">payload</span>  <span class="c1"># Token tem expiração</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_token_expiration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar expiração de token.&quot;&quot;&quot;</span>
+        <span class="n">user_data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="s2">&quot;123&quot;</span><span class="p">}</span>
+
+        <span class="c1"># Criar token que expira imediatamente</span>
+        <span class="n">past_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">jwt</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+            <span class="p">{</span><span class="o">**</span><span class="n">user_data</span><span class="p">,</span> <span class="s2">&quot;exp&quot;</span><span class="p">:</span> <span class="n">past_time</span><span class="p">},</span>
+            <span class="n">settings</span><span class="o">.</span><span class="n">jwt_secret_key</span><span class="p">,</span>
+            <span class="n">algorithm</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">jwt_algorithm</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Tentar decodificar token expirado</span>
+        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">jwt</span><span class="o">.</span><span class="n">ExpiredSignatureError</span><span class="p">):</span>
+            <span class="n">jwt</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span>
+                <span class="n">token</span><span class="p">,</span>
+                <span class="n">settings</span><span class="o">.</span><span class="n">jwt_secret_key</span><span class="p">,</span>
+                <span class="n">algorithms</span><span class="o">=</span><span class="p">[</span><span class="n">settings</span><span class="o">.</span><span class="n">jwt_algorithm</span><span class="p">]</span>
+            <span class="p">)</span>
+</code></pre></div>
+<h3 id="testes-de-modelos">Testes de Modelos</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># tests/unit/test_models.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">decimal</span><span class="w"> </span><span class="kn">import</span> <span class="n">Decimal</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">car_api.models.cars</span><span class="w"> </span><span class="kn">import</span> <span class="n">Car</span><span class="p">,</span> <span class="n">Brand</span><span class="p">,</span> <span class="n">FuelType</span><span class="p">,</span> <span class="n">TransmissionType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">car_api.models.users</span><span class="w"> </span><span class="kn">import</span> <span class="n">User</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TestUserModel</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_user_creation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar criação de usuário.&quot;&quot;&quot;</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span>
+            <span class="n">username</span><span class="o">=</span><span class="s2">&quot;testuser&quot;</span><span class="p">,</span>
+            <span class="n">email</span><span class="o">=</span><span class="s2">&quot;test@example.com&quot;</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="s2">&quot;hashed_password&quot;</span>
+        <span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">user</span><span class="o">.</span><span class="n">username</span> <span class="o">==</span> <span class="s2">&quot;testuser&quot;</span>
+        <span class="k">assert</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="o">==</span> <span class="s2">&quot;test@example.com&quot;</span>
+        <span class="k">assert</span> <span class="n">user</span><span class="o">.</span><span class="n">password</span> <span class="o">==</span> <span class="s2">&quot;hashed_password&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_user_string_representation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar representação string do usuário.&quot;&quot;&quot;</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span>
+            <span class="n">username</span><span class="o">=</span><span class="s2">&quot;testuser&quot;</span><span class="p">,</span>
+            <span class="n">email</span><span class="o">=</span><span class="s2">&quot;test@example.com&quot;</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="s2">&quot;hashed_password&quot;</span>
+        <span class="p">)</span>
+
+        <span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">user</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;testuser&quot;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TestCarModel</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_car_creation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar criação de carro.&quot;&quot;&quot;</span>
+        <span class="n">car</span> <span class="o">=</span> <span class="n">Car</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="s2">&quot;Civic&quot;</span><span class="p">,</span>
+            <span class="n">factory_year</span><span class="o">=</span><span class="mi">2023</span><span class="p">,</span>
+            <span class="n">model_year</span><span class="o">=</span><span class="mi">2023</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s2">&quot;Preto&quot;</span><span class="p">,</span>
+            <span class="n">plate</span><span class="o">=</span><span class="s2">&quot;ABC1234&quot;</span><span class="p">,</span>
+            <span class="n">fuel_type</span><span class="o">=</span><span class="n">FuelType</span><span class="o">.</span><span class="n">FLEX</span><span class="p">,</span>
+            <span class="n">transmission</span><span class="o">=</span><span class="n">TransmissionType</span><span class="o">.</span><span class="n">MANUAL</span><span class="p">,</span>
+            <span class="n">price</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s2">&quot;95000.00&quot;</span><span class="p">),</span>
+            <span class="n">brand_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">owner_id</span><span class="o">=</span><span class="mi">1</span>
+        <span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">car</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s2">&quot;Civic&quot;</span>
+        <span class="k">assert</span> <span class="n">car</span><span class="o">.</span><span class="n">factory_year</span> <span class="o">==</span> <span class="mi">2023</span>
+        <span class="k">assert</span> <span class="n">car</span><span class="o">.</span><span class="n">fuel_type</span> <span class="o">==</span> <span class="n">FuelType</span><span class="o">.</span><span class="n">FLEX</span>
+        <span class="k">assert</span> <span class="n">car</span><span class="o">.</span><span class="n">price</span> <span class="o">==</span> <span class="n">Decimal</span><span class="p">(</span><span class="s2">&quot;95000.00&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_fuel_type_enum</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar enum de tipo de combustível.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">FuelType</span><span class="o">.</span><span class="n">GASOLINE</span> <span class="o">==</span> <span class="s2">&quot;gasoline&quot;</span>
+        <span class="k">assert</span> <span class="n">FuelType</span><span class="o">.</span><span class="n">ELECTRIC</span> <span class="o">==</span> <span class="s2">&quot;electric&quot;</span>
+        <span class="k">assert</span> <span class="n">FuelType</span><span class="o">.</span><span class="n">HYBRID</span> <span class="o">==</span> <span class="s2">&quot;hybrid&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_transmission_enum</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar enum de transmissão.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">TransmissionType</span><span class="o">.</span><span class="n">MANUAL</span> <span class="o">==</span> <span class="s2">&quot;manual&quot;</span>
+        <span class="k">assert</span> <span class="n">TransmissionType</span><span class="o">.</span><span class="n">AUTOMATIC</span> <span class="o">==</span> <span class="s2">&quot;automatic&quot;</span>
+        <span class="k">assert</span> <span class="n">TransmissionType</span><span class="o">.</span><span class="n">CVT</span> <span class="o">==</span> <span class="s2">&quot;cvt&quot;</span>
+</code></pre></div>
+<h3 id="testes-de-schemas">Testes de Schemas</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># tests/unit/test_schemas.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">decimal</span><span class="w"> </span><span class="kn">import</span> <span class="n">Decimal</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">ValidationError</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">car_api.schemas.cars</span><span class="w"> </span><span class="kn">import</span> <span class="n">CarSchema</span><span class="p">,</span> <span class="n">CarUpdateSchema</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">car_api.schemas.users</span><span class="w"> </span><span class="kn">import</span> <span class="n">UserSchema</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">car_api.models.cars</span><span class="w"> </span><span class="kn">import</span> <span class="n">FuelType</span><span class="p">,</span> <span class="n">TransmissionType</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TestUserSchema</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_valid_user_schema</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar schema válido de usuário.&quot;&quot;&quot;</span>
+        <span class="n">user_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;testuser&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;test@example.com&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;password123&quot;</span>
+        <span class="p">}</span>
+
+        <span class="n">user</span> <span class="o">=</span> <span class="n">UserSchema</span><span class="p">(</span><span class="o">**</span><span class="n">user_data</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">user</span><span class="o">.</span><span class="n">username</span> <span class="o">==</span> <span class="s2">&quot;testuser&quot;</span>
+        <span class="k">assert</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="o">==</span> <span class="s2">&quot;test@example.com&quot;</span>
+        <span class="k">assert</span> <span class="n">user</span><span class="o">.</span><span class="n">password</span> <span class="o">==</span> <span class="s2">&quot;password123&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_invalid_email</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar email inválido.&quot;&quot;&quot;</span>
+        <span class="n">user_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;testuser&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;invalid-email&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;password123&quot;</span>
+        <span class="p">}</span>
+
+        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">ValidationError</span><span class="p">)</span> <span class="k">as</span> <span class="n">exc_info</span><span class="p">:</span>
+            <span class="n">UserSchema</span><span class="p">(</span><span class="o">**</span><span class="n">user_data</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="s2">&quot;email&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">exc_info</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_short_password</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar senha muito curta.&quot;&quot;&quot;</span>
+        <span class="n">user_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;testuser&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;test@example.com&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;123&quot;</span>  <span class="c1"># Muito curta</span>
+        <span class="p">}</span>
+
+        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">ValidationError</span><span class="p">)</span> <span class="k">as</span> <span class="n">exc_info</span><span class="p">:</span>
+            <span class="n">UserSchema</span><span class="p">(</span><span class="o">**</span><span class="n">user_data</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="s2">&quot;password&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">exc_info</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TestCarSchema</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_valid_car_schema</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar schema válido de carro.&quot;&quot;&quot;</span>
+        <span class="n">car_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;Civic&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;factory_year&quot;</span><span class="p">:</span> <span class="mi">2023</span><span class="p">,</span>
+            <span class="s2">&quot;model_year&quot;</span><span class="p">:</span> <span class="mi">2023</span><span class="p">,</span>
+            <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;Preto&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;plate&quot;</span><span class="p">:</span> <span class="s2">&quot;ABC1234&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;fuel_type&quot;</span><span class="p">:</span> <span class="s2">&quot;flex&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;transmission&quot;</span><span class="p">:</span> <span class="s2">&quot;manual&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="s2">&quot;95000.00&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;brand_id&quot;</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="p">}</span>
+
+        <span class="n">car</span> <span class="o">=</span> <span class="n">CarSchema</span><span class="p">(</span><span class="o">**</span><span class="n">car_data</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">car</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="s2">&quot;Civic&quot;</span>
+        <span class="k">assert</span> <span class="n">car</span><span class="o">.</span><span class="n">factory_year</span> <span class="o">==</span> <span class="mi">2023</span>
+        <span class="k">assert</span> <span class="n">car</span><span class="o">.</span><span class="n">fuel_type</span> <span class="o">==</span> <span class="n">FuelType</span><span class="o">.</span><span class="n">FLEX</span>
+        <span class="k">assert</span> <span class="n">car</span><span class="o">.</span><span class="n">price</span> <span class="o">==</span> <span class="n">Decimal</span><span class="p">(</span><span class="s2">&quot;95000.00&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_invalid_year</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar ano inválido.&quot;&quot;&quot;</span>
+        <span class="n">car_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;Civic&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;factory_year&quot;</span><span class="p">:</span> <span class="mi">1800</span><span class="p">,</span>  <span class="c1"># Muito antigo</span>
+            <span class="s2">&quot;model_year&quot;</span><span class="p">:</span> <span class="mi">2023</span><span class="p">,</span>
+            <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;Preto&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;plate&quot;</span><span class="p">:</span> <span class="s2">&quot;ABC1234&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;fuel_type&quot;</span><span class="p">:</span> <span class="s2">&quot;flex&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;transmission&quot;</span><span class="p">:</span> <span class="s2">&quot;manual&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="s2">&quot;95000.00&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;brand_id&quot;</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="p">}</span>
+
+        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">ValidationError</span><span class="p">)</span> <span class="k">as</span> <span class="n">exc_info</span><span class="p">:</span>
+            <span class="n">CarSchema</span><span class="p">(</span><span class="o">**</span><span class="n">car_data</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="s2">&quot;factory_year&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">exc_info</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_invalid_plate_format</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar formato inválido de placa.&quot;&quot;&quot;</span>
+        <span class="n">car_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;Civic&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;factory_year&quot;</span><span class="p">:</span> <span class="mi">2023</span><span class="p">,</span>
+            <span class="s2">&quot;model_year&quot;</span><span class="p">:</span> <span class="mi">2023</span><span class="p">,</span>
+            <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;Preto&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;plate&quot;</span><span class="p">:</span> <span class="s2">&quot;INVALID&quot;</span><span class="p">,</span>  <span class="c1"># Formato inválido</span>
+            <span class="s2">&quot;fuel_type&quot;</span><span class="p">:</span> <span class="s2">&quot;flex&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;transmission&quot;</span><span class="p">:</span> <span class="s2">&quot;manual&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="s2">&quot;95000.00&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;brand_id&quot;</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="p">}</span>
+
+        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">ValidationError</span><span class="p">)</span> <span class="k">as</span> <span class="n">exc_info</span><span class="p">:</span>
+            <span class="n">CarSchema</span><span class="p">(</span><span class="o">**</span><span class="n">car_data</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="s2">&quot;plate&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">exc_info</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="testes-de-integracao">🔗 Testes de Integração</h2>
+<h3 id="testes-de-autenticacao">Testes de Autenticação</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># tests/integration/test_auth.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">httpx</span><span class="w"> </span><span class="kn">import</span> <span class="n">AsyncClient</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TestAuthentication</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_login_success</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="n">AsyncClient</span><span class="p">,</span> <span class="n">sample_user</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar login bem-sucedido.&quot;&quot;&quot;</span>
+        <span class="n">login_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="n">sample_user</span><span class="o">.</span><span class="n">email</span><span class="p">,</span>
+            <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;password123&quot;</span>
+        <span class="p">}</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/api/v1/auth/token&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">login_data</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="s2">&quot;access_token&quot;</span> <span class="ow">in</span> <span class="n">data</span>
+        <span class="k">assert</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;token_type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;bearer&quot;</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_login_invalid_credentials</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="n">AsyncClient</span><span class="p">,</span> <span class="n">sample_user</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar login com credenciais inválidas.&quot;&quot;&quot;</span>
+        <span class="n">login_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="n">sample_user</span><span class="o">.</span><span class="n">email</span><span class="p">,</span>
+            <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;wrong_password&quot;</span>
+        <span class="p">}</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/api/v1/auth/token&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">login_data</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">401</span>
+        <span class="k">assert</span> <span class="s2">&quot;Incorrect email or password&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;detail&quot;</span><span class="p">]</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_login_nonexistent_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="n">AsyncClient</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar login com usuário inexistente.&quot;&quot;&quot;</span>
+        <span class="n">login_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;nonexistent@example.com&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;password123&quot;</span>
+        <span class="p">}</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/api/v1/auth/token&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">login_data</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">401</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_refresh_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="n">AsyncClient</span><span class="p">,</span> <span class="n">auth_headers</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar renovação de token.&quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="s2">&quot;/api/v1/auth/refresh_token&quot;</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="n">auth_headers</span>
+        <span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="s2">&quot;access_token&quot;</span> <span class="ow">in</span> <span class="n">data</span>
+        <span class="k">assert</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;token_type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;bearer&quot;</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_access_protected_endpoint_without_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="n">AsyncClient</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar acesso a endpoint protegido sem token.&quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/v1/cars/&quot;</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">401</span>
+</code></pre></div>
+<h3 id="testes-de-api-de-carros">Testes de API de Carros</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># tests/integration/test_cars.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">httpx</span><span class="w"> </span><span class="kn">import</span> <span class="n">AsyncClient</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">decimal</span><span class="w"> </span><span class="kn">import</span> <span class="n">Decimal</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TestCarsAPI</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_create_car_success</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="n">AsyncClient</span><span class="p">,</span> <span class="n">auth_headers</span><span class="p">,</span> <span class="n">sample_brand</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar criação bem-sucedida de carro.&quot;&quot;&quot;</span>
+        <span class="n">car_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;Civic&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;factory_year&quot;</span><span class="p">:</span> <span class="mi">2023</span><span class="p">,</span>
+            <span class="s2">&quot;model_year&quot;</span><span class="p">:</span> <span class="mi">2023</span><span class="p">,</span>
+            <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;Preto&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;plate&quot;</span><span class="p">:</span> <span class="s2">&quot;XYZ9876&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;fuel_type&quot;</span><span class="p">:</span> <span class="s2">&quot;flex&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;transmission&quot;</span><span class="p">:</span> <span class="s2">&quot;manual&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="s2">&quot;95000.00&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Carro seminovo&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;is_available&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;brand_id&quot;</span><span class="p">:</span> <span class="n">sample_brand</span><span class="o">.</span><span class="n">id</span>
+        <span class="p">}</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="s2">&quot;/api/v1/cars/&quot;</span><span class="p">,</span>
+            <span class="n">json</span><span class="o">=</span><span class="n">car_data</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="n">auth_headers</span>
+        <span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">201</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Civic&quot;</span>
+        <span class="k">assert</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;plate&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;XYZ9876&quot;</span>
+        <span class="k">assert</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;brand&quot;</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">sample_brand</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">assert</span> <span class="s2">&quot;owner&quot;</span> <span class="ow">in</span> <span class="n">data</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_create_car_duplicate_plate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="n">AsyncClient</span><span class="p">,</span> <span class="n">auth_headers</span><span class="p">,</span> <span class="n">sample_car</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar criação com placa duplicada.&quot;&quot;&quot;</span>
+        <span class="n">car_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;Civic&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;factory_year&quot;</span><span class="p">:</span> <span class="mi">2023</span><span class="p">,</span>
+            <span class="s2">&quot;model_year&quot;</span><span class="p">:</span> <span class="mi">2023</span><span class="p">,</span>
+            <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;Preto&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;plate&quot;</span><span class="p">:</span> <span class="n">sample_car</span><span class="o">.</span><span class="n">plate</span><span class="p">,</span>  <span class="c1"># Placa já existe</span>
+            <span class="s2">&quot;fuel_type&quot;</span><span class="p">:</span> <span class="s2">&quot;flex&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;transmission&quot;</span><span class="p">:</span> <span class="s2">&quot;manual&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="s2">&quot;95000.00&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;brand_id&quot;</span><span class="p">:</span> <span class="n">sample_car</span><span class="o">.</span><span class="n">brand_id</span>
+        <span class="p">}</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="s2">&quot;/api/v1/cars/&quot;</span><span class="p">,</span>
+            <span class="n">json</span><span class="o">=</span><span class="n">car_data</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="n">auth_headers</span>
+        <span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span>
+        <span class="k">assert</span> <span class="s2">&quot;Placa já está em uso&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;detail&quot;</span><span class="p">]</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_list_cars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="n">AsyncClient</span><span class="p">,</span> <span class="n">auth_headers</span><span class="p">,</span> <span class="n">sample_car</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar listagem de carros.&quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/v1/cars/&quot;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">auth_headers</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="s2">&quot;cars&quot;</span> <span class="ow">in</span> <span class="n">data</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;cars&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="k">assert</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;cars&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">sample_car</span><span class="o">.</span><span class="n">id</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_list_cars_with_filters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="n">AsyncClient</span><span class="p">,</span> <span class="n">auth_headers</span><span class="p">,</span> <span class="n">sample_car</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar listagem com filtros.&quot;&quot;&quot;</span>
+        <span class="c1"># Filtro por marca</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;/api/v1/cars/?brand_id=</span><span class="si">{</span><span class="n">sample_car</span><span class="o">.</span><span class="n">brand_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="n">auth_headers</span>
+        <span class="p">)</span>
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;cars&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span>
+
+        <span class="c1"># Filtro por combustível</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;/api/v1/cars/?fuel_type=</span><span class="si">{</span><span class="n">sample_car</span><span class="o">.</span><span class="n">fuel_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="n">auth_headers</span>
+        <span class="p">)</span>
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;cars&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span>
+
+        <span class="c1"># Filtro por preço</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;/api/v1/cars/?min_price=50000&amp;max_price=100000&quot;</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="n">auth_headers</span>
+        <span class="p">)</span>
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;cars&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_get_car_success</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="n">AsyncClient</span><span class="p">,</span> <span class="n">auth_headers</span><span class="p">,</span> <span class="n">sample_car</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar busca bem-sucedida de carro.&quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;/api/v1/cars/</span><span class="si">{</span><span class="n">sample_car</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="n">auth_headers</span>
+        <span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">sample_car</span><span class="o">.</span><span class="n">id</span>
+        <span class="k">assert</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;model&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">sample_car</span><span class="o">.</span><span class="n">model</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_get_car_not_found</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="n">AsyncClient</span><span class="p">,</span> <span class="n">auth_headers</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar busca de carro inexistente.&quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/v1/cars/999&quot;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">auth_headers</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">404</span>
+        <span class="k">assert</span> <span class="s2">&quot;não encontrado&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;detail&quot;</span><span class="p">]</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_update_car_success</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="n">AsyncClient</span><span class="p">,</span> <span class="n">auth_headers</span><span class="p">,</span> <span class="n">sample_car</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar atualização bem-sucedida de carro.&quot;&quot;&quot;</span>
+        <span class="n">update_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="s2">&quot;88000.00&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Preço atualizado&quot;</span>
+        <span class="p">}</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;/api/v1/cars/</span><span class="si">{</span><span class="n">sample_car</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">json</span><span class="o">=</span><span class="n">update_data</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="n">auth_headers</span>
+        <span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;88000.00&quot;</span>
+        <span class="k">assert</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;description&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Preço atualizado&quot;</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_delete_car_success</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="n">AsyncClient</span><span class="p">,</span> <span class="n">auth_headers</span><span class="p">,</span> <span class="n">sample_car</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar deleção bem-sucedida de carro.&quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;/api/v1/cars/</span><span class="si">{</span><span class="n">sample_car</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="n">auth_headers</span>
+        <span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">204</span>
+
+        <span class="c1"># Verificar que foi deletado</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;/api/v1/cars/</span><span class="si">{</span><span class="n">sample_car</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="n">auth_headers</span>
+        <span class="p">)</span>
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">404</span>
+</code></pre></div>
+<h2 id="testes-end-to-end">🎯 Testes End-to-End</h2>
+<h3 id="jornada-completa-do-usuario">Jornada Completa do Usuário</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># tests/e2e/test_user_journey.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">httpx</span><span class="w"> </span><span class="kn">import</span> <span class="n">AsyncClient</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TestUserJourney</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_complete_user_journey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="n">AsyncClient</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar jornada completa do usuário.&quot;&quot;&quot;</span>
+
+        <span class="c1"># 1. Registrar usuário</span>
+        <span class="n">user_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;newuser&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;newuser@example.com&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;securepassword123&quot;</span>
+        <span class="p">}</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/api/v1/users/&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">user_data</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">201</span>
+        <span class="n">user_id</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+
+        <span class="c1"># 2. Fazer login</span>
+        <span class="n">login_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;newuser@example.com&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;securepassword123&quot;</span>
+        <span class="p">}</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/api/v1/auth/token&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">login_data</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;access_token&quot;</span><span class="p">]</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+
+        <span class="c1"># 3. Criar marca</span>
+        <span class="n">brand_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Tesla&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Veículos elétricos&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;is_active&quot;</span><span class="p">:</span> <span class="kc">True</span>
+        <span class="p">}</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/api/v1/brands/&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">brand_data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">201</span>
+        <span class="n">brand_id</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+
+        <span class="c1"># 4. Criar múltiplos carros</span>
+        <span class="n">cars</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="n">car_data</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Model </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;factory_year&quot;</span><span class="p">:</span> <span class="mi">2023</span><span class="p">,</span>
+                <span class="s2">&quot;model_year&quot;</span><span class="p">:</span> <span class="mi">2023</span><span class="p">,</span>
+                <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Branco&quot;</span><span class="p">,</span> <span class="s2">&quot;Preto&quot;</span><span class="p">,</span> <span class="s2">&quot;Vermelho&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
+                <span class="s2">&quot;plate&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;TSL</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">234&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;fuel_type&quot;</span><span class="p">:</span> <span class="s2">&quot;electric&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;transmission&quot;</span><span class="p">:</span> <span class="s2">&quot;automatic&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="mi">150000</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="o">*</span><span class="mi">10000</span><span class="si">}</span><span class="s2">.00&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Tesla Model </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;is_available&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="s2">&quot;brand_id&quot;</span><span class="p">:</span> <span class="n">brand_id</span>
+            <span class="p">}</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/api/v1/cars/&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">car_data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">201</span>
+            <span class="n">cars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+
+        <span class="c1"># 5. Listar todos os carros</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/v1/cars/&quot;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;cars&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">3</span>
+
+        <span class="c1"># 6. Filtrar carros por preço</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="s2">&quot;/api/v1/cars/?min_price=160000&quot;</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="n">headers</span>
+        <span class="p">)</span>
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+        <span class="n">filtered_cars</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;cars&quot;</span><span class="p">]</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">filtered_cars</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>  <span class="c1"># Apenas 2 carros custam mais que 160k</span>
+
+        <span class="c1"># 7. Atualizar um carro</span>
+        <span class="n">car_to_update</span> <span class="o">=</span> <span class="n">cars</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">update_data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="s2">&quot;145000.00&quot;</span><span class="p">,</span> <span class="s2">&quot;is_available&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;/api/v1/cars/</span><span class="si">{</span><span class="n">car_to_update</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">json</span><span class="o">=</span><span class="n">update_data</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="n">headers</span>
+        <span class="p">)</span>
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;145000.00&quot;</span>
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;is_available&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">False</span>
+
+        <span class="c1"># 8. Buscar carros disponíveis</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="s2">&quot;/api/v1/cars/?is_available=true&quot;</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="n">headers</span>
+        <span class="p">)</span>
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+        <span class="n">available_cars</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;cars&quot;</span><span class="p">]</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">available_cars</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>  <span class="c1"># Apenas 2 estão disponíveis</span>
+
+        <span class="c1"># 9. Deletar um carro</span>
+        <span class="n">car_to_delete</span> <span class="o">=</span> <span class="n">cars</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;/api/v1/cars/</span><span class="si">{</span><span class="n">car_to_delete</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="n">headers</span>
+        <span class="p">)</span>
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">204</span>
+
+        <span class="c1"># 10. Verificar que foi deletado</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/v1/cars/&quot;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+        <span class="n">remaining_cars</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;cars&quot;</span><span class="p">]</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">remaining_cars</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+        <span class="k">assert</span> <span class="n">car_to_delete</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">car</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">car</span> <span class="ow">in</span> <span class="n">remaining_cars</span><span class="p">]</span>
+
+        <span class="c1"># 11. Renovar token</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/api/v1/auth/refresh_token&quot;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+        <span class="n">new_token</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;access_token&quot;</span><span class="p">]</span>
+        <span class="k">assert</span> <span class="n">new_token</span> <span class="o">!=</span> <span class="n">token</span>  <span class="c1"># Token deve ser diferente</span>
+
+        <span class="c1"># 12. Verificar acesso com novo token</span>
+        <span class="n">new_headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">new_token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/api/v1/cars/&quot;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">new_headers</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+</code></pre></div>
+<h2 id="cobertura-de-testes">📊 Cobertura de Testes</h2>
+<h3 id="configuracao-de-coverage">Configuração de Coverage</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># pyproject.toml</span>
+<span class="k">[tool.coverage.run]</span>
+<span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;car_api&quot;</span><span class="p">]</span>
+<span class="n">omit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;*/tests/*&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;*/venv/*&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;*/.venv/*&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;*/migrations/*&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;*/__init__.py&quot;</span>
+<span class="p">]</span>
+
+<span class="k">[tool.coverage.report]</span>
+<span class="n">exclude_lines</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;pragma: no cover&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;def __repr__&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;if self.debug:&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;if settings.DEBUG&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;raise AssertionError&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;raise NotImplementedError&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;if 0:&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;if __name__ == .__main__.:&quot;</span>
+<span class="p">]</span>
+</code></pre></div>
+<h3 id="executar-testes-com-coverage">Executar Testes com Coverage</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Executar todos os testes com coverage</span>
+poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>--cov<span class="o">=</span>car_api<span class="w"> </span>--cov-report<span class="o">=</span>html<span class="w"> </span>--cov-report<span class="o">=</span>term-missing
+
+<span class="c1"># Coverage mínima de 90%</span>
+poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>--cov<span class="o">=</span>car_api<span class="w"> </span>--cov-fail-under<span class="o">=</span><span class="m">90</span>
+
+<span class="c1"># Gerar relatório HTML</span>
+poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>--cov<span class="o">=</span>car_api<span class="w"> </span>--cov-report<span class="o">=</span>html
+open<span class="w"> </span>htmlcov/index.html
+
+<span class="c1"># Coverage apenas de arquivos modificados</span>
+poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>--cov<span class="o">=</span>car_api<span class="w"> </span>--cov-report<span class="o">=</span>term-missing<span class="w"> </span>tests/integration/test_cars.py
+</code></pre></div>
+<h3 id="relatorio-de-coverage">Relatório de Coverage</h3>
+<div class="highlight"><pre><span></span><code>Name                          Stmts   Miss  Cover   Missing
+-----------------------------------------------------------
+car_api/__init__.py               0      0   100%
+car_api/app.py                   15      0   100%
+car_api/core/database.py         12      1    92%   23
+car_api/core/security.py         45      2    96%   67-68
+car_api/core/settings.py          8      0   100%
+car_api/models/base.py            3      0   100%
+car_api/models/cars.py           35      0   100%
+car_api/models/users.py          12      0   100%
+car_api/routers/auth.py          25      1    96%   47
+car_api/routers/brands.py        85      3    96%   156-158
+car_api/routers/cars.py         125      5    96%   234-238
+car_api/routers/users.py         95      4    96%   167-170
+car_api/schemas/auth.py           8      0   100%
+car_api/schemas/brands.py        18      0   100%
+car_api/schemas/cars.py          32      0   100%
+car_api/schemas/users.py         22      0   100%
+-----------------------------------------------------------
+TOTAL                           540     16    97%
+</code></pre></div>
+<h2 id="automacao-de-testes">🚀 Automação de Testes</h2>
+<h3 id="github-actions-cicd">GitHub Actions CI/CD</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># .github/workflows/tests.yml</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Tests</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">main</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">develop</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">main</span><span class="w"> </span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">strategy</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">matrix</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">3.13</span><span class="p p-Indicator">]</span>
+
+<span class="w">    </span><span class="nt">services</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">postgres</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres:15</span>
+<span class="w">        </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">POSTGRES_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres</span>
+<span class="w">          </span><span class="nt">POSTGRES_DB</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test_car_api</span>
+<span class="w">        </span><span class="nt">options</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;-</span>
+<span class="w">          </span><span class="no">--health-cmd pg_isready</span>
+<span class="w">          </span><span class="no">--health-interval 10s</span>
+<span class="w">          </span><span class="no">--health-timeout 5s</span>
+<span class="w">          </span><span class="no">--health-retries 5</span>
+
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up Python ${{ matrix.python-version }}</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v4</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ matrix.python-version }}</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install Poetry</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">snok/install-poetry@v1</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">latest</span>
+<span class="w">        </span><span class="nt">virtualenvs-create</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">        </span><span class="nt">virtualenvs-in-project</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Load cached venv</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cached-poetry-dependencies</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/cache@v3</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.venv</span>
+<span class="w">        </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">venv-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles(&#39;**/poetry.lock&#39;) }}</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
+<span class="w">      </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">steps.cached-poetry-dependencies.outputs.cache-hit != &#39;true&#39;</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">poetry install --no-interaction --no-root</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install project</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">poetry install --no-interaction</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run linting</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">poetry run ruff check</span>
+<span class="w">        </span><span class="no">poetry run ruff format --check</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run tests</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">poetry run pytest --cov=car_api --cov-report=xml --cov-fail-under=90</span>
+<span class="w">      </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">DATABASE_URL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgresql+psycopg://postgres:postgres@localhost:5432/test_car_api</span>
+<span class="w">        </span><span class="nt">JWT_SECRET_KEY</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test-secret-key-for-ci</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Upload coverage to Codecov</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codecov/codecov-action@v3</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./coverage.xml</span>
+<span class="w">        </span><span class="nt">flags</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unittests</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codecov-umbrella</span>
+</code></pre></div>
+<h3 id="pre-commit-hooks-para-testes">Pre-commit Hooks para Testes</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># .pre-commit-config.yaml</span>
+<span class="nt">repos</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
+<span class="w">    </span><span class="nt">hooks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tests</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run tests</span>
+<span class="w">        </span><span class="nt">entry</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">poetry run pytest tests/unit tests/integration --maxfail=1</span>
+<span class="w">        </span><span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">system</span>
+<span class="w">        </span><span class="nt">pass_filenames</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">        </span><span class="nt">always_run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<h2 id="testes-de-performance">🎯 Testes de Performance</h2>
+<h3 id="teste-de-carga">Teste de Carga</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># tests/performance/test_load.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">httpx</span><span class="w"> </span><span class="kn">import</span> <span class="n">AsyncClient</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TestPerformance</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_concurrent_car_creation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="n">AsyncClient</span><span class="p">,</span> <span class="n">auth_headers</span><span class="p">,</span> <span class="n">sample_brand</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Testar criação concorrente de carros.&quot;&quot;&quot;</span>
+
+        <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_car</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+            <span class="n">car_data</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Civic </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;factory_year&quot;</span><span class="p">:</span> <span class="mi">2023</span><span class="p">,</span>
+                <span class="s2">&quot;model_year&quot;</span><span class="p">:</span> <span class="mi">2023</span><span class="p">,</span>
+                <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;Preto&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;plate&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;ABC</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;fuel_type&quot;</span><span class="p">:</span> <span class="s2">&quot;flex&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;transmission&quot;</span><span class="p">:</span> <span class="s2">&quot;manual&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="s2">&quot;95000.00&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;brand_id&quot;</span><span class="p">:</span> <span class="n">sample_brand</span><span class="o">.</span><span class="n">id</span>
+            <span class="p">}</span>
+
+            <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+                <span class="s2">&quot;/api/v1/cars/&quot;</span><span class="p">,</span>
+                <span class="n">json</span><span class="o">=</span><span class="n">car_data</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="n">auth_headers</span>
+            <span class="p">)</span>
+            <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&quot;status_code&quot;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span>
+                <span class="s2">&quot;duration&quot;</span><span class="p">:</span> <span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span>
+            <span class="p">}</span>
+
+        <span class="c1"># Criar 10 carros concorrentemente</span>
+        <span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span><span class="n">create_car</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="o">*</span><span class="n">tasks</span><span class="p">)</span>
+
+        <span class="c1"># Verificar resultados</span>
+        <span class="n">success_count</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span> <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;status_code&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">201</span><span class="p">)</span>
+        <span class="n">avg_duration</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;duration&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">success_count</span> <span class="o">==</span> <span class="mi">10</span>  <span class="c1"># Todos devem ter sucesso</span>
+        <span class="k">assert</span> <span class="n">avg_duration</span> <span class="o">&lt;</span> <span class="mf">1.0</span>   <span class="c1"># Menos de 1 segundo por request</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Created </span><span class="si">{</span><span class="n">success_count</span><span class="si">}</span><span class="s2"> cars in average </span><span class="si">{</span><span class="n">avg_duration</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s each&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="comandos-de-teste">📋 Comandos de Teste</h2>
+<h3 id="comandos-basicos">Comandos Básicos</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Executar todos os testes</span>
+poetry<span class="w"> </span>run<span class="w"> </span>pytest
+
+<span class="c1"># Executar testes específicos</span>
+poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/unit/
+poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/integration/test_cars.py
+poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/e2e/<span class="w"> </span>-v
+
+<span class="c1"># Executar com marcadores</span>
+poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-m<span class="w"> </span>unit
+poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-m<span class="w"> </span>integration
+poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;not slow&quot;</span>
+
+<span class="c1"># Executar com coverage</span>
+poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>--cov<span class="o">=</span>car_api
+poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>--cov<span class="o">=</span>car_api<span class="w"> </span>--cov-report<span class="o">=</span>html
+
+<span class="c1"># Executar testes que falharam na última execução</span>
+poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>--lf
+
+<span class="c1"># Executar em modo watch</span>
+poetry<span class="w"> </span>run<span class="w"> </span>ptw<span class="w"> </span>--now
+</code></pre></div>
+<h3 id="comandos-avancados">Comandos Avançados</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Executar com profiling</span>
+poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>--profile
+
+<span class="c1"># Executar com timeout</span>
+poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>--timeout<span class="o">=</span><span class="m">300</span>
+
+<span class="c1"># Executar em paralelo</span>
+poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-n<span class="w"> </span>auto
+
+<span class="c1"># Verbose com duração</span>
+poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-v<span class="w"> </span>--durations<span class="o">=</span><span class="m">10</span>
+
+<span class="c1"># Gerar relatório JUnit XML</span>
+poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>--junit-xml<span class="o">=</span>results.xml
+
+<span class="c1"># Executar apenas testes modificados</span>
+poetry<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>--testmon
+</code></pre></div>
+<h2 id="proximos-passos">🚀 Próximos Passos</h2>
+<p>Para melhorar ainda mais os testes:</p>
+<ol>
+<li>🚀 <a href="../deployment/">Deploy</a> - Pipeline de CI/CD</li>
+<li>📊 Implementar testes de mutation testing</li>
+<li>🎯 Adicionar testes de propriedade (Hypothesis)</li>
+<li>📱 Testes de API com Postman/Newman</li>
+<li>🔍 Testes de segurança automatizados</li>
+<li>📈 Benchmarks de performance automatizados</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

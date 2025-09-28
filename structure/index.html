@@ -1,0 +1,2031 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Uma API REST completa para gerenciamento de carros e usuários">
+      
+      
+        <meta name="author" content="PyCodeBR">
+      
+      
+      
+        <link rel="prev" href="../guidelines/">
+      
+      
+        <link rel="next" href="../api-endpoints/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Estrutura - Car API</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#estrutura-do-projeto" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Car API" class="md-header__button md-logo" aria-label="Car API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Car API
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Estrutura
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Car API" class="md-nav__button md-logo" aria-label="Car API" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Car API
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Início
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Visão geral
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prerequisites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pré-requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Instalação
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuração
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guidelines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Guidelines e padrões
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Estrutura
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Estrutura
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral-da-estrutura" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Visão Geral da Estrutura
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detalhamento-dos-diretorios" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 Detalhamento dos Diretórios
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📦 Detalhamento dos Diretórios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#car_apiapppy-aplicacao-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 car_api/app.py - Aplicação Principal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#car_apicore-funcionalidades-centrais" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ car_api/core/ - Funcionalidades Centrais
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ car_api/core/ - Funcionalidades Centrais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#databasepy-configuracao-do-banco" class="md-nav__link">
+    <span class="md-ellipsis">
+      database.py - Configuração do Banco
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#securitypy-seguranca-e-autenticacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      security.py - Segurança e Autenticação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settingspy-configuracoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      settings.py - Configurações
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#car_apimodels-modelos-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏗️ car_api/models/ - Modelos de Dados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏗️ car_api/models/ - Modelos de Dados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basepy-classe-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      base.py - Classe Base
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#userspy-modelo-de-usuarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      users.py - Modelo de Usuários
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#carspy-modelos-de-carros-e-marcas" class="md-nav__link">
+    <span class="md-ellipsis">
+      cars.py - Modelos de Carros e Marcas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#car_apirouters-rotas-da-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛣️ car_api/routers/ - Rotas da API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛣️ car_api/routers/ - Rotas da API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estrutura-padrao-de-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estrutura Padrão de Router
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#funcionalidades-implementadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funcionalidades Implementadas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#car_apischemas-esquemas-pydantic" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 car_api/schemas/ - Esquemas Pydantic
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📝 car_api/schemas/ - Esquemas Pydantic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#padrao-de-nomenclatura" class="md-nav__link">
+    <span class="md-ellipsis">
+      Padrão de Nomenclatura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#funcionalidades-dos-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funcionalidades dos Schemas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migrations-migracoes-do-banco" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 migrations/ - Migrações do Banco
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 migrations/ - Migrações do Banco">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estrutura-das-migracoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estrutura das Migrações
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exemplo-de-migracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemplo de Migração
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tests-testes-automatizados" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 tests/ - Testes Automatizados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 tests/ - Testes Automatizados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estrutura-dos-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estrutura dos Testes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixtures-principais-conftestpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixtures Principais (conftest.py)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#padrao-de-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Padrão de Testes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arquivos-de-configuracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Arquivos de Configuração
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Arquivos de Configuração">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyprojecttoml-configuracao-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      pyproject.toml - Configuração Principal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alembicini-configuracao-de-migracoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      alembic.ini - Configuração de Migrações
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-composeyml-orquestracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker-compose.yml - Orquestração
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metricas-da-estrutura" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Métricas da Estrutura
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Métricas da Estrutura">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tamanho-dos-modulos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tamanho dos Módulos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexidade
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#principios-arquiteturais" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Princípios Arquiteturais
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Princípios Arquiteturais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#single-responsibility-principle-srp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Single Responsibility Principle (SRP)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependency-inversion-principle-dip" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependency Inversion Principle (DIP)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openclosed-principle-ocp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Open/Closed Principle (OCP)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interface-segregation-principle-isp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interface Segregation Principle (ISP)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#escalabilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Escalabilidade
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Escalabilidade">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#horizontal-adicionar-funcionalidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      Horizontal (Adicionar Funcionalidades)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vertical-melhorar-existente" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vertical (Melhorar Existente)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximos-passos" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Próximos Passos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-endpoints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Endpoints
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../system-modeling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Modelagem do Sistema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Autenticação e Segurança
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Desenvolvimento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Testes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contribuição
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release Notes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral-da-estrutura" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Visão Geral da Estrutura
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detalhamento-dos-diretorios" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 Detalhamento dos Diretórios
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📦 Detalhamento dos Diretórios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#car_apiapppy-aplicacao-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 car_api/app.py - Aplicação Principal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#car_apicore-funcionalidades-centrais" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ car_api/core/ - Funcionalidades Centrais
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ car_api/core/ - Funcionalidades Centrais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#databasepy-configuracao-do-banco" class="md-nav__link">
+    <span class="md-ellipsis">
+      database.py - Configuração do Banco
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#securitypy-seguranca-e-autenticacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      security.py - Segurança e Autenticação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settingspy-configuracoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      settings.py - Configurações
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#car_apimodels-modelos-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏗️ car_api/models/ - Modelos de Dados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏗️ car_api/models/ - Modelos de Dados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basepy-classe-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      base.py - Classe Base
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#userspy-modelo-de-usuarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      users.py - Modelo de Usuários
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#carspy-modelos-de-carros-e-marcas" class="md-nav__link">
+    <span class="md-ellipsis">
+      cars.py - Modelos de Carros e Marcas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#car_apirouters-rotas-da-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛣️ car_api/routers/ - Rotas da API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛣️ car_api/routers/ - Rotas da API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estrutura-padrao-de-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estrutura Padrão de Router
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#funcionalidades-implementadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funcionalidades Implementadas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#car_apischemas-esquemas-pydantic" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 car_api/schemas/ - Esquemas Pydantic
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📝 car_api/schemas/ - Esquemas Pydantic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#padrao-de-nomenclatura" class="md-nav__link">
+    <span class="md-ellipsis">
+      Padrão de Nomenclatura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#funcionalidades-dos-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funcionalidades dos Schemas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migrations-migracoes-do-banco" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 migrations/ - Migrações do Banco
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 migrations/ - Migrações do Banco">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estrutura-das-migracoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estrutura das Migrações
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exemplo-de-migracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemplo de Migração
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tests-testes-automatizados" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 tests/ - Testes Automatizados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 tests/ - Testes Automatizados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estrutura-dos-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estrutura dos Testes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixtures-principais-conftestpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixtures Principais (conftest.py)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#padrao-de-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Padrão de Testes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arquivos-de-configuracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Arquivos de Configuração
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Arquivos de Configuração">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyprojecttoml-configuracao-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      pyproject.toml - Configuração Principal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alembicini-configuracao-de-migracoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      alembic.ini - Configuração de Migrações
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-composeyml-orquestracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker-compose.yml - Orquestração
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metricas-da-estrutura" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Métricas da Estrutura
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Métricas da Estrutura">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tamanho-dos-modulos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tamanho dos Módulos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complexidade
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#principios-arquiteturais" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Princípios Arquiteturais
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Princípios Arquiteturais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#single-responsibility-principle-srp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Single Responsibility Principle (SRP)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependency-inversion-principle-dip" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependency Inversion Principle (DIP)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openclosed-principle-ocp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Open/Closed Principle (OCP)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interface-segregation-principle-isp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interface Segregation Principle (ISP)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#escalabilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Escalabilidade
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Escalabilidade">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#horizontal-adicionar-funcionalidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      Horizontal (Adicionar Funcionalidades)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vertical-melhorar-existente" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vertical (Melhorar Existente)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximos-passos" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Próximos Passos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="estrutura-do-projeto">Estrutura do Projeto</h1>
+<h2 id="visao-geral-da-estrutura">📁 Visão Geral da Estrutura</h2>
+<div class="highlight"><pre><span></span><code>car_api/
+├── car_api/                    # 📦 Código principal da aplicação
+│   ├── __init__.py
+│   ├── app.py                  # 🚀 Arquivo principal do FastAPI
+│   ├── core/                   # ⚙️ Funcionalidades centrais
+│   │   ├── __init__.py
+│   │   ├── database.py         # 🗃️ Configuração do banco de dados
+│   │   ├── security.py         # 🔐 Funções de segurança e JWT
+│   │   └── settings.py         # 📋 Configurações da aplicação
+│   ├── models/                 # 🏗️ Modelos SQLAlchemy
+│   │   ├── __init__.py
+│   │   ├── base.py             # 📄 Classe base para modelos
+│   │   ├── cars.py             # 🚗 Modelos de carros e marcas
+│   │   └── users.py            # 👤 Modelo de usuários
+│   ├── routers/                # 🛣️ Rotas da API
+│   │   ├── __init__.py
+│   │   ├── auth.py             # 🔑 Rotas de autenticação
+│   │   ├── brands.py           # 🏷️ Rotas de marcas
+│   │   ├── cars.py             # 🚗 Rotas de carros
+│   │   └── users.py            # 👤 Rotas de usuários
+│   └── schemas/                # 📝 Esquemas Pydantic
+│       ├── __init__.py
+│       ├── auth.py             # 🔑 Esquemas de autenticação
+│       ├── brands.py           # 🏷️ Esquemas de marcas
+│       ├── cars.py             # 🚗 Esquemas de carros
+│       └── users.py            # 👤 Esquemas de usuários
+├── docs/                       # 📚 Documentação do projeto
+│   ├── index.md                # 🏠 Página inicial da documentação
+│   ├── overview.md             # 📖 Visão geral
+│   ├── prerequisites.md        # 🔧 Pré-requisitos
+│   ├── installation.md         # 💿 Instalação
+│   ├── configuration.md        # ⚙️ Configuração
+│   ├── guidelines.md           # 📏 Guidelines e padrões
+│   ├── structure.md            # 📁 Este arquivo
+│   └── ...                     # 📄 Outros arquivos de documentação
+├── migrations/                 # 🔄 Migrações do Alembic
+│   ├── env.py                  # 🌍 Configuração do ambiente Alembic
+│   └── versions/               # 📅 Versões das migrações
+│       └── *.py                # 📄 Arquivos de migração
+├── tests/                      # 🧪 Testes automatizados
+│   ├── __init__.py
+│   ├── conftest.py             # ⚙️ Configurações dos testes
+│   ├── test_auth.py            # 🔑 Testes de autenticação
+│   ├── test_brands.py          # 🏷️ Testes de marcas
+│   ├── test_cars.py            # 🚗 Testes de carros
+│   ├── test_db.py              # 🗃️ Testes de banco de dados
+│   └── test_users.py           # 👤 Testes de usuários
+├── .env                        # 🔐 Variáveis de ambiente (local)
+├── .env.example                # 📋 Exemplo de variáveis de ambiente
+├── alembic.ini                 # ⚙️ Configuração do Alembic
+├── docker-compose.yml          # 🐳 Configuração Docker Compose
+├── Dockerfile                  # 🐳 Imagem Docker da aplicação
+├── Dockerfile.mkdocs           # 📚 Imagem Docker para documentação
+├── poetry.lock                 # 🔒 Lock file do Poetry
+├── pyproject.toml              # 📦 Configuração do projeto
+├── README.md                   # 📖 Documentação básica
+└── requirements.txt            # 📋 Dependências (gerado pelo Poetry)
+</code></pre></div>
+<h2 id="detalhamento-dos-diretorios">📦 Detalhamento dos Diretórios</h2>
+<h3 id="car_apiapppy-aplicacao-principal">🚀 <code>car_api/app.py</code> - Aplicação Principal</h3>
+<p>Arquivo de entrada da aplicação FastAPI:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastAPI</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">car_api.routers</span><span class="w"> </span><span class="kn">import</span> <span class="n">auth</span><span class="p">,</span> <span class="n">brands</span><span class="p">,</span> <span class="n">cars</span><span class="p">,</span> <span class="n">users</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+<span class="c1"># Configuração de routers</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">auth</span><span class="o">.</span><span class="n">router</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;/api/v1/auth&#39;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;authentication&#39;</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">router</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;/api/v1/users&#39;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;users&#39;</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">brands</span><span class="o">.</span><span class="n">router</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;/api/v1/brands&#39;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;brands&#39;</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">cars</span><span class="o">.</span><span class="n">router</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;/api/v1/cars&#39;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;cars&#39;</span><span class="p">])</span>
+
+<span class="c1"># Health check endpoint</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/health_check&#39;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">health_check</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;ok&#39;</span><span class="p">}</span>
+</code></pre></div>
+<p><strong>Responsabilidades:</strong>
+- Criar instância do FastAPI
+- Registrar routers e middleware
+- Configurar CORS e outros middleware
+- Definir endpoints globais</p>
+<h3 id="car_apicore-funcionalidades-centrais">⚙️ <code>car_api/core/</code> - Funcionalidades Centrais</h3>
+<h4 id="databasepy-configuracao-do-banco"><code>database.py</code> - Configuração do Banco</h4>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy.ext.asyncio</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_async_engine</span><span class="p">,</span> <span class="n">async_sessionmaker</span>
+
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_async_engine</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">database_url</span><span class="p">)</span>
+<span class="n">SessionLocal</span> <span class="o">=</span> <span class="n">async_sessionmaker</span><span class="p">(</span><span class="n">engine</span><span class="p">,</span> <span class="n">expire_on_commit</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_session</span><span class="p">():</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">SessionLocal</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">session</span>
+</code></pre></div>
+<p><strong>Responsabilidades:</strong>
+- Configurar engine do SQLAlchemy
+- Gerenciar sessões de banco
+- Dependency injection para sessões</p>
+<h4 id="securitypy-seguranca-e-autenticacao"><code>security.py</code> - Segurança e Autenticação</h4>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pwdlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">PasswordHash</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">jwt</span>
+
+<span class="n">pwd_context</span> <span class="o">=</span> <span class="n">PasswordHash</span><span class="o">.</span><span class="n">recommended</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_password_hash</span><span class="p">(</span><span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">pwd_context</span><span class="o">.</span><span class="n">hash</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">create_access_token</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">jwt</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">settings</span><span class="o">.</span><span class="n">jwt_secret_key</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">jwt_algorithm</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Responsabilidades:</strong>
+- Hash de senhas com Argon2
+- Criação e validação de tokens JWT
+- Dependency para usuário atual
+- Verificação de permissões</p>
+<h4 id="settingspy-configuracoes"><code>settings.py</code> - Configurações</h4>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic_settings</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSettings</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Settings</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span>
+    <span class="n">database_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;sqlite+aiosqlite:///./car.db&#39;</span>
+    <span class="n">jwt_secret_key</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">jwt_algorithm</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;HS256&#39;</span>
+    <span class="n">jwt_expiration_minutes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">:</span>
+        <span class="n">env_file</span> <span class="o">=</span> <span class="s1">&#39;.env&#39;</span>
+</code></pre></div>
+<p><strong>Responsabilidades:</strong>
+- Centralizar configurações
+- Validação de variáveis de ambiente
+- Type hints para configurações</p>
+<h3 id="car_apimodels-modelos-de-dados">🏗️ <code>car_api/models/</code> - Modelos de Dados</h3>
+<h4 id="basepy-classe-base"><code>base.py</code> - Classe Base</h4>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy.orm</span><span class="w"> </span><span class="kn">import</span> <span class="n">DeclarativeBase</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Base</span><span class="p">(</span><span class="n">DeclarativeBase</span><span class="p">):</span>
+    <span class="k">pass</span>
+</code></pre></div>
+<h4 id="userspy-modelo-de-usuarios"><code>users.py</code> - Modelo de Usuários</h4>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">User</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s1">&#39;users&#39;</span>
+
+    <span class="nb">id</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">mapped_column</span><span class="p">(</span><span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">username</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">mapped_column</span><span class="p">(</span><span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">email</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">mapped_column</span><span class="p">(</span><span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">password</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">created_at</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="n">mapped_column</span><span class="p">(</span><span class="n">server_default</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">now</span><span class="p">())</span>
+    <span class="n">updated_at</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="n">mapped_column</span><span class="p">(</span><span class="n">onupdate</span><span class="o">=</span><span class="n">func</span><span class="o">.</span><span class="n">now</span><span class="p">())</span>
+
+    <span class="n">cars</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="s1">&#39;Car&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span><span class="n">back_populates</span><span class="o">=</span><span class="s1">&#39;owner&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="carspy-modelos-de-carros-e-marcas"><code>cars.py</code> - Modelos de Carros e Marcas</h4>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Brand</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s1">&#39;brands&#39;</span>
+
+    <span class="nb">id</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">mapped_column</span><span class="p">(</span><span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">mapped_column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">description</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">mapped_column</span><span class="p">(</span><span class="n">Text</span><span class="p">)</span>
+    <span class="n">is_active</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="n">mapped_column</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Car</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s1">&#39;cars&#39;</span>
+
+    <span class="nb">id</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">mapped_column</span><span class="p">(</span><span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">mapped_column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+    <span class="n">factory_year</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+    <span class="n">model_year</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+    <span class="n">color</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">mapped_column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">30</span><span class="p">))</span>
+    <span class="n">plate</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">mapped_column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">fuel_type</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="n">FuelType</span><span class="p">]</span>
+    <span class="n">transmission</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="n">TransmissionType</span><span class="p">]</span>
+    <span class="n">price</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="n">Decimal</span><span class="p">]</span> <span class="o">=</span> <span class="n">mapped_column</span><span class="p">(</span><span class="n">Numeric</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+    <span class="c1"># Relacionamentos</span>
+    <span class="n">brand_id</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">mapped_column</span><span class="p">(</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;brands.id&#39;</span><span class="p">))</span>
+    <span class="n">owner_id</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">mapped_column</span><span class="p">(</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;users.id&#39;</span><span class="p">))</span>
+
+    <span class="n">brand</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="s1">&#39;Brand&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span><span class="s1">&#39;Brand&#39;</span><span class="p">,</span> <span class="n">back_populates</span><span class="o">=</span><span class="s1">&#39;cars&#39;</span><span class="p">)</span>
+    <span class="n">owner</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="s1">&#39;User&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">,</span> <span class="n">back_populates</span><span class="o">=</span><span class="s1">&#39;cars&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Características dos Modelos:</strong>
+- <strong>Type hints completos</strong> com <code>Mapped[]</code>
+- <strong>Relacionamentos bidirecionais</strong>
+- <strong>Campos de auditoria</strong> (created_at, updated_at)
+- <strong>Validações de integridade</strong>
+- <strong>Enums</strong> para campos categóricos</p>
+<h3 id="car_apirouters-rotas-da-api">🛣️ <code>car_api/routers/</code> - Rotas da API</h3>
+<p>Cada router implementa as operações CRUD para sua entidade:</p>
+<h4 id="estrutura-padrao-de-router">Estrutura Padrão de Router</h4>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">APIRouter</span><span class="p">,</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">HTTPException</span><span class="p">,</span> <span class="n">Query</span><span class="p">,</span> <span class="n">status</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy.ext.asyncio</span><span class="w"> </span><span class="kn">import</span> <span class="n">AsyncSession</span>
+
+<span class="n">router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">()</span>
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_201_CREATED</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">Schema</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_item</span><span class="p">():</span> <span class="k">pass</span>
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">ListSchema</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">list_items</span><span class="p">():</span> <span class="k">pass</span>
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/</span><span class="si">{item_id}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">Schema</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_item</span><span class="p">():</span> <span class="k">pass</span>
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s1">&#39;/</span><span class="si">{item_id}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">Schema</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">update_item</span><span class="p">():</span> <span class="k">pass</span>
+
+<span class="nd">@router</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">&#39;/</span><span class="si">{item_id}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_204_NO_CONTENT</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">delete_item</span><span class="p">():</span> <span class="k">pass</span>
+</code></pre></div>
+<h4 id="funcionalidades-implementadas">Funcionalidades Implementadas</h4>
+<p><strong><code>auth.py</code>:</strong>
+- <code>POST /token</code> - Gerar token de acesso
+- <code>POST /refresh_token</code> - Renovar token</p>
+<p><strong><code>users.py</code>:</strong>
+- CRUD completo de usuários
+- Busca por username/email
+- Validação de unicidade</p>
+<p><strong><code>brands.py</code>:</strong>
+- CRUD completo de marcas
+- Filtros por status ativo
+- Proteção contra deleção com carros</p>
+<p><strong><code>cars.py</code>:</strong>
+- CRUD completo de carros
+- Filtros avançados (preço, combustível, etc.)
+- Verificação de propriedade
+- Busca por modelo/placa</p>
+<h3 id="car_apischemas-esquemas-pydantic">📝 <code>car_api/schemas/</code> - Esquemas Pydantic</h3>
+<h4 id="padrao-de-nomenclatura">Padrão de Nomenclatura</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Schema para criação (entrada)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">UserSchema</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">username</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">password</span><span class="p">:</span> <span class="nb">str</span>
+
+<span class="c1"># Schema para atualização (entrada parcial)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">UserUpdateSchema</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">username</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">email</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="c1"># Schema público (saída - sem senha)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">UserPublicSchema</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">username</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">created_at</span><span class="p">:</span> <span class="n">datetime</span>
+    <span class="n">updated_at</span><span class="p">:</span> <span class="n">datetime</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">:</span>
+        <span class="n">from_attributes</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Schema para listagem</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">UserListPublicSchema</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">users</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">UserPublicSchema</span><span class="p">]</span>
+    <span class="n">offset</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span>
+</code></pre></div>
+<h4 id="funcionalidades-dos-schemas">Funcionalidades dos Schemas</h4>
+<p><strong>Validação de Entrada:</strong>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CarSchema</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">factory_year</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">1900</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">2030</span><span class="p">)</span>
+    <span class="n">price</span><span class="p">:</span> <span class="n">Decimal</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">plate</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;^[A-Z]</span><span class="si">{3}</span><span class="s1">[0-9]</span><span class="si">{4}</span><span class="s1">$|^[A-Z]</span><span class="si">{3}</span><span class="s1">[0-9][A-Z][0-9]</span><span class="si">{2}</span><span class="s1">$&#39;</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>Configuração para SQLAlchemy:</strong>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">:</span>
+    <span class="n">from_attributes</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Permite conversão de modelos SQLAlchemy</span>
+</code></pre></div></p>
+<h3 id="migrations-migracoes-do-banco">🔄 <code>migrations/</code> - Migrações do Banco</h3>
+<h4 id="estrutura-das-migracoes">Estrutura das Migrações</h4>
+<div class="highlight"><pre><span></span><code>migrations/
+├── env.py                      # Configuração do Alembic
+└── versions/
+    └── 20231201_120000_create_tables.py
+</code></pre></div>
+<h4 id="exemplo-de-migracao">Exemplo de Migração</h4>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;create tables</span>
+
+<span class="sd">Revision ID: d519a757c476</span>
+<span class="sd">Revises:</span>
+<span class="sd">Create Date: 2023-12-01 12:00:00.000000</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">alembic</span><span class="w"> </span><span class="kn">import</span> <span class="n">op</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sqlalchemy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sa</span>
+
+<span class="n">revision</span> <span class="o">=</span> <span class="s1">&#39;d519a757c476&#39;</span>
+<span class="n">down_revision</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">branch_labels</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">depends_on</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">upgrade</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="c1"># Criar tabelas</span>
+    <span class="n">op</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+    <span class="n">op</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="s1">&#39;brands&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+    <span class="n">op</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="s1">&#39;cars&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">downgrade</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="c1"># Reverter tabelas</span>
+    <span class="n">op</span><span class="o">.</span><span class="n">drop_table</span><span class="p">(</span><span class="s1">&#39;cars&#39;</span><span class="p">)</span>
+    <span class="n">op</span><span class="o">.</span><span class="n">drop_table</span><span class="p">(</span><span class="s1">&#39;brands&#39;</span><span class="p">)</span>
+    <span class="n">op</span><span class="o">.</span><span class="n">drop_table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="tests-testes-automatizados">🧪 <code>tests/</code> - Testes Automatizados</h3>
+<h4 id="estrutura-dos-testes">Estrutura dos Testes</h4>
+<div class="highlight"><pre><span></span><code>tests/
+├── conftest.py                 # Fixtures compartilhadas
+├── test_auth.py               # Testes de autenticação
+├── test_brands.py             # Testes de marcas
+├── test_cars.py               # Testes de carros
+├── test_db.py                 # Testes de banco
+└── test_users.py              # Testes de usuários
+</code></pre></div>
+<h4 id="fixtures-principais-conftestpy">Fixtures Principais (<code>conftest.py</code>)</h4>
+<div class="highlight"><pre><span></span><code><span class="nd">@pytest_asyncio</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">db_session</span><span class="p">():</span>
+    <span class="c1"># Sessão de banco para testes</span>
+
+<span class="nd">@pytest_asyncio</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">client</span><span class="p">(</span><span class="n">db_session</span><span class="p">):</span>
+    <span class="c1"># Cliente HTTP para testes</span>
+
+<span class="nd">@pytest_asyncio</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">sample_user</span><span class="p">(</span><span class="n">db_session</span><span class="p">):</span>
+    <span class="c1"># Usuário de exemplo para testes</span>
+
+<span class="nd">@pytest_asyncio</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">auth_headers</span><span class="p">(</span><span class="n">sample_user</span><span class="p">):</span>
+    <span class="c1"># Headers de autenticação</span>
+</code></pre></div>
+<h4 id="padrao-de-testes">Padrão de Testes</h4>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TestCarEndpoints</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_create_car_success</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">auth_headers</span><span class="p">):</span>
+        <span class="c1"># Teste de criação bem-sucedida</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_create_car_invalid_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">auth_headers</span><span class="p">):</span>
+        <span class="c1"># Teste com dados inválidos</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test_get_car_not_found</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">,</span> <span class="n">auth_headers</span><span class="p">):</span>
+        <span class="c1"># Teste de recurso não encontrado</span>
+</code></pre></div>
+<h2 id="arquivos-de-configuracao">🔧 Arquivos de Configuração</h2>
+<h3 id="pyprojecttoml-configuracao-principal"><code>pyproject.toml</code> - Configuração Principal</h3>
+<div class="highlight"><pre><span></span><code><span class="k">[project]</span>
+<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;car-api&quot;</span>
+<span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span>
+<span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;API para gerenciamento de carros&quot;</span>
+
+<span class="k">[tool.ruff]</span>
+<span class="n">line-length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">79</span>
+<span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;I&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;E&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;W&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;PL&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;PT&#39;</span><span class="p">]</span>
+
+<span class="k">[tool.taskipy.tasks]</span>
+<span class="n">lint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ruff check&#39;</span>
+<span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ruff format&#39;</span>
+<span class="n">test</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;pytest -v --cov=car_api&#39;</span>
+<span class="n">run</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;fastapi dev car_api/app.py&#39;</span>
+</code></pre></div>
+<h3 id="alembicini-configuracao-de-migracoes"><code>alembic.ini</code> - Configuração de Migrações</h3>
+<div class="highlight"><pre><span></span><code><span class="k">[alembic]</span>
+<span class="na">script_location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">migrations</span>
+<span class="na">file_template</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">%%(year)d%%(month).2d%%(day).2d_%%(hour).2d%%(minute).2d_%%(rev)s_%%(slug)s</span>
+
+<span class="na">sqlalchemy.url</span><span class="w"> </span><span class="o">=</span>
+</code></pre></div>
+<h3 id="docker-composeyml-orquestracao"><code>docker-compose.yml</code> - Orquestração</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.8&#39;</span>
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">api</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8000:8000&quot;</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DATABASE_URL=postgresql+psycopg://postgres:postgres@db:5432/car_api</span>
+
+<span class="w">  </span><span class="nt">db</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres:15</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">POSTGRES_DB</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">car_api</span>
+<span class="w">      </span><span class="nt">POSTGRES_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres_data:/var/lib/postgresql/data</span>
+
+<span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">postgres_data</span><span class="p">:</span>
+</code></pre></div>
+<h2 id="metricas-da-estrutura">📊 Métricas da Estrutura</h2>
+<h3 id="tamanho-dos-modulos">Tamanho dos Módulos</h3>
+<table>
+<thead>
+<tr>
+<th>Módulo</th>
+<th>Arquivos</th>
+<th>Linhas de Código</th>
+<th>Responsabilidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>core/</code></td>
+<td>3</td>
+<td>~200</td>
+<td>Infraestrutura</td>
+</tr>
+<tr>
+<td><code>models/</code></td>
+<td>3</td>
+<td>~150</td>
+<td>Modelo de dados</td>
+</tr>
+<tr>
+<td><code>routers/</code></td>
+<td>4</td>
+<td>~800</td>
+<td>API endpoints</td>
+</tr>
+<tr>
+<td><code>schemas/</code></td>
+<td>4</td>
+<td>~300</td>
+<td>Validação</td>
+</tr>
+<tr>
+<td><code>tests/</code></td>
+<td>6</td>
+<td>~600</td>
+<td>Testes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="complexidade">Complexidade</h3>
+<ul>
+<li><strong>Módulos independentes</strong>: Baixo acoplamento</li>
+<li><strong>Responsabilidades claras</strong>: Alta coesão</li>
+<li><strong>Facilidade de teste</strong>: Dependency injection</li>
+<li><strong>Escalabilidade</strong>: Fácil adicionar novos módulos</li>
+</ul>
+<h2 id="principios-arquiteturais">🎯 Princípios Arquiteturais</h2>
+<h3 id="single-responsibility-principle-srp">Single Responsibility Principle (SRP)</h3>
+<p>Cada módulo tem uma responsabilidade específica:
+- <code>routers/</code>: Apenas endpoints HTTP
+- <code>models/</code>: Apenas estrutura de dados
+- <code>schemas/</code>: Apenas validação
+- <code>core/</code>: Apenas infraestrutura</p>
+<h3 id="dependency-inversion-principle-dip">Dependency Inversion Principle (DIP)</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># ✅ Depende de abstração (AsyncSession)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_car</span><span class="p">(</span><span class="n">db</span><span class="p">:</span> <span class="n">AsyncSession</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="c1"># ❌ Dependeria de implementação concreta</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_car</span><span class="p">(</span><span class="n">postgres_connection</span><span class="p">):</span>
+    <span class="k">pass</span>
+</code></pre></div>
+<h3 id="openclosed-principle-ocp">Open/Closed Principle (OCP)</h3>
+<ul>
+<li>Fácil adicionar novos endpoints sem modificar existentes</li>
+<li>Fácil adicionar novos modelos sem afetar outros</li>
+<li>Middleware pode ser adicionado sem modificar routers</li>
+</ul>
+<h3 id="interface-segregation-principle-isp">Interface Segregation Principle (ISP)</h3>
+<ul>
+<li>Schemas específicos para cada operação</li>
+<li>Dependencies injetadas apenas quando necessárias</li>
+<li>Interfaces pequenas e focadas</li>
+</ul>
+<h2 id="escalabilidade">🚀 Escalabilidade</h2>
+<h3 id="horizontal-adicionar-funcionalidades">Horizontal (Adicionar Funcionalidades)</h3>
+<ol>
+<li>
+<p><strong>Novo Modelo de Dados:</strong>
+   <div class="highlight"><pre><span></span><code>car_api/models/categories.py      # Novo modelo
+car_api/schemas/categories.py     # Novos schemas
+car_api/routers/categories.py     # Novos endpoints
+tests/test_categories.py          # Novos testes
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Nova Funcionalidade:</strong>
+   <div class="highlight"><pre><span></span><code>car_api/core/notifications.py    # Nova infraestrutura
+car_api/services/email.py        # Nova service layer
+</code></pre></div></p>
+</li>
+</ol>
+<h3 id="vertical-melhorar-existente">Vertical (Melhorar Existente)</h3>
+<ol>
+<li><strong>Otimização de Performance:</strong></li>
+<li>Cache em <code>core/cache.py</code></li>
+<li>
+<p>Rate limiting em <code>core/middleware.py</code></p>
+</li>
+<li>
+<p><strong>Melhor Observabilidade:</strong></p>
+</li>
+<li>Logging em <code>core/logging.py</code></li>
+<li>Métricas em <code>core/metrics.py</code></li>
+</ol>
+<h2 id="proximos-passos">📚 Próximos Passos</h2>
+<p>Para entender melhor a estrutura:</p>
+<ol>
+<li>📖 Leia os <a href="../guidelines/">Guidelines e Padrões</a></li>
+<li>🛠️ Explore os <a href="../api-endpoints/">API Endpoints</a></li>
+<li>🏗️ Entenda a <a href="../system-modeling/">Modelagem do Sistema</a></li>
+<li>💻 Comece o <a href="../development/">Desenvolvimento</a></li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
