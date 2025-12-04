@@ -44,7 +44,6 @@ class Brand(Base):
     cars: Mapped[List['Car']] = relationship(
         'Car',
         back_populates='brand',
-        cascade='all, delete-orphan',
     )
 
 
